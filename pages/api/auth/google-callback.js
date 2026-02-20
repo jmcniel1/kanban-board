@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/google-callback`
+    "https://kanban-board-8c22p679l-jmcniel1s-projects.vercel.app/api/auth/google-callback"
   );
 
   let tokens;
