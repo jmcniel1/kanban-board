@@ -46,33 +46,33 @@ const SpinnerIcon = ({ c }) => (
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
 const makeTheme = (dark) => dark
   ? {
-      pageBg:     "oklch(7.5% 0.004 265)",
-      surfaceBg:  "oklch(20% 0.008 265)",
-      surfaceHov: "oklch(25% 0.01 265)",
-      barBg:      "oklch(10% 0.005 265)",
+      pageBg:     "oklch(18% 0.004 265)",
+      surfaceBg:  "oklch(24% 0.008 265)",
+      surfaceHov: "oklch(30% 0.01 265)",
+      barBg:      "oklch(18% 0.004 265)",
       border:     "transparent",
       borderHov:  "transparent",
       shadow:     "0 2px 12px oklch(0% 0 0/0.45)",
       shadowHov:  "0 6px 28px oklch(0% 0 0/0.65)",
       textPri:    "oklch(93% 0 0)",
-      textSec:    "oklch(50% 0 0)",
-      textMut:    "oklch(33% 0 0)",
+      textSec:    "oklch(62% 0 0)",
+      textMut:    "oklch(48% 0 0)",
       aiBg:       "oklch(11% 0.018 280)",
       aiBorder:   "transparent",
       aiLabel:    "oklch(68% 0.18 290)",
       aiText:     "oklch(58% 0.1 290)",
       aiSync:     "oklch(56% 0.14 290)",
       src: {
-        gmail: { c:"oklch(68% 0.17 25)",  bg:"oklch(19% 0.04 25)"  },
-        slack: { c:"oklch(70% 0.08 310)", bg:"oklch(18% 0.03 310)" },
-        asana: { c:"oklch(68% 0.15 22)",  bg:"oklch(19% 0.04 22)"  },
+        gmail: { c:"oklch(82% 0.17 25)",  bg:"oklch(23% 0.04 25)"  },
+        slack: { c:"oklch(84% 0.08 310)", bg:"oklch(22% 0.03 310)" },
+        asana: { c:"oklch(82% 0.15 22)",  bg:"oklch(23% 0.04 22)"  },
       },
       pri: {
-        urgent: { d:"oklch(66% 0.2 28)",   bg:"oklch(19% 0.05 28)",   t:"oklch(70% 0.18 28)"  },
-        high:   { d:"oklch(68% 0.18 50)",  bg:"oklch(19% 0.05 50)",   t:"oklch(72% 0.16 50)"  },
-        medium: { d:"oklch(60% 0.15 290)", bg:"oklch(17% 0.04 290)",  t:"oklch(65% 0.12 290)" },
-        low:    { d:"oklch(36% 0 0)",      bg:"oklch(17% 0 0)",        t:"oklch(44% 0 0)"      },
-        blocked:{ d:"oklch(36% 0 0)",      bg:"oklch(17% 0 0)",        t:"oklch(44% 0 0)"      },
+        urgent: { d:"oklch(79% 0.2 28)",   bg:"oklch(23% 0.05 28)",   t:"oklch(84% 0.18 28)"  },
+        high:   { d:"oklch(82% 0.18 50)",  bg:"oklch(23% 0.05 50)",   t:"oklch(86% 0.16 50)"  },
+        medium: { d:"oklch(72% 0.15 290)", bg:"oklch(20% 0.04 290)",  t:"oklch(78% 0.12 290)" },
+        low:    { d:"oklch(43% 0 0)",      bg:"oklch(20% 0 0)",        t:"oklch(53% 0 0)"      },
+        blocked:{ d:"oklch(43% 0 0)",      bg:"oklch(20% 0 0)",        t:"oklch(53% 0 0)"      },
       },
       col: {
         today:   { ac:"oklch(66% 0.2 28)",   acBg:"oklch(19% 0.05 28)",  acBd:"transparent" },
@@ -80,14 +80,14 @@ const makeTheme = (dark) => dark
         fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
         blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
       },
-      chip:      { bg:"oklch(22% 0.1 285)", star:"oklch(76% 0.28 290)", t:"oklch(78% 0.22 290)" },
+      chip:      { bg:"oklch(22% 0.08 285)", star:"oklch(80% 0.2 290)", t:"oklch(82% 0.16 290)" },
       tagBg:     "oklch(18% 0 0)", tagText:"oklch(40% 0 0)",
       actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(17% 0.04 145)", hov:"oklch(22% 0.06 145)" },
       actMuted:  { c:"oklch(44% 0 0)",      bg:"oklch(18% 0 0)",       hov:"oklch(22% 0 0)"      },
       actDivider:"oklch(20% 0 0)",
-      todayPill: { bg:"oklch(19% 0.05 28)", t:"oklch(68% 0.18 28)", dot:"oklch(60% 0.22 28)" },
+      todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
-      filterOff: { bg:"transparent", t:"oklch(44% 0 0)" },
+      filterOff: { bg:"transparent", t:"oklch(44% 0 0)", bd:"oklch(24% 0.008 265)" },
       syncBtn:   { bg:"oklch(18% 0 0)", t:"oklch(52% 0 0)" },
       toggleBtn: { bg:"oklch(18% 0 0)", t:"oklch(68% 0 0)" },
       emptyB:    "oklch(20% 0 0)", emptyT:"oklch(28% 0 0)",
@@ -96,7 +96,7 @@ const makeTheme = (dark) => dark
       errBg:     "oklch(17% 0.04 25)",  errBorder:"oklch(22% 0.08 25)",   errText:"oklch(70% 0.18 25)",
       skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
-      tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(20% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
+      tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
     }
   : {
       pageBg:"oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0)",surfaceHov:"oklch(99% 0 0)",barBg:"oklch(100% 0 0)",
@@ -307,7 +307,7 @@ function PinScreen({ onVerified }) {
 function SourceBadge({ source, t }) {
   const s = t.src[source] || t.src.gmail;
   return (
-    <span style={{display:"inline-flex",alignItems:"center",gap:4,background:s.bg,color:s.c,fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:20,letterSpacing:"0.1px",whiteSpace:"nowrap"}}>
+    <span style={{display:"inline-flex",alignItems:"center",gap:4,background:s.bg,color:s.c,fontSize:11,fontWeight:400,padding:"6px 12px",borderRadius:20,letterSpacing:"0.1px",whiteSpace:"nowrap"}}>
       {SRC_ICON[source]?.(s.c)}&nbsp;{source.charAt(0).toUpperCase()+source.slice(1)}
     </span>
   );
@@ -317,7 +317,7 @@ function PriorityBadge({ priority, t }) {
   const p = t.pri[priority] || t.pri.medium;
   const label = {urgent:"Urgent",high:"High",medium:"Medium",low:"Low",blocked:"Blocked"}[priority] || priority;
   return (
-    <span style={{display:"inline-flex",alignItems:"center",gap:4,background:p.bg,color:p.t,fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:20}}>
+    <span style={{display:"inline-flex",alignItems:"center",gap:4,background:p.bg,color:p.t,fontSize:11,fontWeight:400,padding:"6px 12px",borderRadius:20}}>
       <span style={{width:5,height:5,borderRadius:"50%",background:p.d,display:"inline-block"}}/>
       {label}
     </span>
@@ -360,16 +360,16 @@ function Card({ item, onDone, onSnooze, t }) {
         <PriorityBadge priority={item.priority} t={t}/>
         <span style={{marginLeft:"auto",fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
-      <div style={{fontSize:13,fontWeight:650,color:t.textPri,lineHeight:1.35,marginBottom:4,letterSpacing:"-0.1px"}}>{item.title}</div>
+      <div style={{fontSize:15,fontWeight:400,color:t.textPri,lineHeight:1.35,marginBottom:4,letterSpacing:"0.05em"}}>{item.title}</div>
       <div style={{fontSize:10.5,color:t.textMut,marginBottom:7,fontWeight:500}}>
         <span style={{color:t.textSec}}>{item.from}</span>
         {item.fromRole && <span> · {item.fromRole}</span>}
       </div>
-      <div style={{fontSize:11.5,color:t.textSec,lineHeight:1.55,marginBottom:10,display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:11.5,color:t.textSec,lineHeight:1.55,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
       {item.aiReason && (
-        <div style={{display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:8,padding:"5px 10px",marginBottom:10}}>
-          <span style={{fontSize:10,color:t.chip.star,fontWeight:700,lineHeight:1}}>✦</span>
-          <span style={{fontSize:10.5,color:t.chip.t,fontWeight:500}}>{item.aiReason}</span>
+        <div style={{display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:8,padding:"11px 10px",marginBottom:10}}>
+          <span style={{fontSize:11.5,color:t.chip.star,fontWeight:350,lineHeight:1,letterSpacing:"0.02em"}}>✦</span>
+          <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.02em"}}>{item.aiReason}</span>
         </div>
       )}
       {item.tags?.length>0 && (
@@ -393,17 +393,16 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
   const ac = t.col[meta.id];
   return (
     <div style={{flex:1,minWidth:260,display:"flex",flexDirection:"column"}}>
-      <div style={{background:t.surfaceBg,borderRadius:14,padding:"10px 14px",marginBottom:10,display:"flex",alignItems:"center",gap:8,boxShadow:t.shadow}}>
-        <div style={{width:7,height:7,borderRadius:"50%",background:ac.ac,flexShrink:0}}/>
+      <div style={{marginBottom:10,display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
-          <div style={{fontSize:12,fontWeight:700,color:t.textPri,letterSpacing:"-0.1px"}}>{meta.label}</div>
+          <div style={{fontSize:15,fontWeight:400,color:t.textPri,letterSpacing:"0.05em"}}>{meta.label}</div>
           <div style={{fontSize:9.5,color:t.textMut,marginTop:1}}>{meta.sub}</div>
         </div>
-        <span style={{background:ac.acBg,color:ac.ac,fontSize:11,fontWeight:700,padding:"2px 9px",borderRadius:20}}>
+        <span style={{background:ac.ac,color:"oklch(100% 0 0)",fontSize:12,fontWeight:400,padding:"2px 9px",borderRadius:20}}>
           {loading ? "…" : colItems.length}
         </span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:8}}>
+      <div style={{display:"flex",flexDirection:"column",gap:12}}>
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
@@ -424,7 +423,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
 function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
   const tb = t.tabBar;
   return (
-    <div style={{background:tb.bg,padding:"8px 12px",display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
+    <div style={{background:"transparent",padding:"4px 0",display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
       <style>{`.mobileTabBar::-webkit-scrollbar{display:none}`}</style>
       {cols.map(col => {
         const count = items.filter(i=>i.column===col.id).length;
@@ -434,7 +433,7 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
         return (
           <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
             display:"flex", alignItems:"center", gap:6,
-            padding:"7px 14px", borderRadius:20, border:"none",
+            padding:"7px 7px 7px 14px", borderRadius:20, border:"none",
             background: isActive ? tb.activeBg : "transparent",
             color: isActive ? tb.activeText : tb.inactiveText,
             fontWeight: isActive ? 700 : 500,
@@ -446,8 +445,8 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
             <span style={{width:6,height:6,borderRadius:"50%",background:isActive?dotColor:tb.inactiveText,flexShrink:0,transition:"background 0.15s"}}/>
             {col.label}
             <span style={{
-              background: isActive ? ac.acBg : "oklch(0% 0 0/0.1)",
-              color: isActive ? ac.ac : tb.inactiveText,
+              background: ac.ac,
+              color: "oklch(100% 0 0)",
               fontSize:10.5, fontWeight:700,
               padding:"1px 7px", borderRadius:20,
               minWidth:20, textAlign:"center",
@@ -485,9 +484,11 @@ export default function KanbanBoard() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Sync browser frame color and color-scheme with dark/light mode
+  // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
-    const themeColor = dark ? "#19191f" : "#ffffff";
+    const themeColor = dark ? "#19191f" : "#e0e0e0";
+    document.body.style.background = dark ? "oklch(18% 0.004 265)" : "oklch(90% 0 0)";
+    document.documentElement.style.background = dark ? "oklch(18% 0.004 265)" : "oklch(90% 0 0)";
     let meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) { meta = document.createElement("meta"); meta.name = "theme-color"; document.head.appendChild(meta); }
     meta.content = themeColor;
@@ -566,78 +567,65 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:"0 6px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{background:t.barBg,padding:"12px 20px",display:"flex",alignItems:"center",gap:14,position:"sticky",top:0,zIndex:10,transition:"background 0.25s ease"}}>
-          <div style={{display:"flex",alignItems:"center",gap:10}}>
-            <div style={{width:32,height:32,borderRadius:10,flexShrink:0,background:"linear-gradient(135deg,oklch(52% 0.22 270),oklch(58% 0.2 295))",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,color:"white",boxShadow:"0 4px 14px oklch(52% 0.22 270/0.35)"}}>✦</div>
-            <div>
-              <div style={{fontSize:14,fontWeight:700,color:t.textPri,letterSpacing:"-0.2px"}}>Today&rsquo;s Board</div>
-              <div style={{fontSize:10,color:t.textMut}}>{dayLabel}</div>
-            </div>
+        <div style={{background:t.surfaceBg,borderRadius:16,padding:"12px 12px",margin:"6px 0 12px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:t.shadow,transition:"all 0.25s ease"}}>
+          <div style={{display:"flex",alignItems:"center",gap:14}}>
+            {!loading && (
+              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:"5px 14px",fontSize:14.4,fontWeight:400,color:t.todayPill.t}}>
+                <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
+                {todayCount} to handle today
+              </div>
+            )}
+
+            <div style={{flex:1}}/>
+
+            {/* Source filters — hide on mobile to save space */}
+            {!isMobile && (
+              <div style={{display:"flex",gap:4}}>
+                {FILTERS.map(f=>{
+                  const on=filter===f.key, s=on?t.filterOn:t.filterOff;
+                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"4px 13px",borderRadius:20,border:on?"none":`1px solid ${s.bd}`,background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
+                })}
+              </div>
+            )}
+
+            <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,color:t.syncBtn.t,fontSize:12,fontWeight:400,cursor:"pointer",opacity:syncing?0.7:1}}>
+              {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : "⟳"} {syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : isMobile ? "" : "Sync"}
+            </button>
+
+            <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
+              {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
+            </button>
           </div>
 
-          {!loading && (
-            <div style={{display:"flex",alignItems:"center",gap:5,background:t.todayPill.bg,borderRadius:20,padding:"4px 12px",fontSize:11,fontWeight:600,color:t.todayPill.t}}>
-              <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
-              {todayCount} to handle today
+          {/* ── AI Summary (nested) ── */}
+          <div style={{display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"flex-start":"center",gap:isMobile?4:6,background:t.chip.bg,borderRadius:8,padding:isMobile?"8px 10px":"6px 10px"}}>
+            <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,whiteSpace:"nowrap",letterSpacing:"0.03em"}}>✦ AI Summary</span>
+            <span style={{fontSize:11.5,color:t.chip.t,fontWeight:300,letterSpacing:"0.03em"}}>
+              {loading
+                ? "Fetching and prioritizing your inbox…"
+                : total===0
+                  ? "No items found. Everything looks clear!"
+                  : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
+              }
+            </span>
+          </div>
+
+          {/* ── Demo data warning ── */}
+          {usingDemo && !loading && (
+            <div style={{background:t.warnBg,borderRadius:8,padding:"7px 10px",display:"flex",alignItems:"center",gap:8}}>
+              <span style={{fontSize:11.5,color:t.warnText}}>⚠ Showing demo data — add API keys to see live data.</span>
             </div>
           )}
 
-          <div style={{flex:1}}/>
-
-          {/* Source filters — hide on mobile to save space */}
-          {!isMobile && (
-            <div style={{display:"flex",gap:4}}>
-              {FILTERS.map(f=>{
-                const on=filter===f.key, s=on?t.filterOn:t.filterOff;
-                return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"4px 13px",borderRadius:20,border:"none",background:s.bg,color:s.t,fontSize:11.5,fontWeight:on?600:500,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
-              })}
+          {/* ── Source error banner ── */}
+          {sourceFailed.length > 0 && !loading && !usingDemo && (
+            <div style={{background:t.errBg,borderRadius:8,padding:"6px 10px",display:"flex",alignItems:"center",gap:8}}>
+              <span style={{fontSize:11.5,color:t.errText}}>⚠ Could not reach: {sourceFailed.map(([k])=>k).join(", ")}</span>
             </div>
           )}
-
-          <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,color:t.syncBtn.t,fontSize:11,fontWeight:600,cursor:"pointer",opacity:syncing?0.7:1}}>
-            {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : "⟳"} {isMobile ? "" : "Sync"}
-          </button>
-
-          <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
-            {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
-          </button>
-        </div>
-
-        {/* ── Demo data warning ── */}
-        {usingDemo && !loading && (
-          <div style={{background:t.warnBg,padding:"7px 20px",display:"flex",alignItems:"center",gap:8}}>
-            <span style={{fontSize:11.5,color:t.warnText}}>⚠ Showing demo data — add API keys to see live data.</span>
-          </div>
-        )}
-
-        {/* ── Source error banner ── */}
-        {sourceFailed.length > 0 && !loading && !usingDemo && (
-          <div style={{background:t.errBg,padding:"6px 20px",display:"flex",alignItems:"center",gap:8}}>
-            <span style={{fontSize:11.5,color:t.errText}}>⚠ Could not reach: {sourceFailed.map(([k])=>k).join(", ")}</span>
-          </div>
-        )}
-
-        {/* ── AI Summary bar ── */}
-        <div style={{background:t.aiBg,padding:"8px 20px",display:"flex",alignItems:"center",gap:10,transition:"background 0.25s ease"}}>
-          <span style={{fontSize:11,fontWeight:700,color:t.aiLabel,whiteSpace:"nowrap"}}>✦ AI Summary</span>
-          <span style={{fontSize:11,color:t.aiText}}>
-            {loading
-              ? "Fetching and prioritizing your inbox…"
-              : total===0
-                ? "No items found. Everything looks clear!"
-                : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
-            }
-          </span>
-          <div style={{flex:1}}/>
-          <span style={{fontSize:10,color:t.aiSync,fontWeight:500,whiteSpace:"nowrap"}}>
-            {syncedAt
-              ? `Synced ${new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})}`
-              : loading ? "Syncing…" : "Not yet synced"
-            }
-          </span>
         </div>
 
         {/* ── Mobile tab track ── */}
@@ -655,7 +643,7 @@ export default function KanbanBoard() {
         {/* ── Board ── */}
         {isMobile ? (
           // Mobile: single column view
-          <div style={{flex:1,padding:"12px 16px",display:"flex",flexDirection:"column",gap:8}}>
+          <div style={{flex:1,padding:"12px 0",display:"flex",flexDirection:"column",gap:8}}>
             {(() => {
               const activeMeta = COL_META.find(c=>c.id===activeCol);
               const colItems = visible.filter(i=>i.column===activeCol);
@@ -673,7 +661,7 @@ export default function KanbanBoard() {
           </div>
         ) : (
           // Desktop: 4-column layout
-          <div style={{display:"flex",gap:12,padding:"16px 20px",flex:1,overflowX:"auto",alignItems:"flex-start"}}>
+          <div style={{display:"flex",gap:12,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start"}}>
             {COL_META.map(meta=>(
               <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
             ))}
@@ -687,9 +675,9 @@ export default function KanbanBoard() {
               const st = sources[src];
               const ok = !st || st.status==="fulfilled";
               return (
-                <span key={src} style={{display:"flex",alignItems:"center",gap:4,fontSize:10,opacity:ok?1:0.5}} title={st?.error||undefined}>
+                <span key={src} style={{display:"flex",alignItems:"center",gap:4,fontSize:11,opacity:ok?1:0.5}} title={st?.error||undefined}>
                   {SRC_ICON[src](t.src[src].c)}
-                  <span style={{fontWeight:600,color:t.src[src].c}}>{src.charAt(0).toUpperCase()+src.slice(1)}</span>
+                  <span style={{fontWeight:400,color:t.src[src].c}}>{src.charAt(0).toUpperCase()+src.slice(1)}</span>
                   {!ok && <span style={{fontSize:9,color:t.errText}}>✕</span>}
                 </span>
               );
