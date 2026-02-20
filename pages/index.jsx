@@ -95,6 +95,181 @@ const COL_META = [
   { id:"blocked", label:"Blocked",    sub:"Waiting on others"      },
 ];
 
+// ── PIN Screen ─────────────────────────────────────────────────────────────────
+function PinScreen({ onVerified }) {
+  const [pin,     setPin]     = useState("");
+  const [shake,   setShake]   = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+
+  const CORRECT_PIN = process.env.NEXT_PUBLIC_PIN || "";
+  const PIN_LENGTH  = CORRECT_PIN.length || 4;
+
+  useEffect(() => {
+    if (pin.length !== PIN_LENGTH) return;
+    if (pin === CORRECT_PIN) {
+      setSuccess(true);
+      try { sessionStorage.setItem("pin_verified", "1"); } catch (_) {}
+      setTimeout(() => setFadeOut(true), 500);
+      setTimeout(() => onVerified(), 900);
+    } else {
+      setShake(true);
+      setTimeout(() => { setShake(false); setPin(""); }, 550);
+    }
+  }, [pin, CORRECT_PIN, PIN_LENGTH, onVerified]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (success) return;
+      if (e.key >= "0" && e.key <= "9" && pin.length < PIN_LENGTH) {
+        setPin(p => p + e.key);
+      } else if (e.key === "Backspace") {
+        setPin(p => p.slice(0, -1));
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [pin, PIN_LENGTH, success]);
+
+  const handleNumpad = (digit) => {
+    if (success || pin.length >= PIN_LENGTH) return;
+    setPin(p => p + digit);
+  };
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 200,
+      background: "linear-gradient(135deg, oklch(14% 0.09 285) 0%, oklch(9% 0.06 305) 50%, oklch(6% 0.03 260) 100%)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif",
+      opacity: fadeOut ? 0 : 1,
+      transition: fadeOut ? "opacity 0.4s ease" : "none",
+    }}>
+      <style>{`
+        @keyframes pinShake {
+          0%,100%{transform:translateX(0)}
+          15%{transform:translateX(-10px)}
+          35%{transform:translateX(10px)}
+          55%{transform:translateX(-7px)}
+          75%{transform:translateX(7px)}
+          90%{transform:translateX(-3px)}
+        }
+        @keyframes pinSuccess {
+          0%{transform:scale(1)}
+          40%{transform:scale(1.03)}
+          100%{transform:scale(1)}
+        }
+        @keyframes pinFadeIn {
+          from{opacity:0;transform:translateY(18px) scale(0.97)}
+          to{opacity:1;transform:translateY(0) scale(1)}
+        }
+        @keyframes orbFloat {
+          0%,100%{transform:translateY(0px)}
+          50%{transform:translateY(-18px)}
+        }
+        .pin-numpad-btn:hover { opacity: 0.75 !important; }
+        .pin-numpad-btn:active { transform: scale(0.94) !important; }
+      `}</style>
+
+      {/* Floating blur orbs */}
+      <div style={{position:"absolute",width:480,height:480,borderRadius:"50%",background:"oklch(45% 0.18 280/0.12)",filter:"blur(90px)",top:"5%",left:"10%",pointerEvents:"none",animation:"orbFloat 7s ease-in-out infinite"}}/>
+      <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"oklch(50% 0.15 250/0.09)",filter:"blur(70px)",bottom:"15%",right:"15%",pointerEvents:"none",animation:"orbFloat 9s ease-in-out infinite reverse"}}/>
+      <div style={{position:"absolute",width:200,height:200,borderRadius:"50%",background:"oklch(55% 0.2 310/0.07)",filter:"blur(50px)",top:"55%",left:"60%",pointerEvents:"none",animation:"orbFloat 6s ease-in-out infinite 1s"}}/>
+
+      {/* Glass card */}
+      <div style={{
+        background: "oklch(100% 0 0 / 0.05)",
+        backdropFilter: "blur(28px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(28px) saturate(1.4)",
+        border: "1px solid oklch(100% 0 0 / 0.10)",
+        borderRadius: 28,
+        padding: "52px 60px 44px",
+        display: "flex", flexDirection: "column", alignItems: "center",
+        boxShadow: "0 40px 100px oklch(0% 0 0/0.45), inset 0 1px 0 oklch(100% 0 0/0.08), inset 0 -1px 0 oklch(0% 0 0/0.1)",
+        animation: shake ? "pinShake 0.55s ease" : success ? "pinSuccess 0.5s ease" : "pinFadeIn 0.5s cubic-bezier(0.22,1,0.36,1)",
+        minWidth: 340,
+      }}>
+
+        {/* Logo */}
+        <div style={{
+          width:56, height:56, borderRadius:16, marginBottom:22,
+          background: "linear-gradient(135deg, oklch(55% 0.22 270), oklch(62% 0.2 295))",
+          display:"flex", alignItems:"center", justifyContent:"center",
+          fontSize:24, color:"white",
+          boxShadow: "0 10px 30px oklch(55% 0.22 270/0.45), inset 0 1px 0 oklch(100% 0 0/0.2)",
+        }}>✦</div>
+
+        <div style={{fontSize:22,fontWeight:700,color:"oklch(94% 0 0)",letterSpacing:"-0.3px",marginBottom:6}}>
+          Today&rsquo;s Board
+        </div>
+        <div style={{fontSize:13,color:"oklch(52% 0 0)",marginBottom:38,letterSpacing:"0.1px"}}>
+          Enter your PIN to continue
+        </div>
+
+        {/* PIN dots */}
+        <div style={{display:"flex",gap:16,marginBottom:40}}>
+          {Array.from({length: PIN_LENGTH}).map((_, i) => {
+            const filled = i < pin.length;
+            const isSuccess = success && filled;
+            return (
+              <div key={i} style={{
+                width:15, height:15, borderRadius:"50%",
+                background: isSuccess
+                  ? "oklch(70% 0.18 145)"
+                  : filled
+                    ? "oklch(94% 0 0)"
+                    : "oklch(100% 0 0/0.15)",
+                border: `1.5px solid ${filled ? "transparent" : "oklch(100% 0 0/0.25)"}`,
+                boxShadow: isSuccess
+                  ? "0 0 12px oklch(70% 0.18 145/0.7)"
+                  : filled
+                    ? "0 0 10px oklch(94% 0 0/0.5)"
+                    : "none",
+                transition: "all 0.15s cubic-bezier(0.34,1.56,0.64,1)",
+                transform: filled ? "scale(1.1)" : "scale(1)",
+              }}/>
+            );
+          })}
+        </div>
+
+        {/* Numpad */}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(3, 1fr)",gap:10,marginBottom:8}}>
+          {[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map((d, i) => {
+            const isEmpty = d === "";
+            const isBack  = d === "⌫";
+            return (
+              <button
+                key={i}
+                className="pin-numpad-btn"
+                onClick={() => isBack ? setPin(p => p.slice(0,-1)) : !isEmpty && handleNumpad(String(d))}
+                style={{
+                  width:72, height:52, borderRadius:12,
+                  background: isEmpty ? "transparent" : "oklch(100% 0 0/0.07)",
+                  border: isEmpty ? "none" : "1px solid oklch(100% 0 0/0.09)",
+                  color: isBack ? "oklch(55% 0 0)" : "oklch(88% 0 0)",
+                  fontSize: isBack ? 18 : 20,
+                  fontWeight: 500,
+                  cursor: isEmpty ? "default" : "pointer",
+                  transition: "all 0.12s ease",
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                  boxShadow: isEmpty ? "none" : "inset 0 1px 0 oklch(100% 0 0/0.06)",
+                  pointerEvents: isEmpty ? "none" : "auto",
+                }}
+              >
+                {d}
+              </button>
+            );
+          })}
+        </div>
+
+        <div style={{fontSize:11,color:"oklch(34% 0 0)",marginTop:8,letterSpacing:"0.2px"}}>
+          or type on your keyboard
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Sub-components ─────────────────────────────────────────────────────────────
 function SourceBadge({ source, t }) {
   const s = t.src[source] || t.src.gmail;
@@ -213,6 +388,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
 
 // ── Main page ──────────────────────────────────────────────────────────────────
 export default function KanbanBoard() {
+  const [pinVerified, setPinVerified] = useState(false);
   const [dark,      setDark]      = useState(false);
   const [items,     setItems]     = useState([]);
   const [loading,   setLoading]   = useState(true);
@@ -222,6 +398,15 @@ export default function KanbanBoard() {
   const [filter,    setFilter]    = useState("all");
   const [doneCount, setDoneCount] = useState(0);
   const [usingDemo, setUsingDemo] = useState(false);
+
+  // Check sessionStorage on mount (client-only)
+  useEffect(() => {
+    const correctPin = process.env.NEXT_PUBLIC_PIN;
+    if (!correctPin) { setPinVerified(true); return; }
+    try {
+      if (sessionStorage.getItem("pin_verified") === "1") setPinVerified(true);
+    } catch (_) {}
+  }, []);
 
   const t = makeTheme(dark);
 
@@ -252,13 +437,14 @@ export default function KanbanBoard() {
     }
   }, []);
 
-  useEffect(() => { fetchItems(); }, [fetchItems]);
+  useEffect(() => { if (pinVerified) fetchItems(); }, [pinVerified, fetchItems]);
 
   // Auto-refresh every 5 minutes
   useEffect(() => {
+    if (!pinVerified) return;
     const id = setInterval(() => fetchItems(true), 5 * 60 * 1000);
     return () => clearInterval(id);
-  }, [fetchItems]);
+  }, [pinVerified, fetchItems]);
 
   const markDone = (id) => {
     setItems(prev=>prev.filter(i=>i.id!==id));
@@ -279,109 +465,114 @@ export default function KanbanBoard() {
   const FILTERS = [{key:"all",label:"All"},{key:"gmail",label:"Gmail"},{key:"slack",label:"Slack"},{key:"asana",label:"Asana"}];
 
   return (
-    <div style={{fontFamily:"-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+    <>
+      {/* PIN screen overlays everything until verified */}
+      {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      {/* ── Topbar ── */}
-      <div style={{background:t.barBg,borderBottom:`1px solid ${t.border}`,padding:"13px 22px",display:"flex",alignItems:"center",gap:16,position:"sticky",top:0,zIndex:10,boxShadow:dark?"none":"0 1px 4px oklch(0% 0 0/0.04)",transition:"background 0.25s ease"}}>
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{width:32,height:32,borderRadius:8,flexShrink:0,background:"linear-gradient(135deg,oklch(55% 0.22 270),oklch(60% 0.2 295))",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,color:"white"}}>✦</div>
-          <div>
-            <div style={{fontSize:15,fontWeight:700,color:t.textPri,letterSpacing:"-0.2px"}}>Today's Board</div>
-            <div style={{fontSize:11,color:t.textMut}}>{dayLabel}</div>
+      <div style={{fontFamily:"-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+
+        {/* ── Topbar ── */}
+        <div style={{background:t.barBg,borderBottom:`1px solid ${t.border}`,padding:"13px 22px",display:"flex",alignItems:"center",gap:16,position:"sticky",top:0,zIndex:10,boxShadow:dark?"none":"0 1px 4px oklch(0% 0 0/0.04)",transition:"background 0.25s ease"}}>
+          <div style={{display:"flex",alignItems:"center",gap:10}}>
+            <div style={{width:32,height:32,borderRadius:8,flexShrink:0,background:"linear-gradient(135deg,oklch(55% 0.22 270),oklch(60% 0.2 295))",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,color:"white"}}>✦</div>
+            <div>
+              <div style={{fontSize:15,fontWeight:700,color:t.textPri,letterSpacing:"-0.2px"}}>Today&rsquo;s Board</div>
+              <div style={{fontSize:11,color:t.textMut}}>{dayLabel}</div>
+            </div>
           </div>
+
+          {!loading && (
+            <div style={{display:"flex",alignItems:"center",gap:5,background:t.todayPill.bg,border:`1px solid ${t.todayPill.b}`,borderRadius:20,padding:"4px 12px",fontSize:12,fontWeight:600,color:t.todayPill.t}}>
+              <span style={{width:6,height:6,borderRadius:"50%",background:t.todayPill.dot}}/>
+              {todayCount} to handle today
+            </div>
+          )}
+
+          <div style={{flex:1}}/>
+
+          <div style={{display:"flex",gap:5}}>
+            {FILTERS.map(f=>{
+              const on=filter===f.key, s=on?t.filterOn:t.filterOff;
+              return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"5px 14px",borderRadius:20,border:on?"none":`1px solid ${s.b}`,background:s.bg,color:s.t,fontSize:12.5,fontWeight:on?600:500,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
+            })}
+          </div>
+
+          <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 13px",borderRadius:8,border:`1px solid ${t.syncBtn.b}`,background:t.syncBtn.bg,color:t.syncBtn.t,fontSize:12,fontWeight:600,cursor:"pointer",opacity:syncing?0.7:1}}>
+            {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : "⟳"} Sync
+          </button>
+
+          <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:34,height:34,borderRadius:8,border:`1px solid ${t.toggleBtn.b}`,background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
+            {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
+          </button>
         </div>
 
-        {!loading && (
-          <div style={{display:"flex",alignItems:"center",gap:5,background:t.todayPill.bg,border:`1px solid ${t.todayPill.b}`,borderRadius:20,padding:"4px 12px",fontSize:12,fontWeight:600,color:t.todayPill.t}}>
-            <span style={{width:6,height:6,borderRadius:"50%",background:t.todayPill.dot}}/>
-            {todayCount} to handle today
+        {/* ── Demo data warning ── */}
+        {usingDemo && !loading && (
+          <div style={{background:t.warnBg,borderBottom:`1px solid ${t.warnBorder}`,padding:"8px 22px",display:"flex",alignItems:"center",gap:8}}>
+            <span style={{fontSize:12.5,color:t.warnText}}>⚠ Showing demo data — add your API keys in <code style={{fontFamily:"monospace",background:"oklch(0% 0 0/0.05)",padding:"1px 4px",borderRadius:3}}>.env.local</code> to see live data. See <strong>SETUP.md</strong> for instructions.</span>
           </div>
         )}
 
-        <div style={{flex:1}}/>
+        {/* ── Source error banner ── */}
+        {sourceFailed.length > 0 && !loading && !usingDemo && (
+          <div style={{background:t.errBg,borderBottom:`1px solid ${t.errBorder}`,padding:"7px 22px",display:"flex",alignItems:"center",gap:8}}>
+            <span style={{fontSize:12,color:t.errText}}>⚠ Could not reach: {sourceFailed.map(([k])=>k).join(", ")} — check API keys or logs.</span>
+          </div>
+        )}
 
-        <div style={{display:"flex",gap:5}}>
-          {FILTERS.map(f=>{
-            const on=filter===f.key, s=on?t.filterOn:t.filterOff;
-            return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"5px 14px",borderRadius:20,border:on?"none":`1px solid ${s.b}`,background:s.bg,color:s.t,fontSize:12.5,fontWeight:on?600:500,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
-          })}
-        </div>
-
-        <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 13px",borderRadius:8,border:`1px solid ${t.syncBtn.b}`,background:t.syncBtn.bg,color:t.syncBtn.t,fontSize:12,fontWeight:600,cursor:"pointer",opacity:syncing?0.7:1}}>
-          {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : "⟳"} Sync
-        </button>
-
-        <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:34,height:34,borderRadius:8,border:`1px solid ${t.toggleBtn.b}`,background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
-          {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
-        </button>
-      </div>
-
-      {/* ── Demo data warning ── */}
-      {usingDemo && !loading && (
-        <div style={{background:t.warnBg,borderBottom:`1px solid ${t.warnBorder}`,padding:"8px 22px",display:"flex",alignItems:"center",gap:8}}>
-          <span style={{fontSize:12.5,color:t.warnText}}>⚠ Showing demo data — add your API keys in <code style={{fontFamily:"monospace",background:"oklch(0% 0 0/0.05)",padding:"1px 4px",borderRadius:3}}>.env.local</code> to see live data. See <strong>SETUP.md</strong> for instructions.</span>
-        </div>
-      )}
-
-      {/* ── Source error banner ── */}
-      {sourceFailed.length > 0 && !loading && !usingDemo && (
-        <div style={{background:t.errBg,borderBottom:`1px solid ${t.errBorder}`,padding:"7px 22px",display:"flex",alignItems:"center",gap:8}}>
-          <span style={{fontSize:12,color:t.errText}}>⚠ Could not reach: {sourceFailed.map(([k])=>k).join(", ")} — check API keys or logs.</span>
-        </div>
-      )}
-
-      {/* ── AI Summary bar ── */}
-      <div style={{background:t.aiBg,borderBottom:`1px solid ${t.aiBorder}`,padding:"9px 22px",display:"flex",alignItems:"center",gap:10,transition:"background 0.25s ease"}}>
-        <span style={{fontSize:12.5,fontWeight:700,color:t.aiLabel,whiteSpace:"nowrap"}}>✦ AI Summary</span>
-        <span style={{fontSize:12.5,color:t.aiText}}>
-          {loading
-            ? "Fetching and prioritizing your inbox, messages, and tasks…"
-            : total===0
-              ? "No items found. Everything looks clear!"
-              : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
-          }
-        </span>
-        <div style={{flex:1}}/>
-        <span style={{fontSize:11,color:t.aiSync,fontWeight:500,whiteSpace:"nowrap"}}>
-          {syncedAt
-            ? `Synced ${new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})}`
-            : loading ? "Syncing…" : "Not yet synced"
-          }
-        </span>
-      </div>
-
-      {/* ── Board ── */}
-      <div style={{display:"flex",gap:13,padding:"17px 22px",flex:1,overflowX:"auto",alignItems:"flex-start"}}>
-        {COL_META.map(meta=>(
-          <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
-        ))}
-      </div>
-
-      {/* ── Footer ── */}
-      <div style={{background:t.barBg,borderTop:`1px solid ${t.border}`,padding:"9px 22px",display:"flex",alignItems:"center",gap:12,transition:"background 0.25s ease"}}>
-        <div style={{display:"flex",gap:10,alignItems:"center"}}>
-          {["gmail","slack","asana"].map(src=>{
-            const st = sources[src];
-            const ok = !st || st.status==="fulfilled";
-            return (
-              <span key={src} style={{display:"flex",alignItems:"center",gap:4,fontSize:11,opacity:ok?1:0.5}} title={st?.error||undefined}>
-                {SRC_ICON[src](t.src[src].c)}
-                <span style={{fontWeight:600,color:t.src[src].c}}>{src.charAt(0).toUpperCase()+src.slice(1)}</span>
-                {!ok && <span style={{fontSize:9,color:t.errText}}>✕</span>}
-              </span>
-            );
-          })}
-        </div>
-        <span style={{color:t.footerDot}}>·</span>
-        <span style={{fontSize:11,color:t.footerTot}}>{loading?"Loading…":`${total} items`}</span>
-        <div style={{flex:1}}/>
-        <span style={{fontSize:11,color:t.footerAi,fontWeight:500}}>✦ claude-haiku-4-5</span>
-        {doneCount>0 && (
-          <span style={{fontSize:11.5,fontWeight:600,background:t.donePill.bg,color:t.donePill.t,padding:"3px 10px",borderRadius:20}}>
-            ✓ {doneCount} completed today
+        {/* ── AI Summary bar ── */}
+        <div style={{background:t.aiBg,borderBottom:`1px solid ${t.aiBorder}`,padding:"9px 22px",display:"flex",alignItems:"center",gap:10,transition:"background 0.25s ease"}}>
+          <span style={{fontSize:12.5,fontWeight:700,color:t.aiLabel,whiteSpace:"nowrap"}}>✦ AI Summary</span>
+          <span style={{fontSize:12.5,color:t.aiText}}>
+            {loading
+              ? "Fetching and prioritizing your inbox, messages, and tasks…"
+              : total===0
+                ? "No items found. Everything looks clear!"
+                : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
+            }
           </span>
-        )}
+          <div style={{flex:1}}/>
+          <span style={{fontSize:11,color:t.aiSync,fontWeight:500,whiteSpace:"nowrap"}}>
+            {syncedAt
+              ? `Synced ${new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})}`
+              : loading ? "Syncing…" : "Not yet synced"
+            }
+          </span>
+        </div>
+
+        {/* ── Board ── */}
+        <div style={{display:"flex",gap:13,padding:"17px 22px",flex:1,overflowX:"auto",alignItems:"flex-start"}}>
+          {COL_META.map(meta=>(
+            <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
+          ))}
+        </div>
+
+        {/* ── Footer ── */}
+        <div style={{background:t.barBg,borderTop:`1px solid ${t.border}`,padding:"9px 22px",display:"flex",alignItems:"center",gap:12,transition:"background 0.25s ease"}}>
+          <div style={{display:"flex",gap:10,alignItems:"center"}}>
+            {["gmail","slack","asana"].map(src=>{
+              const st = sources[src];
+              const ok = !st || st.status==="fulfilled";
+              return (
+                <span key={src} style={{display:"flex",alignItems:"center",gap:4,fontSize:11,opacity:ok?1:0.5}} title={st?.error||undefined}>
+                  {SRC_ICON[src](t.src[src].c)}
+                  <span style={{fontWeight:600,color:t.src[src].c}}>{src.charAt(0).toUpperCase()+src.slice(1)}</span>
+                  {!ok && <span style={{fontSize:9,color:t.errText}}>✕</span>}
+                </span>
+              );
+            })}
+          </div>
+          <span style={{color:t.footerDot}}>·</span>
+          <span style={{fontSize:11,color:t.footerTot}}>{loading?"Loading…":`${total} items`}</span>
+          <div style={{flex:1}}/>
+          <span style={{fontSize:11,color:t.footerAi,fontWeight:500}}>✦ claude-haiku-4-5</span>
+          {doneCount>0 && (
+            <span style={{fontSize:11.5,fontWeight:600,background:t.donePill.bg,color:t.donePill.t,padding:"3px 10px",borderRadius:20}}>
+              ✓ {doneCount} completed today
+            </span>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
