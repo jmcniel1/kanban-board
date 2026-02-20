@@ -47,8 +47,8 @@ const SpinnerIcon = ({ c }) => (
 const makeTheme = (dark) => dark
   ? {
       pageBg:     "oklch(7.5% 0.004 265)",
-      surfaceBg:  "oklch(16.5% 0.007 265)",
-      surfaceHov: "oklch(20.5% 0.009 265)",
+      surfaceBg:  "oklch(20% 0.008 265)",
+      surfaceHov: "oklch(25% 0.01 265)",
       barBg:      "oklch(10% 0.005 265)",
       border:     "transparent",
       borderHov:  "transparent",
@@ -80,7 +80,7 @@ const makeTheme = (dark) => dark
         fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
         blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
       },
-      chip:      { bg:"oklch(17% 0.04 290)", star:"oklch(64% 0.2 290)", t:"oklch(66% 0.12 290)" },
+      chip:      { bg:"oklch(22% 0.1 285)", star:"oklch(76% 0.28 290)", t:"oklch(78% 0.22 290)" },
       tagBg:     "oklch(18% 0 0)", tagText:"oklch(40% 0 0)",
       actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(17% 0.04 145)", hov:"oklch(22% 0.06 145)" },
       actMuted:  { c:"oklch(44% 0 0)",      bg:"oklch(18% 0 0)",       hov:"oklch(22% 0 0)"      },
@@ -94,19 +94,19 @@ const makeTheme = (dark) => dark
       donePill:  { bg:"oklch(17% 0.05 145)", t:"oklch(70% 0.16 145)" },
       warnBg:    "oklch(18% 0.04 45)",  warnBorder:"oklch(24% 0.08 45)",  warnText:"oklch(72% 0.16 45)",
       errBg:     "oklch(17% 0.04 25)",  errBorder:"oklch(22% 0.08 25)",   errText:"oklch(70% 0.18 25)",
-      skeletonBase:"oklch(19% 0 0)", skeletonShine:"oklch(23% 0 0)",
+      skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
-      tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(16.5% 0.007 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
+      tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(20% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
     }
   : {
-      pageBg:"oklch(96.5% 0 0)",surfaceBg:"oklch(100% 0 0)",surfaceHov:"oklch(99% 0 0)",barBg:"oklch(100% 0 0)",
+      pageBg:"oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0)",surfaceHov:"oklch(99% 0 0)",barBg:"oklch(100% 0 0)",
       border:"oklch(92% 0 0)",borderHov:"oklch(86% 0 0)",shadow:"0 1px 3px oklch(0% 0 0/0.05)",shadowHov:"0 4px 16px oklch(0% 0 0/0.09)",
       textPri:"oklch(8% 0 0)",textSec:"oklch(42% 0 0)",textMut:"oklch(67% 0 0)",
       aiBg:"linear-gradient(135deg,oklch(96.5% 0.025 285),oklch(97% 0.025 305))",aiBorder:"oklch(88% 0.07 290)",aiLabel:"oklch(46% 0.22 290)",aiText:"oklch(34% 0.18 290)",aiSync:"oklch(52% 0.15 290)",
       src:{gmail:{c:"oklch(52% 0.22 25)",bg:"oklch(97.5% 0.02 25)"},slack:{c:"oklch(24% 0.1 315)",bg:"oklch(97% 0.02 315)"},asana:{c:"oklch(58% 0.2 22)",bg:"oklch(97.5% 0.02 22)"}},
       pri:{urgent:{d:"oklch(55% 0.22 25)",bg:"oklch(97.5% 0.02 25)",t:"oklch(40% 0.2 25)"},high:{d:"oklch(65% 0.2 46)",bg:"oklch(97.5% 0.03 46)",t:"oklch(50% 0.2 46)"},medium:{d:"oklch(55% 0.18 290)",bg:"oklch(97% 0.02 290)",t:"oklch(42% 0.17 290)"},low:{d:"oklch(62% 0 0)",bg:"oklch(97.5% 0 0)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(60% 0 0)",bg:"oklch(96% 0 0)",t:"oklch(36% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(97% 0.02 25)",acBd:"oklch(82% 0.1 25/0.8)"},week:{ac:"oklch(55% 0.18 290)",acBg:"oklch(97% 0.02 290)",acBd:"oklch(82% 0.08 290/0.8)"},fyi:{ac:"oklch(50% 0 0)",acBg:"oklch(96.5% 0 0)",acBd:"oklch(82% 0 0/0.8)"},blocked:{ac:"oklch(54% 0 0)",acBg:"oklch(95.5% 0 0)",acBd:"oklch(80% 0 0/0.8)"}},
-      chip:{bg:"oklch(96% 0.03 285)",star:"oklch(48% 0.22 290)",t:"oklch(38% 0.18 290)"},
+      chip:{bg:"oklch(91% 0.1 285)",star:"oklch(54% 0.3 290)",t:"oklch(36% 0.26 290)"},
       tagBg:"oklch(95% 0 0)",tagText:"oklch(58% 0 0)",
       actDone:{c:"oklch(45% 0.18 145)",bg:"oklch(97% 0.04 145)",hov:"oklch(93% 0.07 145)"},actMuted:{c:"oklch(46% 0 0)",bg:"oklch(97.5% 0 0)",hov:"oklch(94% 0 0)"},actDivider:"oklch(94% 0 0)",
       todayPill:{bg:"oklch(97% 0.02 25)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
@@ -118,7 +118,7 @@ const makeTheme = (dark) => dark
       errBg:"oklch(97% 0.02 25)",errBorder:"oklch(88% 0.07 25)",errText:"oklch(42% 0.2 25)",
       skeletonBase:"oklch(94% 0 0)",skeletonShine:"oklch(96% 0 0)",
       footerDot:"oklch(88% 0 0)",footerTot:"oklch(60% 0 0)",footerAi:"oklch(52% 0.16 290)",
-      tabBar:{ bg:"oklch(100% 0 0)", activeBg:"oklch(96.5% 0 0)", activeText:"oklch(8% 0 0)", inactiveText:"oklch(60% 0 0)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
+      tabBar:{ bg:"oklch(100% 0 0)", activeBg:"oklch(90% 0 0)", activeText:"oklch(8% 0 0)", inactiveText:"oklch(60% 0 0)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
     };
 
 const COL_META = [
@@ -484,6 +484,17 @@ export default function KanbanBoard() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  // Sync browser frame color and color-scheme with dark/light mode
+  useEffect(() => {
+    const themeColor = dark ? "#19191f" : "#ffffff";
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) { meta = document.createElement("meta"); meta.name = "theme-color"; document.head.appendChild(meta); }
+    meta.content = themeColor;
+    let cs = document.querySelector('meta[name="color-scheme"]');
+    if (!cs) { cs = document.createElement("meta"); cs.name = "color-scheme"; document.head.appendChild(cs); }
+    cs.content = dark ? "dark" : "light";
+  }, [dark]);
 
   // Check sessionStorage on mount (client-only)
   useEffect(() => {
