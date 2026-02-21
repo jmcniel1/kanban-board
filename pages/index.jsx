@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 // ── Source icons ──────────────────────────────────────────────────────────────
 const SRC_ICON = {
@@ -46,9 +46,11 @@ const SpinnerIcon = ({ c }) => (
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
 const makeTheme = (dark) => dark
   ? {
-      pageBg:     "oklch(18% 0.004 265)",
-      surfaceBg:  "oklch(24% 0.008 265)",
-      surfaceHov: "oklch(30% 0.01 265)",
+      pageBg:     "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)",
+      surfaceBg:  "oklch(24% 0.008 265 / 0.85)",
+      surfaceHov: "oklch(30% 0.01 265 / 0.85)",
+      headerBg:   "oklch(24% 0.008 265 / 0.65)",
+      trayBg:     "oklch(18% 0.004 265 / 0.35)",
       barBg:      "oklch(18% 0.004 265)",
       border:     "transparent",
       borderHov:  "transparent",
@@ -87,9 +89,9 @@ const makeTheme = (dark) => dark
       actDivider:"oklch(20% 0 0)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
-      filterOff: { bg:"transparent", t:"oklch(44% 0 0)", bd:"oklch(24% 0.008 265)" },
-      syncBtn:   { bg:"oklch(18% 0 0)", t:"oklch(52% 0 0)" },
-      toggleBtn: { bg:"oklch(18% 0 0)", t:"oklch(68% 0 0)" },
+      filterOff: { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(44% 0 0)", bd:"transparent" },
+      syncBtn:   { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(52% 0 0)" },
+      toggleBtn: { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(68% 0 0)" },
       emptyB:    "oklch(20% 0 0)", emptyT:"oklch(28% 0 0)",
       donePill:  { bg:"oklch(17% 0.05 145)", t:"oklch(70% 0.16 145)" },
       warnBg:    "oklch(18% 0.04 45)",  warnBorder:"oklch(24% 0.08 45)",  warnText:"oklch(72% 0.16 45)",
@@ -99,7 +101,7 @@ const makeTheme = (dark) => dark
       tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
     }
   : {
-      pageBg:"oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0)",surfaceHov:"oklch(99% 0 0)",barBg:"oklch(100% 0 0)",
+      pageBg:"url(/bg.jpeg) center/cover fixed oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0 / 0.85)",surfaceHov:"oklch(99% 0 0 / 0.85)",barBg:"oklch(100% 0 0 / 0.85)",headerBg:"oklch(100% 0 0 / 0.65)",trayBg:"oklch(90% 0 0 / 0.35)",
       border:"oklch(92% 0 0)",borderHov:"oklch(86% 0 0)",shadow:"0 1px 3px oklch(0% 0 0/0.05)",shadowHov:"0 4px 16px oklch(0% 0 0/0.09)",
       textPri:"oklch(8% 0 0)",textSec:"oklch(42% 0 0)",textMut:"oklch(67% 0 0)",
       aiBg:"linear-gradient(135deg,oklch(96.5% 0.025 285),oklch(97% 0.025 305))",aiBorder:"oklch(88% 0.07 290)",aiLabel:"oklch(46% 0.22 290)",aiText:"oklch(34% 0.18 290)",aiSync:"oklch(52% 0.15 290)",
@@ -110,8 +112,8 @@ const makeTheme = (dark) => dark
       tagBg:"oklch(95% 0 0)",tagText:"oklch(58% 0 0)",
       actDone:{c:"oklch(45% 0.18 145)",bg:"oklch(97% 0.04 145)",hov:"oklch(93% 0.07 145)"},actMuted:{c:"oklch(46% 0 0)",bg:"oklch(97.5% 0 0)",hov:"oklch(94% 0 0)"},actDivider:"oklch(94% 0 0)",
       todayPill:{bg:"oklch(97% 0.02 25)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
-      filterOn:{bg:"oklch(8% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(100% 0 0)",t:"oklch(46% 0 0)"},
-      syncBtn:{bg:"oklch(100% 0 0)",t:"oklch(46% 0 0)"},toggleBtn:{bg:"oklch(97% 0 0)",t:"oklch(44% 0 0)"},
+      filterOn:{bg:"oklch(8% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
+      syncBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},toggleBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
       emptyB:"oklch(89% 0 0)",emptyT:"oklch(82% 0 0)",
       donePill:{bg:"oklch(97% 0.04 145)",t:"oklch(42% 0.18 145)"},
       warnBg:"oklch(97% 0.04 80)",warnBorder:"oklch(88% 0.09 80)",warnText:"oklch(45% 0.18 80)",
@@ -340,7 +342,7 @@ function SkeletonCard({ t }) {
       animation:"pulse 1.4s ease-in-out infinite alternate"}}/>
   );
   return (
-    <div style={{background:t.surfaceBg,borderRadius:16,padding:"14px 16px 12px",boxShadow:t.shadow}}>
+    <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",boxShadow:t.shadow}}>
       <style>{`@keyframes pulse{from{opacity:1}to{opacity:0.4}}`}</style>
       <div style={{display:"flex",gap:6,marginBottom:10}}>{line("60px",22)}{line("50px",22)}</div>
       {line("80%",14)}{line("60%",12)}{line("100%",11)}{line("95%",11)}
@@ -354,7 +356,7 @@ function Card({ item, onDone, onSnooze, t }) {
   const d = t.actDone, m = t.actMuted;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,borderRadius:16,padding:"14px 16px 12px",boxShadow:hov?t.shadowHov:t.shadow,transition:"all 0.18s ease"}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",boxShadow:hov?t.shadowHov:t.shadow,transition:"all 0.18s ease"}}>
       <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:10,flexWrap:"wrap"}}>
         <SourceBadge source={item.source} t={t}/>
         <PriorityBadge priority={item.priority} t={t}/>
@@ -392,11 +394,11 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
-    <div style={{flex:1,minWidth:260,display:"flex",flexDirection:"column"}}>
-      <div style={{marginBottom:10,display:"flex",alignItems:"center",gap:8}}>
+    <div style={{flex:1,minWidth:260,background:t.trayBg,borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+      <div style={{marginBottom:6,padding:"6px 8px 0",display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
-          <div style={{fontSize:15,fontWeight:400,color:t.textPri,letterSpacing:"0.05em"}}>{meta.label}</div>
-          <div style={{fontSize:9.5,color:t.textMut,marginTop:1}}>{meta.sub}</div>
+          <div style={{fontSize:15,fontWeight:400,color:"oklch(100% 0 0)",letterSpacing:"0.05em"}}>{meta.label}</div>
+          <div style={{fontSize:9.5,color:"oklch(100% 0 0 / 0.5)",marginTop:1}}>{meta.sub}</div>
         </div>
         <span style={{background:ac.ac,color:"oklch(100% 0 0)",fontSize:12,fontWeight:400,padding:"2px 9px",borderRadius:20}}>
           {loading ? "…" : colItems.length}
@@ -408,7 +410,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
           : colItems.length>0
             ? colItems.map(item=><Card key={item.id} item={item} onDone={onDone} onSnooze={onSnooze} t={t}/>)
             : (
-              <div style={{background:t.surfaceBg,borderRadius:16,padding:"28px 20px",textAlign:"center",boxShadow:t.shadow}}>
+              <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"28px 20px",textAlign:"center",boxShadow:t.shadow}}>
                 <div style={{fontSize:18,marginBottom:4}}>✓</div>
                 <div style={{fontSize:10.5,color:t.emptyT,fontWeight:500}}>All clear</div>
               </div>
@@ -475,6 +477,9 @@ export default function KanbanBoard() {
   const [usingDemo, setUsingDemo] = useState(false);
   const [activeCol, setActiveCol] = useState("today");
   const [isMobile,  setIsMobile]  = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [aiExpanded, setAiExpanded] = useState(false);
+  const boardRef = useRef(null);
 
   // Responsive breakpoint detection
   useEffect(() => {
@@ -484,11 +489,28 @@ export default function KanbanBoard() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // Detect horizontal scroll overflow
+  useEffect(() => {
+    const el = boardRef.current;
+    if (!el) return;
+    const checkScroll = () => {
+      setCanScrollRight(el.scrollWidth - el.scrollLeft - el.clientWidth > 2);
+    };
+    checkScroll();
+    el.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    return () => { el.removeEventListener("scroll", checkScroll); window.removeEventListener("resize", checkScroll); };
+  });
+
   // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
     const themeColor = dark ? "#19191f" : "#e0e0e0";
-    document.body.style.background = dark ? "oklch(18% 0.004 265)" : "oklch(90% 0 0)";
-    document.documentElement.style.background = dark ? "oklch(18% 0.004 265)" : "oklch(90% 0 0)";
+    const darkBg = "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)";
+    const bg = "url(/bg.jpeg) center/cover fixed";
+    document.body.style.background = bg;
+    document.body.style.margin = "0";
+    document.documentElement.style.background = bg;
+    document.documentElement.style.margin = "0";
     let meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) { meta = document.createElement("meta"); meta.name = "theme-color"; document.head.appendChild(meta); }
     meta.content = themeColor;
@@ -570,48 +592,63 @@ export default function KanbanBoard() {
       <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:"0 6px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{background:t.surfaceBg,borderRadius:16,padding:"12px 12px",margin:"6px 0 12px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:t.shadow,transition:"all 0.25s ease"}}>
+        <div style={{background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"12px 12px",margin:"6px 0 12px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:t.shadow,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",alignItems:"center",gap:14}}>
             {!loading && (
-              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:"5px 14px",fontSize:14.4,fontWeight:400,color:t.todayPill.t}}>
+              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:"5px 14px",fontSize:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
                 <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
                 {todayCount} to handle today
               </div>
             )}
 
-            <div style={{flex:1}}/>
+            {/* ── AI Summary (inline, truncated) ── */}
+            <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:20,padding:"5px 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
+              <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,flexShrink:0,letterSpacing:"0.03em"}}>✦</span>
+              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0}}>
+                {loading
+                  ? "Fetching and prioritizing your inbox…"
+                  : total===0
+                    ? "No items found. Everything looks clear!"
+                    : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
+                }
+              </span>
+            </div>
 
             {/* Source filters — hide on mobile to save space */}
             {!isMobile && (
-              <div style={{display:"flex",gap:4}}>
+              <div style={{display:"flex",gap:4,flexShrink:0}}>
                 {FILTERS.map(f=>{
                   const on=filter===f.key, s=on?t.filterOn:t.filterOff;
-                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"4px 13px",borderRadius:20,border:on?"none":`1px solid ${s.bd}`,background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
+                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"4px 13px",borderRadius:20,border:"none",background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
                 })}
               </div>
             )}
 
-            <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,color:t.syncBtn.t,fontSize:12,fontWeight:400,cursor:"pointer",opacity:syncing?0.7:1}}>
-              {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : "⟳"} {syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : isMobile ? "" : "Sync"}
-            </button>
+            <div style={{display:"flex",alignItems:"center",gap:7,flexShrink:0}}>
+              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,height:32,padding:"0 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,fontSize:12,fontWeight:400,cursor:"pointer",opacity:syncing?0.7:1}}>
+                {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={t.syncBtn.t} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M5.66 15.57a8 8 0 0 0 12.8 1.2l3.04-3.27"/><path d="M18.34 8.43a8 8 0 0 0-12.8-1.2L2.5 10.5"/></svg>} <span style={{color:t.textPri}}>{syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : isMobile ? "" : "Sync"}</span>
+              </button>
 
-            <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
-              {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
-            </button>
+              <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
+                {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
+              </button>
+            </div>
           </div>
 
-          {/* ── AI Summary (nested) ── */}
-          <div style={{display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"flex-start":"center",gap:isMobile?4:6,background:t.chip.bg,borderRadius:8,padding:isMobile?"8px 10px":"6px 10px"}}>
-            <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,whiteSpace:"nowrap",letterSpacing:"0.03em"}}>✦ AI Summary</span>
-            <span style={{fontSize:11.5,color:t.chip.t,fontWeight:300,letterSpacing:"0.03em"}}>
-              {loading
-                ? "Fetching and prioritizing your inbox…"
-                : total===0
-                  ? "No items found. Everything looks clear!"
-                  : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
-              }
-            </span>
-          </div>
+          {/* ── AI Summary (expanded) ── */}
+          {aiExpanded && (
+            <div onClick={()=>setAiExpanded(false)} style={{display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"flex-start":"center",gap:isMobile?4:6,background:t.chip.bg,borderRadius:8,padding:isMobile?"8px 10px":"6px 10px",cursor:"pointer",animation:"pinFadeIn 0.2s ease"}}>
+              <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,whiteSpace:"nowrap",letterSpacing:"0.03em"}}>✦ AI Summary</span>
+              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:300,letterSpacing:"0.03em"}}>
+                {loading
+                  ? "Fetching and prioritizing your inbox…"
+                  : total===0
+                    ? "No items found. Everything looks clear!"
+                    : `You have ${todayCount} priority items today across ${total} total. Claude scored and sorted everything above.`
+                }
+              </span>
+            </div>
+          )}
 
           {/* ── Demo data warning ── */}
           {usingDemo && !loading && (
@@ -652,7 +689,7 @@ export default function KanbanBoard() {
                 <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t}/>
               ));
               return (
-                <div style={{background:t.surfaceBg,borderRadius:16,padding:"40px 20px",textAlign:"center",boxShadow:t.shadow,marginTop:4}}>
+                <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"40px 20px",textAlign:"center",boxShadow:t.shadow,marginTop:4}}>
                   <div style={{fontSize:22,marginBottom:6}}>✓</div>
                   <div style={{fontSize:12,color:t.emptyT,fontWeight:500}}>All clear in {activeMeta?.label}</div>
                 </div>
@@ -661,15 +698,21 @@ export default function KanbanBoard() {
           </div>
         ) : (
           // Desktop: 4-column layout
-          <div style={{display:"flex",gap:12,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start"}}>
-            {COL_META.map(meta=>(
-              <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
-            ))}
+          <div style={{position:"relative",flex:1}}>
+            <div ref={boardRef} style={{display:"flex",gap:12,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start",scrollbarWidth:"none",borderRadius:22}}>
+              <style>{`.board-scroll::-webkit-scrollbar{display:none}`}</style>
+              {COL_META.map(meta=>(
+                <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
+              ))}
+            </div>
+            {canScrollRight && (
+              <div style={{position:"absolute",top:0,right:0,bottom:0,width:60,pointerEvents:"none",opacity:0.5,background:`linear-gradient(to right, transparent, ${dark ? "oklch(10% 0.004 265)" : "oklch(60% 0 0)"})`,borderRadius:"0 22px 22px 0",overflow:"hidden"}}/>
+            )}
           </div>
         )}
 
         {/* ── Footer ── */}
-        <div style={{background:t.barBg,borderTop:`1px solid ${t.actDivider}`,padding:"8px 20px",display:"flex",alignItems:"center",gap:10,transition:"background 0.25s ease"}}>
+        <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:"8px 8px 0 0",margin:"0 -6px 0",padding:"8px 20px",display:"flex",alignItems:"center",gap:10,position:"sticky",bottom:0,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",gap:10,alignItems:"center"}}>
             {["gmail","slack","asana"].map(src=>{
               const st = sources[src];
