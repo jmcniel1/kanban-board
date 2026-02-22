@@ -118,8 +118,8 @@ const makeTheme = (dark) => dark
       chip:{bg:"oklch(75% 0.18 290 / 0.2)",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",stroke:"inset 0 0 0 1px oklch(45% 0.22 290 / 0.25)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
-      todayPill:{bg:"oklch(100% 0 0 / 0.45)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
-      filterOn:{bg:"oklch(15% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
+      todayPill:{bg:"oklch(100% 0 0 / 0.15)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0 / 0.6)"},
+      filterOn:{bg:"linear-gradient(135deg, oklch(55% 0.2 290 / 0.5), oklch(60% 0.15 250 / 0.5), oklch(90% 0 0 / 0.5))",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       syncBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},toggleBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       emptyB:"oklch(100% 0 0 / 0.3)",emptyT:"oklch(50% 0 0)",
       donePill:{bg:"oklch(100% 0 0 / 0.45)",t:"oklch(35% 0.18 145)"},
@@ -763,19 +763,25 @@ export default function KanbanBoard() {
       <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{background:isMobile?t.surfaceBg:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"6px 6px",margin:"6px 0 6px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:isMobile?"none":t.shadow,transition:"all 0.25s ease"}}>
+        <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px"}}>
+        {/* Liquid glass header overlays (desktop only) */}
+        {!isMobile && <>
+          <div style={{position:"absolute",inset:0,borderRadius:16,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
+          <div style={{position:"absolute",inset:-2,borderRadius:16,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.035), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.02), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
+        </>}
+        <div style={{position:"relative",background:isMobile?t.surfaceBg:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,padding:"6px 6px",display:"flex",flexDirection:"column",gap:10,boxShadow:isMobile?"none":t.colShadow,transition:"all 0.25s ease",overflow:"clip"}}>
           <div style={{display:"flex",alignItems:"center",gap:6}}>
             {!loading && (
-              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
+              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:10,height:36,padding:"0 12px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
                 <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
                 {todayCount} today
               </div>
             )}
 
             {/* ── AI Summary (inline, truncated) ── */}
-            <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 12px":"5px 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
-              <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,flexShrink:0,letterSpacing:"0.03em"}}>✦</span>
-              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:isMobile?450:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0}}>
+            <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:10,height:36,padding:"0 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
+              <span style={{fontSize:11.5,color:t.colLabel,fontWeight:400,lineHeight:1,flexShrink:0,letterSpacing:"0.03em"}}>✦</span>
+              <span style={{fontSize:11.5,color:t.colLabel,fontWeight:isMobile?450:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0,opacity:0.85}}>
                 {loading
                   ? "Fetching and prioritizing your inbox…"
                   : total===0
@@ -790,7 +796,7 @@ export default function KanbanBoard() {
               <div style={{display:"flex",gap:4,flexShrink:0}}>
                 {FILTERS.map(f=>{
                   const on=filter===f.key, s=on?t.filterOn:t.filterOff;
-                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{padding:"4px 13px",borderRadius:20,border:"none",background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
+                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{height:36,padding:"0 13px",borderRadius:10,border:"none",background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
                 })}
               </div>
             )}
@@ -809,8 +815,8 @@ export default function KanbanBoard() {
           {/* ── AI Summary (expanded) ── */}
           {aiExpanded && (
             <div onClick={()=>setAiExpanded(false)} style={{display:"flex",flexDirection:isMobile?"column":"row",alignItems:isMobile?"flex-start":"center",gap:isMobile?4:6,background:t.chip.bg,borderRadius:8,padding:isMobile?"8px 10px":"6px 10px",cursor:"pointer",animation:"pinFadeIn 0.2s ease"}}>
-              <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,whiteSpace:"nowrap",letterSpacing:"0.03em"}}>✦ AI Summary</span>
-              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:300,letterSpacing:"0.03em"}}>
+              <span style={{fontSize:11.5,color:t.colLabel,fontWeight:400,lineHeight:1,whiteSpace:"nowrap",letterSpacing:"0.03em"}}>✦ AI Summary</span>
+              <span style={{fontSize:11.5,color:t.colLabel,fontWeight:300,letterSpacing:"0.03em",opacity:0.85}}>
                 {loading
                   ? "Fetching and prioritizing your inbox…"
                   : total===0
@@ -834,6 +840,7 @@ export default function KanbanBoard() {
               <span style={{fontSize:11.5,color:t.errText}}>⚠ Could not reach: {sourceFailed.map(([k])=>k).join(", ")}</span>
             </div>
           )}
+        </div>
         </div>
 
         {/* ── Mobile tab track ── */}
