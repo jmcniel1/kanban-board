@@ -96,21 +96,22 @@ const makeTheme = (dark) => dark
       donePill:  { bg:"oklch(17% 0.05 145)", t:"oklch(70% 0.16 145)" },
       warnBg:    "oklch(18% 0.04 45)",  warnBorder:"oklch(24% 0.08 45)",  warnText:"oklch(72% 0.16 45)",
       errBg:     "oklch(17% 0.04 25)",  errBorder:"oklch(22% 0.08 25)",   errText:"oklch(70% 0.18 25)",
+      cardBlur:"blur(30px)",
       skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
       tabBar:    { bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
     }
   : {
-      pageBg:"url(/bg.jpeg) center/cover fixed oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0 / 0.85)",surfaceHov:"oklch(99% 0 0 / 0.85)",barBg:"oklch(100% 0 0 / 0.85)",headerBg:"oklch(100% 0 0 / 0.65)",trayBg:"oklch(90% 0 0 / 0.35)",
+      pageBg:"url(/bg.jpeg) center/cover fixed oklch(90% 0 0)",surfaceBg:"oklch(85% 0 0 / 0.2)",surfaceHov:"oklch(84% 0 0 / 0.25)",barBg:"oklch(100% 0 0 / 0.85)",headerBg:"oklch(100% 0 0 / 0.65)",trayBg:"oklch(90% 0 0 / 0.35)",
       border:"oklch(92% 0 0)",borderHov:"oklch(86% 0 0)",shadow:"0 1px 3px oklch(0% 0 0/0.05)",shadowHov:"0 4px 16px oklch(0% 0 0/0.09)",
-      textPri:"oklch(8% 0 0)",textSec:"oklch(42% 0 0)",textMut:"oklch(67% 0 0)",
+      textPri:"oklch(100% 0 0)",textSec:"oklch(100% 0 0 / 0.8)",textMut:"oklch(100% 0 0 / 0.8)",
       aiBg:"linear-gradient(135deg,oklch(96.5% 0.025 285),oklch(97% 0.025 305))",aiBorder:"oklch(88% 0.07 290)",aiLabel:"oklch(46% 0.22 290)",aiText:"oklch(34% 0.18 290)",aiSync:"oklch(52% 0.15 290)",
       src:{gmail:{c:"oklch(52% 0.22 25)",bg:"oklch(97.5% 0.02 25)"},slack:{c:"oklch(24% 0.1 315)",bg:"oklch(97% 0.02 315)"},asana:{c:"oklch(58% 0.2 22)",bg:"oklch(97.5% 0.02 22)"}},
       pri:{urgent:{d:"oklch(55% 0.22 25)",bg:"oklch(97.5% 0.02 25)",t:"oklch(40% 0.2 25)"},high:{d:"oklch(65% 0.2 46)",bg:"oklch(97.5% 0.03 46)",t:"oklch(50% 0.2 46)"},medium:{d:"oklch(55% 0.18 290)",bg:"oklch(97% 0.02 290)",t:"oklch(42% 0.17 290)"},low:{d:"oklch(62% 0 0)",bg:"oklch(97.5% 0 0)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(60% 0 0)",bg:"oklch(96% 0 0)",t:"oklch(36% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(97% 0.02 25)",acBd:"oklch(82% 0.1 25/0.8)"},week:{ac:"oklch(55% 0.18 290)",acBg:"oklch(97% 0.02 290)",acBd:"oklch(82% 0.08 290/0.8)"},fyi:{ac:"oklch(50% 0 0)",acBg:"oklch(96.5% 0 0)",acBd:"oklch(82% 0 0/0.8)"},blocked:{ac:"oklch(54% 0 0)",acBg:"oklch(95.5% 0 0)",acBd:"oklch(80% 0 0/0.8)"}},
-      chip:{bg:"oklch(91% 0.1 285)",star:"oklch(54% 0.3 290)",t:"oklch(36% 0.26 290)"},
-      tagBg:"oklch(95% 0 0)",tagText:"oklch(58% 0 0)",
-      actDone:{c:"oklch(45% 0.18 145)",bg:"oklch(97% 0.04 145)",hov:"oklch(93% 0.07 145)"},actMuted:{c:"oklch(46% 0 0)",bg:"oklch(97.5% 0 0)",hov:"oklch(94% 0 0)"},actDivider:"oklch(94% 0 0)",
+      chip:{bg:"oklch(100% 0 0 / 0.1)",star:"oklch(80% 0.2 290)",t:"oklch(100% 0 0 / 0.8)"},
+      tagBg:"oklch(100% 0 0 / 0.1)",tagText:"oklch(100% 0 0 / 0.8)",
+      actDone:{c:"oklch(75% 0.15 145)",bg:"oklch(100% 0 0 / 0.1)",hov:"oklch(100% 0 0 / 0.15)"},actMuted:{c:"oklch(100% 0 0 / 0.8)",bg:"oklch(100% 0 0 / 0.1)",hov:"oklch(100% 0 0 / 0.15)"},actDivider:"oklch(100% 0 0 / 0.15)",
       todayPill:{bg:"oklch(97% 0.02 25)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
       filterOn:{bg:"oklch(8% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
       syncBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},toggleBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
@@ -118,9 +119,10 @@ const makeTheme = (dark) => dark
       donePill:{bg:"oklch(97% 0.04 145)",t:"oklch(42% 0.18 145)"},
       warnBg:"oklch(97% 0.04 80)",warnBorder:"oklch(88% 0.09 80)",warnText:"oklch(45% 0.18 80)",
       errBg:"oklch(97% 0.02 25)",errBorder:"oklch(88% 0.07 25)",errText:"oklch(42% 0.2 25)",
+      cardBlur:"blur(60px)",
       skeletonBase:"oklch(94% 0 0)",skeletonShine:"oklch(96% 0 0)",
       footerDot:"oklch(88% 0 0)",footerTot:"oklch(60% 0 0)",footerAi:"oklch(52% 0.16 290)",
-      tabBar:{ bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(90% 0 0)", activeText:"oklch(8% 0 0)", inactiveText:"oklch(60% 0 0)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
+      tabBar:{ bg:"oklch(100% 0 0 / 0.12)", activeBg:"oklch(100% 0 0 / 0.15)", activeText:"oklch(100% 0 0)", inactiveText:"oklch(100% 0 0 / 0.5)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
     };
 
 const COL_META = [
@@ -326,15 +328,20 @@ function PriorityBadge({ priority, t }) {
   );
 }
 
-function ActionBtn({ label, btnStyle, hovStyle, onClick }) {
+function ActionBtn({ icon, label, btnStyle, hovStyle, onClick }) {
   const [h, setH] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:"6px 0",borderRadius:8,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",transition:"background 0.14s",...(h?hovStyle:btnStyle)}}>
-      {label}
+      style={{flex:1,padding:"8px 10px",borderRadius:8,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"flex-start",gap:5,...(h?hovStyle:btnStyle)}}>
+      {icon}{label}
     </button>
   );
 }
+const BtnIcons = {
+  done: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
+  snooze: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  open: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
+};
 
 function SkeletonCard({ t }) {
   const line = (w, h=10) => (
@@ -351,27 +358,27 @@ function SkeletonCard({ t }) {
   );
 }
 
-function Card({ item, onDone, onSnooze, t }) {
+function Card({ item, onDone, onSnooze, t, isMobile }) {
   const [hov, setHov] = useState(false);
   const d = t.actDone, m = t.actMuted;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",transition:"all 0.18s ease"}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,borderRadius:16,padding:"14px 16px 8px",transition:"all 0.18s ease"}}>
       <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:10,flexWrap:"wrap"}}>
         <SourceBadge source={item.source} t={t}/>
         <PriorityBadge priority={item.priority} t={t}/>
         <span style={{marginLeft:"auto",fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
-      <div style={{fontSize:15,fontWeight:400,color:t.textPri,lineHeight:1.35,marginTop:6,marginBottom:4,letterSpacing:"0em"}}>{item.title}</div>
-      <div style={{fontSize:10.5,color:t.textMut,marginBottom:7,fontWeight:500}}>
-        <span style={{color:t.textSec}}>{item.from}</span>
+      <div style={{fontSize:isMobile?18:15,fontWeight:isMobile?350:400,color:t.textPri,lineHeight:1.215,marginTop:18,marginBottom:4,letterSpacing:"0em"}}>{item.title}</div>
+      <div style={{fontSize:10.5,color:t.textMut,marginBottom:12,fontWeight:500}}>
+        <span style={{color:"oklch(100% 0 0)"}}>{item.from}</span>
         {item.fromRole && <span> · {item.fromRole}</span>}
       </div>
-      <div style={{fontSize:11.5,color:t.textSec,lineHeight:1.55,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:11.5,color:"oklch(100% 0 0 / 0.8)",lineHeight:1.24,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
       {item.aiReason && (
-        <div style={{display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:8,padding:"11px 10px",marginBottom:10}}>
-          <span style={{fontSize:11.5,color:t.chip.star,fontWeight:350,lineHeight:1,letterSpacing:"0.02em"}}>✦</span>
-          <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.02em"}}>{item.aiReason}</span>
+        <div style={{display:"flex",alignItems:"flex-start",gap:5,background:"linear-gradient(135deg, oklch(65% 0.25 290 / 0.45), oklch(65% 0.12 260 / 0.25) 50%, oklch(60% 0.15 220 / 0.3))",borderRadius:8,padding:"11px 10px",marginBottom:10}}>
+          <span style={{fontSize:13.8,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1,backgroundImage:"linear-gradient(135deg, oklch(85% 0.25 290), oklch(85% 0.12 260) 50%, oklch(80% 0.15 220))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",mixBlendMode:"lighten"}}>✦</span>
+          <span style={{fontSize:11.5,fontWeight:350,letterSpacing:"0.02em",backgroundImage:"linear-gradient(135deg, oklch(85% 0.25 290), oklch(85% 0.12 260) 50%, oklch(80% 0.15 220))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",mixBlendMode:"lighten"}}>{item.aiReason}</span>
         </div>
       )}
       {item.tags?.length>0 && (
@@ -381,10 +388,10 @@ function Card({ item, onDone, onSnooze, t }) {
           ))}
         </div>
       )}
-      <div style={{display:"flex",gap:5,borderTop:`1px solid ${t.actDivider}`,paddingTop:10}}>
-        <ActionBtn label="✓  Done"   btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)}/>
-        <ActionBtn label="⏱  Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
-        <ActionBtn label="↗  Open"   btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
+      <div style={{display:"flex",gap:5,paddingTop:10,margin:"0 -8px 0"}}>
+        <ActionBtn icon={BtnIcons.done("oklch(88% 0.18 145)")} label="Done" btnStyle={{background:"oklch(72% 0.22 145 / 0.3)",color:"oklch(88% 0.18 145)"}} hovStyle={{background:"oklch(72% 0.22 145 / 0.4)",color:"oklch(92% 0.18 145)"}} onClick={()=>onDone(item.id)}/>
+        <ActionBtn icon={BtnIcons.snooze()} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
+        <ActionBtn icon={BtnIcons.open()} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
       </div>
     </div>
   );
@@ -428,10 +435,11 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
 // ── Mobile column tabs ─────────────────────────────────────────────────────────
 function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
   const tb = t.tabBar;
+  const activeIdx = cols.findIndex(c => c.id === activeCol);
+  const ordered = [cols[activeIdx], ...cols.filter((_, i) => i !== activeIdx)];
   return (
-    <div style={{display:"flex",alignItems:"center",background:tb.bg,borderRadius:24,padding:3,gap:0,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
-      <style>{`.segCtrl::-webkit-scrollbar{display:none}`}</style>
-      {cols.map(col => {
+    <div style={{display:"flex",alignItems:"center",background:`linear-gradient(to right, ${tb.bg} 30%, transparent 60%)`,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:24,padding:3,gap:0,overflow:"clip"}}>
+      {ordered.map(col => {
         const count = items.filter(i=>i.column===col.id).length;
         const ac = t.col[col.id];
         const isActive = activeCol === col.id;
@@ -443,7 +451,7 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
             color: isActive ? tb.activeText : tb.inactiveText,
             fontWeight: 400,
             fontSize:13, letterSpacing:"0em", cursor:"pointer",
-            whiteSpace:"nowrap", flexShrink:0,
+            whiteSpace:"nowrap",
             transition:"all 0.2s ease",
             zIndex: isActive ? 1 : 0,
           }}>
@@ -461,6 +469,86 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
           </button>
         );
       })}
+    </div>
+  );
+}
+
+// ── Mobile swipe view ────────────────────────────────────────────────────────
+function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, snooze, t }) {
+  const touchRef = useRef({ startX: 0, startY: 0, swiping: false });
+  const [phase, setPhase] = useState("idle"); // idle | exit | enter
+  const [exitDir, setExitDir] = useState(0);
+
+  const colIds = COL_META.map(c => c.id);
+  const curIdx = colIds.indexOf(activeCol);
+
+  const goTo = useCallback((dir) => {
+    const next = curIdx + dir;
+    if (next < 0 || next >= colIds.length || phase !== "idle") return;
+    setExitDir(dir);
+    setPhase("exit");
+    setTimeout(() => {
+      setActiveCol(colIds[next]);
+      setExitDir(dir);
+      setPhase("enter-start");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setPhase("enter"));
+      });
+      setTimeout(() => setPhase("idle"), 200);
+    }, 40);
+  }, [curIdx, colIds, setActiveCol, phase]);
+
+  const onTouchStart = (e) => {
+    const touch = e.touches[0];
+    touchRef.current = { startX: touch.clientX, startY: touch.clientY, swiping: true };
+  };
+  const onTouchEnd = (e) => {
+    if (!touchRef.current.swiping) return;
+    const dx = e.changedTouches[0].clientX - touchRef.current.startX;
+    const dy = e.changedTouches[0].clientY - touchRef.current.startY;
+    touchRef.current.swiping = false;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      goTo(dx < 0 ? 1 : -1);
+    }
+  };
+
+  const activeMeta = COL_META.find(c => c.id === activeCol);
+  const colItems = visible.filter(i => i.column === activeCol);
+
+  const slideStyle = phase === "exit"
+    ? { transform: `translateX(${exitDir > 0 ? "-100%" : "100%"})`, transition: "transform 0.2s ease" }
+    : phase === "enter-start"
+      ? { transform: `translateX(${exitDir > 0 ? "100%" : "-100%"})`, transition: "none" }
+      : phase === "enter"
+        ? { transform: "translateX(0)", transition: "transform 0.2s ease" }
+        : { transform: "translateX(0)", transition: "none" };
+
+  return (
+    <div
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      style={{ flex: 1, padding: "6px 0", minHeight: 100, overflow: "clip" }}
+    >
+      <div
+        style={{
+          display: "flex", flexDirection: "column", gap: 4,
+          ...slideStyle,
+        }}
+      >
+        {loading
+          ? [1, 2, 3].map(i => <SkeletonCard key={i} t={t} />)
+          : colItems.length > 0
+            ? colItems.map(item => (
+              <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t} isMobile />
+            ))
+            : (
+              <div style={{ background: t.surfaceBg, backdropFilter: "blur(30px)", WebkitBackdropFilter: "blur(30px)", borderRadius: 16, padding: "40px 20px", textAlign: "center", boxShadow: t.shadow, marginTop: 4 }}>
+                <div style={{ fontSize: 22, marginBottom: 6 }}>✓</div>
+                <div style={{ fontSize: 12, color: t.emptyT, fontWeight: 500 }}>All clear in {activeMeta?.label}</div>
+              </div>
+            )
+        }
+      </div>
     </div>
   );
 }
@@ -595,10 +683,10 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{background:isMobile?"oklch(0% 0 0 / 0.85)":t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"6px 6px",margin:"6px 0 6px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:isMobile?"none":t.shadow,transition:"all 0.25s ease"}}>
+        <div style={{background:isMobile?t.surfaceBg:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"6px 6px",margin:"6px 0 6px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:isMobile?"none":t.shadow,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",alignItems:"center",gap:6}}>
             {!loading && (
               <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
@@ -610,7 +698,7 @@ export default function KanbanBoard() {
             {/* ── AI Summary (inline, truncated) ── */}
             <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 12px":"5px 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
               <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,flexShrink:0,letterSpacing:"0.03em"}}>✦</span>
-              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0}}>
+              <span style={{fontSize:11.5,color:t.chip.t,fontWeight:isMobile?450:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0}}>
                 {loading
                   ? "Fetching and prioritizing your inbox…"
                   : total===0
@@ -685,23 +773,16 @@ export default function KanbanBoard() {
 
         {/* ── Board ── */}
         {isMobile ? (
-          // Mobile: single column view
-          <div style={{flex:1,padding:"6px 0",display:"flex",flexDirection:"column",gap:4}}>
-            {(() => {
-              const activeMeta = COL_META.find(c=>c.id===activeCol);
-              const colItems = visible.filter(i=>i.column===activeCol);
-              if (loading) return [1,2,3].map(i=><SkeletonCard key={i} t={t}/>);
-              if (colItems.length > 0) return colItems.map(item=>(
-                <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t}/>
-              ));
-              return (
-                <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"40px 20px",textAlign:"center",boxShadow:t.shadow,marginTop:4}}>
-                  <div style={{fontSize:22,marginBottom:6}}>✓</div>
-                  <div style={{fontSize:12,color:t.emptyT,fontWeight:500}}>All clear in {activeMeta?.label}</div>
-                </div>
-              );
-            })()}
-          </div>
+          // Mobile: swipeable single column view
+          <MobileSwipeView
+            activeCol={activeCol}
+            setActiveCol={setActiveCol}
+            visible={visible}
+            loading={loading}
+            markDone={markDone}
+            snooze={snooze}
+            t={t}
+          />
         ) : (
           // Desktop: 4-column layout
           <div style={{position:"relative",flex:1}}>
@@ -737,7 +818,7 @@ export default function KanbanBoard() {
           <div style={{flex:1}}/>
           <span style={{fontSize:10,color:t.footerAi,fontWeight:500}}>✦ claude-haiku-4-5</span>
           {doneCount>0 && (
-            <span style={{fontSize:11,fontWeight:600,background:t.donePill.bg,color:t.donePill.t,padding:"2px 9px",borderRadius:20}}>
+            <span style={{fontSize:11,fontWeight:450,background:t.donePill.bg,color:t.donePill.t,padding:"2px 9px",borderRadius:20}}>
               ✓ {doneCount} done
             </span>
           )}
