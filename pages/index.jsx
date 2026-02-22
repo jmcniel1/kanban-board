@@ -47,8 +47,8 @@ const SpinnerIcon = ({ c }) => (
 const makeTheme = (dark) => dark
   ? {
       pageBg:     "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)",
-      surfaceBg:  "oklch(24% 0.008 265 / 0.85)",
-      surfaceHov: "oklch(30% 0.01 265 / 0.85)",
+      surfaceBg:  "oklch(18% 0.006 260 / 0.85)",
+      surfaceHov: "oklch(23% 0.008 260 / 0.85)",
       headerBg:   "oklch(24% 0.008 265 / 0.65)",
       trayBg:     "oklch(18% 0.004 265 / 0.35)",
       barBg:      "oklch(18% 0.004 265)",
@@ -57,9 +57,9 @@ const makeTheme = (dark) => dark
       shadow:     "0 2px 12px oklch(0% 0 0/0.45)",
       shadowHov:  "0 6px 28px oklch(0% 0 0/0.65)",
       textPri:    "oklch(93% 0 0)",
-      textSec:    "oklch(62% 0 0)",
+      textSec:    "oklch(100% 0 0 / 0.5)",
       colLabel:   "oklch(100% 0 0)", colSub:"oklch(100% 0 0 / 0.5)",
-      textMut:    "oklch(48% 0 0)",
+      textMut:    "oklch(43% 0 0)",
       aiBg:       "oklch(11% 0.018 280)",
       aiBorder:   "transparent",
       aiLabel:    "oklch(68% 0.18 290)",
@@ -83,9 +83,11 @@ const makeTheme = (dark) => dark
         fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
         blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
       },
-      chip:      { bg:"oklch(0% 0 0 / 0.3)", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)" },
-      tagBg:     "oklch(18% 0 0)", tagText:"oklch(40% 0 0)",
-      actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(17% 0.04 145)", hov:"oklch(22% 0.06 145)" },
+      chip:      { bg:"oklch(0% 0 0 / 0.3)", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)",
+                   starGrad:"linear-gradient(141deg, rgb(117,99,192) 30%, rgb(255,154,152) 50%, rgb(255,255,255) 66%)",
+                   tGrad:"linear-gradient(174deg, rgba(117,99,192,0.8) 30%, rgba(255,154,152,0.8) 50%, rgba(255,255,255,0.8) 66%)" },
+      tagBg:     "oklch(12% 0 0)", tagText:"oklch(34% 0 0)",
+      actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(30% 0.06 145)", hov:"oklch(35% 0.08 145)" },
       actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(0% 0 0 / 0.3)",       hov:"oklch(0% 0 0 / 0.4)"      },
       actDivider:"oklch(20% 0 0)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
@@ -101,8 +103,9 @@ const makeTheme = (dark) => dark
       skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
       tabBar:    { bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
-      cardBorder:"none", cardShadow:"none",
-      colShadow:"inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05)",
+      cardBorder:"1px solid oklch(100% 0 0 / 0.08)",
+      cardShadow:"0 2px 12px oklch(0% 0 0/0.3), inset 0 1px 0 oklch(100% 0 0/0.08)",
+      colShadow:"0 4px 20px oklch(0% 0 0/0.25), inset 0 1px 0 oklch(100% 0 0/0.06), inset 0 -1px 0 oklch(0% 0 0/0.15)",
     }
   : {
       pageBg:"url(/bg.jpeg) center/cover fixed oklch(92% 0.005 265)",
@@ -115,10 +118,10 @@ const makeTheme = (dark) => dark
       src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
-      chip:{bg:"oklch(75% 0.18 290 / 0.2)",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",stroke:"inset 0 0 0 1px oklch(45% 0.22 290 / 0.25)"},
+      chip:{bg:"oklch(45% 0.18 290 / 0.3)",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",stroke:"inset 0 0 0 1px oklch(45% 0.22 290 / 0.25)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
-      todayPill:{bg:"oklch(100% 0 0 / 0.15)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0 / 0.6)"},
+      todayPill:{bg:"oklch(65% 0.15 25 / 0.2)",t:"oklch(45% 0.2 25)",dot:"oklch(58% 0.22 25)"},
       filterOn:{bg:"linear-gradient(135deg, oklch(55% 0.2 290 / 0.5), oklch(60% 0.15 250 / 0.5), oklch(90% 0 0 / 0.5))",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       syncBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},toggleBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       emptyB:"oklch(100% 0 0 / 0.3)",emptyT:"oklch(50% 0 0)",
@@ -341,7 +344,7 @@ function ActionBtn({ icon, label, btnStyle, hovStyle, onClick }) {
   const [h, setH] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:"8px 10px",borderRadius:8,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"flex-start",gap:5,...(h?hovStyle:btnStyle)}}>
+      style={{flex:1,padding:"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,...(h?hovStyle:btnStyle)}}>
       {icon}{label}
     </button>
   );
@@ -372,32 +375,36 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
   const d = t.actDone, m = t.actMuted;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:"14px 16px 8px",transition:"all 0.18s ease"}}>
-      <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:10,flexWrap:"wrap"}}>
-        <SourceBadge source={item.source} t={t}/>
-        <PriorityBadge priority={item.priority} t={t}/>
-        <span style={{marginLeft:"auto",fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:"16px 16px 8px",display:"flex",flexDirection:"column",gap:17,transition:"all 0.18s ease"}}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div style={{display:"flex",alignItems:"center",gap:12}}>
+          <SourceBadge source={item.source} t={t}/>
+          <PriorityBadge priority={item.priority} t={t}/>
+        </div>
+        <span style={{fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
-      <div style={{fontSize:isMobile?18:15,fontWeight:isMobile?350:400,color:t.textPri,lineHeight:1.215,marginTop:18,marginBottom:4,letterSpacing:"0em"}}>{item.title}</div>
-      <div style={{fontSize:10.5,color:t.textMut,marginBottom:12,fontWeight:500}}>
-        <span style={{color:t.textPri}}>{item.from}</span>
-        {item.fromRole && <span> · {item.fromRole}</span>}
+      <div style={{display:"flex",flexDirection:"column",gap:18}}>
+        <div style={{fontSize:18,fontWeight:400,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
+        <div style={{fontSize:10.5,color:t.textMut,fontWeight:500}}>
+          <span style={{color:t.textPri}}>{item.from}</span>
+          {item.fromRole && <span> · {item.fromRole}</span>}
+        </div>
       </div>
-      <div style={{fontSize:13.5,fontWeight:350,color:t.textSec,lineHeight:1.24,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:14,fontWeight:400,color:t.textSec,lineHeight:1.3,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
       {item.aiReason && (
-        <div style={{display:"flex",alignItems:"flex-start",gap:5,background:t.chip.bg,borderRadius:8,padding:"11px 10px",marginBottom:10,boxShadow:t.chip.stroke||"none"}}>
-          <span style={{fontSize:13.8,color:t.chip.star,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1}}>✦</span>
-          <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.02em"}}>{item.aiReason}</span>
+        <div style={{display:"flex",alignItems:"flex-start",gap:10,background:t.chip.bg,borderRadius:16,padding:"11px 10px",boxShadow:t.chip.stroke||"none"}}>
+          <span style={{fontSize:13.8,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1,...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
+          <span style={{fontSize:11.5,fontWeight:350,letterSpacing:"0.02em",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
         </div>
       )}
       {item.tags?.length>0 && (
-        <div style={{display:"flex",gap:4,marginBottom:10,flexWrap:"wrap"}}>
+        <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
           {item.tags.map(tag=>(
             <span key={tag} style={{background:t.tagBg,color:t.tagText,fontSize:9.5,fontWeight:500,padding:"2px 6px",borderRadius:4}}>{tag}</span>
           ))}
         </div>
       )}
-      <div style={{display:"flex",gap:5,paddingTop:10,margin:"0 -8px 0"}}>
+      <div style={{display:"flex",gap:5,paddingTop:10,margin:"0 -10px"}}>
         <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)}/>
         <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
         <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
@@ -763,13 +770,13 @@ export default function KanbanBoard() {
       <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px"}}>
+        <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
         {/* Liquid glass header overlays (desktop only) */}
         {!isMobile && <>
           <div style={{position:"absolute",inset:0,borderRadius:16,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
           <div style={{position:"absolute",inset:-2,borderRadius:16,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.035), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.02), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
         </>}
-        <div style={{position:"relative",background:isMobile?t.surfaceBg:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,padding:"6px 6px",display:"flex",flexDirection:"column",gap:10,boxShadow:isMobile?"none":t.colShadow,transition:"all 0.25s ease",overflow:"clip"}}>
+        <div style={{position:"relative",padding:"6px 6px",display:"flex",flexDirection:"column",gap:10,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",alignItems:"center",gap:6}}>
             {!loading && (
               <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:10,height:36,padding:"0 12px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
