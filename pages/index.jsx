@@ -356,13 +356,13 @@ function Card({ item, onDone, onSnooze, t }) {
   const d = t.actDone, m = t.actMuted;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",boxShadow:hov?t.shadowHov:t.shadow,transition:"all 0.18s ease"}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",transition:"all 0.18s ease"}}>
       <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:10,flexWrap:"wrap"}}>
         <SourceBadge source={item.source} t={t}/>
         <PriorityBadge priority={item.priority} t={t}/>
         <span style={{marginLeft:"auto",fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
-      <div style={{fontSize:15,fontWeight:400,color:t.textPri,lineHeight:1.35,marginBottom:4,letterSpacing:"0.05em"}}>{item.title}</div>
+      <div style={{fontSize:15,fontWeight:400,color:t.textPri,lineHeight:1.35,marginTop:6,marginBottom:4,letterSpacing:"0em"}}>{item.title}</div>
       <div style={{fontSize:10.5,color:t.textMut,marginBottom:7,fontWeight:500}}>
         <span style={{color:t.textSec}}>{item.from}</span>
         {item.fromRole && <span> · {item.fromRole}</span>}
@@ -394,7 +394,11 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
-    <div style={{flex:1,minWidth:260,background:t.trayBg,borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+    <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"clip",boxShadow:"inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05)"}}>
+      {/* Liquid glass diagonal shine */}
+      <div style={{position:"absolute",inset:0,borderRadius:22,background:"linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
+      {/* Liquid glass corner highlights */}
+      <div style={{position:"absolute",inset:-2,borderRadius:22,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.15), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.08), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
       <div style={{marginBottom:6,padding:"6px 8px 0",display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
           <div style={{fontSize:15,fontWeight:400,color:"oklch(100% 0 0)",letterSpacing:"0.05em"}}>{meta.label}</div>
@@ -404,7 +408,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
           {loading ? "…" : colItems.length}
         </span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:12}}>
+      <div style={{display:"flex",flexDirection:"column",gap:12,padding:"0 6px"}}>
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
@@ -435,16 +439,15 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
         return (
           <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
             display:"flex", alignItems:"center", gap:6,
-            padding:"7px 7px 7px 14px", borderRadius:20, border:"none",
+            padding:"8px 14px", borderRadius:20, border:"none",
             background: isActive ? tb.activeBg : "transparent",
             color: isActive ? tb.activeText : tb.inactiveText,
-            fontWeight: isActive ? 700 : 500,
-            fontSize:12, cursor:"pointer",
+            fontWeight: isActive ? 400 : 400,
+            fontSize:15, letterSpacing:"0em", cursor:"pointer",
             flexShrink:0,
             transition:"all 0.15s ease",
-            boxShadow: isActive ? t.shadow : "none",
+            boxShadow: "none",
           }}>
-            <span style={{width:6,height:6,borderRadius:"50%",background:isActive?dotColor:tb.inactiveText,flexShrink:0,transition:"background 0.15s"}}/>
             {col.label}
             <span style={{
               background: ac.ac,
@@ -589,15 +592,15 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:"0 6px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
         <div style={{background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"12px 12px",margin:"6px 0 12px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:t.shadow,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",alignItems:"center",gap:14}}>
             {!loading && (
-              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:"5px 14px",fontSize:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
+              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:isMobile?"5px 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
                 <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
-                {todayCount} to handle today
+                {todayCount} today
               </div>
             )}
 
@@ -626,7 +629,7 @@ export default function KanbanBoard() {
 
             <div style={{display:"flex",alignItems:"center",gap:7,flexShrink:0}}>
               <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,height:32,padding:"0 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,fontSize:12,fontWeight:400,cursor:"pointer",opacity:syncing?0.7:1}}>
-                {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={t.syncBtn.t} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M5.66 15.57a8 8 0 0 0 12.8 1.2l3.04-3.27"/><path d="M18.34 8.43a8 8 0 0 0-12.8-1.2L2.5 10.5"/></svg>} <span style={{color:t.textPri}}>{syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : isMobile ? "" : "Sync"}</span>
+                {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={t.syncBtn.t} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.19 7.5A9 9 0 1 0 21 12"/><polyline points="21 3 21 8 16 8"/></svg>}{!isMobile && <span style={{color:t.textPri}}>{syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : "Sync"}</span>}
               </button>
 
               <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
@@ -699,7 +702,7 @@ export default function KanbanBoard() {
         ) : (
           // Desktop: 4-column layout
           <div style={{position:"relative",flex:1}}>
-            <div ref={boardRef} style={{display:"flex",gap:12,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start",scrollbarWidth:"none",borderRadius:22}}>
+            <div ref={boardRef} style={{display:"flex",gap:6,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start",scrollbarWidth:"none",borderRadius:22}}>
               <style>{`.board-scroll::-webkit-scrollbar{display:none}`}</style>
               {COL_META.map(meta=>(
                 <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
