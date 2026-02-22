@@ -98,7 +98,7 @@ const makeTheme = (dark) => dark
       errBg:     "oklch(17% 0.04 25)",  errBorder:"oklch(22% 0.08 25)",   errText:"oklch(70% 0.18 25)",
       skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
-      tabBar:    { bg:"oklch(10% 0.005 265)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
+      tabBar:    { bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
     }
   : {
       pageBg:"url(/bg.jpeg) center/cover fixed oklch(90% 0 0)",surfaceBg:"oklch(100% 0 0 / 0.85)",surfaceHov:"oklch(99% 0 0 / 0.85)",barBg:"oklch(100% 0 0 / 0.85)",headerBg:"oklch(100% 0 0 / 0.65)",trayBg:"oklch(90% 0 0 / 0.35)",
@@ -120,7 +120,7 @@ const makeTheme = (dark) => dark
       errBg:"oklch(97% 0.02 25)",errBorder:"oklch(88% 0.07 25)",errText:"oklch(42% 0.2 25)",
       skeletonBase:"oklch(94% 0 0)",skeletonShine:"oklch(96% 0 0)",
       footerDot:"oklch(88% 0 0)",footerTot:"oklch(60% 0 0)",footerAi:"oklch(52% 0.16 290)",
-      tabBar:{ bg:"oklch(100% 0 0)", activeBg:"oklch(90% 0 0)", activeText:"oklch(8% 0 0)", inactiveText:"oklch(60% 0 0)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
+      tabBar:{ bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(90% 0 0)", activeText:"oklch(8% 0 0)", inactiveText:"oklch(60% 0 0)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
     };
 
 const COL_META = [
@@ -408,7 +408,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
           {loading ? "…" : colItems.length}
         </span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:12,padding:"0 6px"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:6,padding:"0 6px"}}>
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
@@ -429,32 +429,31 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
 function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
   const tb = t.tabBar;
   return (
-    <div style={{background:"transparent",padding:"4px 0",display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
-      <style>{`.mobileTabBar::-webkit-scrollbar{display:none}`}</style>
+    <div style={{display:"flex",alignItems:"center",background:tb.bg,borderRadius:24,padding:3,gap:0,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
+      <style>{`.segCtrl::-webkit-scrollbar{display:none}`}</style>
       {cols.map(col => {
         const count = items.filter(i=>i.column===col.id).length;
         const ac = t.col[col.id];
         const isActive = activeCol === col.id;
-        const dotColor = t.tabBar.indicatorFn(col.id);
         return (
           <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
-            display:"flex", alignItems:"center", gap:6,
-            padding:"8px 14px", borderRadius:20, border:"none",
+            display:"flex", alignItems:"center", justifyContent:"center", gap:10,
+            padding:"8px 10px 8px 14px", borderRadius:21, border:"none",
             background: isActive ? tb.activeBg : "transparent",
             color: isActive ? tb.activeText : tb.inactiveText,
-            fontWeight: isActive ? 400 : 400,
-            fontSize:15, letterSpacing:"0em", cursor:"pointer",
-            flexShrink:0,
-            transition:"all 0.15s ease",
-            boxShadow: "none",
+            fontWeight: 400,
+            fontSize:13, letterSpacing:"0em", cursor:"pointer",
+            whiteSpace:"nowrap", flexShrink:0,
+            transition:"all 0.2s ease",
+            zIndex: isActive ? 1 : 0,
           }}>
             {col.label}
             <span style={{
-              background: ac.ac,
-              color: "oklch(100% 0 0)",
-              fontSize:10.5, fontWeight:700,
-              padding:"1px 7px", borderRadius:20,
-              minWidth:20, textAlign:"center",
+              background: isActive ? ac.ac : "oklch(100% 0 0 / 0.08)",
+              color: isActive ? "oklch(100% 0 0)" : tb.inactiveText,
+              fontSize:13, fontWeight:400,
+              padding:"3px 7px", borderRadius:20,
+              textAlign:"center",
               transition:"all 0.15s",
             }}>
               {loading ? "…" : count}
@@ -534,9 +533,13 @@ export default function KanbanBoard() {
   const t = makeTheme(dark);
 
   // ── Fetch from API ──────────────────────────────────────────────────────────
+  const lastFetchRef = useRef(0);
   const fetchItems = useCallback(async (isManualSync=false) => {
+    const now = Date.now();
+    if (lastFetchRef.current && now - lastFetchRef.current < 5 * 60 * 1000) return;
     if (isManualSync) setSyncing(true);
     else setLoading(true);
+    lastFetchRef.current = now;
 
     try {
       const res = await fetch("/api/items");
@@ -592,10 +595,10 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
 
         {/* ── Topbar ── */}
-        <div style={{background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"12px 12px",margin:"6px 0 12px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:t.shadow,transition:"all 0.25s ease"}}>
+        <div style={{background:isMobile?"oklch(0% 0 0 / 0.85)":t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"6px 6px",margin:"6px 0 6px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:isMobile?"none":t.shadow,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",alignItems:"center",gap:14}}>
             {!loading && (
               <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:isMobile?"5px 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
@@ -628,12 +631,12 @@ export default function KanbanBoard() {
             )}
 
             <div style={{display:"flex",alignItems:"center",gap:7,flexShrink:0}}>
-              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",gap:5,height:32,padding:"0 12px",borderRadius:9,border:"none",background:t.syncBtn.bg,fontSize:12,fontWeight:400,cursor:"pointer",opacity:syncing?0.7:1}}>
-                {syncing ? <SpinnerIcon c={t.syncBtn.t}/> : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={t.syncBtn.t} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.19 7.5A9 9 0 1 0 21 12"/><polyline points="21 3 21 8 16 8"/></svg>}{!isMobile && <span style={{color:t.textPri}}>{syncedAt ? new Date(syncedAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}) : "Sync"}</span>}
+              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,width:36,height:36,padding:8,borderRadius:7,border:"none",background:t.tabBar.activeBg,cursor:"pointer",opacity:syncing?0.7:1,transition:"all 0.2s ease"}}>
+                {syncing ? <SpinnerIcon c={t.tabBar.activeText}/> : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tabBar.activeText} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.19 7.5A9 9 0 1 0 21 12"/><polyline points="21 3 21 8 16 8"/></svg>}
               </button>
 
-              <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:32,height:32,borderRadius:9,border:"none",background:t.toggleBtn.bg,cursor:"pointer",transition:"all 0.2s ease"}}>
-                {dark?<SunIcon c={t.toggleBtn.t}/>:<MoonIcon c={t.toggleBtn.t}/>}
+              <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:36,height:36,padding:8,borderRadius:7,border:"none",background:t.tabBar.activeBg,cursor:"pointer",transition:"all 0.2s ease"}}>
+                {dark?<SunIcon c={t.tabBar.activeText}/>:<MoonIcon c={t.tabBar.activeText}/>}
               </button>
             </div>
           </div>
@@ -683,7 +686,7 @@ export default function KanbanBoard() {
         {/* ── Board ── */}
         {isMobile ? (
           // Mobile: single column view
-          <div style={{flex:1,padding:"12px 0",display:"flex",flexDirection:"column",gap:8}}>
+          <div style={{flex:1,padding:"6px 0",display:"flex",flexDirection:"column",gap:4}}>
             {(() => {
               const activeMeta = COL_META.find(c=>c.id===activeCol);
               const colItems = visible.filter(i=>i.column===activeCol);
