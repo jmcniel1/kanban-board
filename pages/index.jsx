@@ -47,8 +47,8 @@ const SpinnerIcon = ({ c }) => (
 const makeTheme = (dark) => dark
   ? {
       pageBg:     "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)",
-      surfaceBg:  "oklch(18% 0.006 260 / 0.85)",
-      surfaceHov: "oklch(23% 0.008 260 / 0.85)",
+      surfaceBg:  "oklch(12% 0.004 250 / 0.85)",
+      surfaceHov: "oklch(17% 0.006 250 / 0.85)",
       headerBg:   "oklch(24% 0.008 265 / 0.65)",
       trayBg:     "oklch(18% 0.004 265 / 0.35)",
       barBg:      "oklch(18% 0.004 265)",
@@ -60,22 +60,23 @@ const makeTheme = (dark) => dark
       textSec:    "oklch(100% 0 0 / 0.5)",
       colLabel:   "oklch(100% 0 0)", colSub:"oklch(100% 0 0 / 0.5)",
       textMut:    "oklch(43% 0 0)",
+      timeMut:    "oklch(100% 0 0 / 0.7)",
       aiBg:       "oklch(11% 0.018 280)",
       aiBorder:   "transparent",
       aiLabel:    "oklch(68% 0.18 290)",
       aiText:     "oklch(58% 0.1 290)",
       aiSync:     "oklch(56% 0.14 290)",
       src: {
-        gmail: { c:"oklch(82% 0.17 25)",  bg:"oklch(23% 0.04 25)"  },
-        slack: { c:"oklch(84% 0.08 310)", bg:"oklch(22% 0.03 310)" },
-        asana: { c:"oklch(82% 0.15 22)",  bg:"oklch(23% 0.04 22)"  },
+        gmail: { c:"oklch(82% 0.17 25)",  bg:"oklch(82% 0.17 25 / 0.2)"  },
+        slack: { c:"oklch(84% 0.08 310)", bg:"oklch(84% 0.08 310 / 0.2)" },
+        asana: { c:"oklch(82% 0.15 22)",  bg:"oklch(82% 0.15 22 / 0.2)"  },
       },
       pri: {
-        urgent: { d:"oklch(79% 0.2 28)",   bg:"oklch(23% 0.05 28)",   t:"oklch(84% 0.18 28)"  },
-        high:   { d:"oklch(82% 0.18 50)",  bg:"oklch(23% 0.05 50)",   t:"oklch(86% 0.16 50)"  },
-        medium: { d:"oklch(72% 0.15 290)", bg:"oklch(20% 0.04 290)",  t:"oklch(78% 0.12 290)" },
-        low:    { d:"oklch(43% 0 0)",      bg:"oklch(20% 0 0)",        t:"oklch(53% 0 0)"      },
-        blocked:{ d:"oklch(43% 0 0)",      bg:"oklch(20% 0 0)",        t:"oklch(53% 0 0)"      },
+        urgent: { d:"oklch(79% 0.2 28)",   bg:"oklch(79% 0.2 28 / 0.2)",   t:"oklch(82% 0.17 25)"  },
+        high:   { d:"oklch(82% 0.18 50)",  bg:"oklch(82% 0.18 50 / 0.2)",  t:"oklch(86% 0.16 50)"  },
+        medium: { d:"oklch(72% 0.15 290)", bg:"oklch(72% 0.15 290 / 0.2)", t:"oklch(78% 0.12 290)" },
+        low:    { d:"oklch(43% 0 0)",      bg:"oklch(43% 0 0 / 0.2)",       t:"oklch(53% 0 0)"      },
+        blocked:{ d:"oklch(43% 0 0)",      bg:"oklch(43% 0 0 / 0.2)",       t:"oklch(53% 0 0)"      },
       },
       col: {
         today:   { ac:"oklch(66% 0.2 28)",   acBg:"oklch(19% 0.05 28)",  acBd:"transparent" },
@@ -83,12 +84,13 @@ const makeTheme = (dark) => dark
         fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
         blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
       },
-      chip:      { bg:"oklch(0% 0 0 / 0.3)", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)",
-                   starGrad:"linear-gradient(141deg, rgb(117,99,192) 30%, rgb(255,154,152) 50%, rgb(255,255,255) 66%)",
-                   tGrad:"linear-gradient(174deg, rgba(117,99,192,0.8) 30%, rgba(255,154,152,0.8) 50%, rgba(255,255,255,0.8) 66%)" },
-      tagBg:     "oklch(12% 0 0)", tagText:"oklch(34% 0 0)",
-      actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(30% 0.06 145)", hov:"oklch(35% 0.08 145)" },
-      actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(0% 0 0 / 0.3)",       hov:"oklch(0% 0 0 / 0.4)"      },
+      chip:      { bg:"transparent", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)",
+                   border:"none",
+                   stroke:"inset 0 0 0 0.5px rgba(117,99,192,0.35)",
+                   bgGrad:"radial-gradient(ellipse 250% 100% at -3% 14%, rgba(117,99,192,0.3) 10%, rgba(152,113,182,0.25) 25%, rgba(186,127,172,0.2) 40%, rgba(255,154,152,0.12) 70%, rgba(255,205,204,0.05) 85%, transparent 100%)" },
+      tagBg:     "oklch(0% 0 0 / 0.3)", tagText:"oklch(100% 0 0 / 0.5)",
+      actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(23% 0.05 145)", hov:"oklch(28% 0.07 145)" },
+      actMuted:  { c:"oklch(100% 0 0)",      bg:"transparent",       hov:"oklch(0% 0 0 / 0.1)", glass:"oklch(100% 0 0 / 0.06)" },
       actDivider:"oklch(20% 0 0)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
@@ -340,12 +342,13 @@ function PriorityBadge({ priority, t }) {
   );
 }
 
-function ActionBtn({ icon, label, btnStyle, hovStyle, onClick }) {
+function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel }) {
   const [h, setH] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,...(h?hovStyle:btnStyle)}}>
-      {icon}{label}
+      style={{flex:1,padding:"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,position:"relative",overflow:"hidden",...(h?hovStyle:btnStyle)}}>
+      {glass && <div style={{position:"absolute",inset:0,background:glass,mixBlendMode:"plus-lighter",pointerEvents:"none"}}/>}
+      {icon}{gradLabel ? <span style={{backgroundImage:gradLabel,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{label}</span> : label}
     </button>
   );
 }
@@ -373,41 +376,50 @@ function SkeletonCard({ t }) {
 function Card({ item, onDone, onSnooze, t, isMobile }) {
   const [hov, setHov] = useState(false);
   const d = t.actDone, m = t.actMuted;
+  const snoozeGrad = t.chip?.tGrad || null;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:"16px 16px 8px",display:"flex",flexDirection:"column",gap:17,transition:"all 0.18s ease"}}>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <div style={{display:"flex",alignItems:"center",gap:12}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:6,display:"flex",flexDirection:"column",transition:"all 0.18s ease"}}>
+      {/* Badges + time */}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:10}}>
+        <div style={{display:"flex",alignItems:"center",gap:6}}>
           <SourceBadge source={item.source} t={t}/>
           <PriorityBadge priority={item.priority} t={t}/>
         </div>
-        <span style={{fontSize:10,color:t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
+        <span style={{fontSize:12,color:t.timeMut||t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:18}}>
+      {/* Title + subtitle */}
+      <div style={{display:"flex",flexDirection:"column",gap:8,padding:"0 10px 10px"}}>
         <div style={{fontSize:18,fontWeight:400,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
-        <div style={{fontSize:10.5,color:t.textMut,fontWeight:500}}>
-          <span style={{color:t.textPri}}>{item.from}</span>
+        <div style={{fontSize:11.5,color:t.textPri,fontWeight:500,opacity:0.6}}>
+          {item.from}
           {item.fromRole && <span> · {item.fromRole}</span>}
         </div>
       </div>
-      <div style={{fontSize:14,fontWeight:400,color:t.textSec,lineHeight:1.3,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      {/* Snippet */}
+      <div style={{fontSize:12,fontWeight:400,color:t.textSec,lineHeight:"18.2px",letterSpacing:"0.24px",padding:"0 10px 10px",display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      {/* AI reason chip */}
       {item.aiReason && (
-        <div style={{display:"flex",alignItems:"flex-start",gap:10,background:t.chip.bg,borderRadius:16,padding:"11px 10px",boxShadow:t.chip.stroke||"none"}}>
-          <span style={{fontSize:13.8,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1,...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
-          <span style={{fontSize:11.5,fontWeight:350,letterSpacing:"0.02em",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
+        <div style={{padding:10}}>
+          <div style={{display:"flex",alignItems:"center",gap:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:10,padding:"12.5px 12.5px 12.5px 14.5px",boxShadow:t.chip.stroke||"none"}}>
+            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
+            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
+          </div>
         </div>
       )}
+      {/* Tags */}
       {item.tags?.length>0 && (
-        <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+        <div style={{display:"flex",gap:6,flexWrap:"wrap",padding:"6px 10px"}}>
           {item.tags.map(tag=>(
-            <span key={tag} style={{background:t.tagBg,color:t.tagText,fontSize:9.5,fontWeight:500,padding:"2px 6px",borderRadius:4}}>{tag}</span>
+            <span key={tag} style={{background:t.tagBg,color:t.tagText,fontSize:12,fontWeight:400,padding:"2px 8px",borderRadius:6,letterSpacing:"0.24px",lineHeight:"18.2px"}}>{tag}</span>
           ))}
         </div>
       )}
-      <div style={{display:"flex",gap:5,paddingTop:10,margin:"0 -10px"}}>
+      {/* Actions */}
+      <div style={{display:"flex",gap:5,paddingTop:12}}>
         <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)}/>
-        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
-        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
+        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={m.glass} gradLabel={snoozeGrad}/>
+        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={m.glass}/>
       </div>
     </div>
   );
@@ -652,6 +664,7 @@ export default function KanbanBoard() {
   const [swipeProgress, setSwipeProgress] = useState(0); // -1 to 1, fractional drag between cols
   const [isMobile,  setIsMobile]  = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [syncCooldown, setSyncCooldown] = useState(false);
   const [aiExpanded, setAiExpanded] = useState(false);
   const boardRef = useRef(null);
 
@@ -712,6 +725,8 @@ export default function KanbanBoard() {
     if (isManualSync) setSyncing(true);
     else setLoading(true);
     lastFetchRef.current = now;
+    setSyncCooldown(true);
+    setTimeout(() => setSyncCooldown(false), 5 * 60 * 1000);
 
     try {
       const res = await fetch("/api/items");
@@ -767,7 +782,7 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none"}}>
 
         {/* ── Topbar ── */}
         <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
@@ -809,7 +824,7 @@ export default function KanbanBoard() {
             )}
 
             <div style={{display:"flex",alignItems:"center",gap:6,flexShrink:0}}>
-              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,width:36,height:36,padding:8,borderRadius:10,border:"none",background:t.tabBar.activeBg,cursor:"pointer",opacity:syncing?0.7:1,transition:"all 0.2s ease"}}>
+              <button onClick={()=>fetchItems(true)} disabled={syncing||syncCooldown} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,width:36,height:36,padding:8,borderRadius:10,border:"none",background:t.tabBar.activeBg,cursor:syncCooldown?"default":"pointer",opacity:(syncing||syncCooldown)?0.35:1,transition:"all 0.2s ease"}}>
                 {syncing ? <SpinnerIcon c={t.tabBar.activeText}/> : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tabBar.activeText} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.19 7.5A9 9 0 1 0 21 12"/><polyline points="21 3 21 8 16 8"/></svg>}
               </button>
 
