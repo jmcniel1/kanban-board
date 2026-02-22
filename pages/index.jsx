@@ -58,6 +58,7 @@ const makeTheme = (dark) => dark
       shadowHov:  "0 6px 28px oklch(0% 0 0/0.65)",
       textPri:    "oklch(93% 0 0)",
       textSec:    "oklch(62% 0 0)",
+      colLabel:   "oklch(100% 0 0)", colSub:"oklch(100% 0 0 / 0.5)",
       textMut:    "oklch(48% 0 0)",
       aiBg:       "oklch(11% 0.018 280)",
       aiBorder:   "transparent",
@@ -82,10 +83,10 @@ const makeTheme = (dark) => dark
         fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
         blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
       },
-      chip:      { bg:"oklch(22% 0.08 285)", star:"oklch(80% 0.2 290)", t:"oklch(82% 0.16 290)" },
+      chip:      { bg:"oklch(0% 0 0 / 0.3)", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)" },
       tagBg:     "oklch(18% 0 0)", tagText:"oklch(40% 0 0)",
       actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(17% 0.04 145)", hov:"oklch(22% 0.06 145)" },
-      actMuted:  { c:"oklch(44% 0 0)",      bg:"oklch(18% 0 0)",       hov:"oklch(22% 0 0)"      },
+      actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(0% 0 0 / 0.3)",       hov:"oklch(0% 0 0 / 0.4)"      },
       actDivider:"oklch(20% 0 0)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
@@ -100,29 +101,37 @@ const makeTheme = (dark) => dark
       skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
       footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
       tabBar:    { bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
+      cardBorder:"none", cardShadow:"none",
+      colShadow:"inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05)",
     }
   : {
-      pageBg:"url(/bg.jpeg) center/cover fixed oklch(90% 0 0)",surfaceBg:"oklch(85% 0 0 / 0.2)",surfaceHov:"oklch(84% 0 0 / 0.25)",barBg:"oklch(100% 0 0 / 0.85)",headerBg:"oklch(100% 0 0 / 0.65)",trayBg:"oklch(90% 0 0 / 0.35)",
-      border:"oklch(92% 0 0)",borderHov:"oklch(86% 0 0)",shadow:"0 1px 3px oklch(0% 0 0/0.05)",shadowHov:"0 4px 16px oklch(0% 0 0/0.09)",
-      textPri:"oklch(100% 0 0)",textSec:"oklch(100% 0 0 / 0.8)",textMut:"oklch(100% 0 0 / 0.8)",
-      aiBg:"linear-gradient(135deg,oklch(96.5% 0.025 285),oklch(97% 0.025 305))",aiBorder:"oklch(88% 0.07 290)",aiLabel:"oklch(46% 0.22 290)",aiText:"oklch(34% 0.18 290)",aiSync:"oklch(52% 0.15 290)",
-      src:{gmail:{c:"oklch(52% 0.22 25)",bg:"oklch(97.5% 0.02 25)"},slack:{c:"oklch(24% 0.1 315)",bg:"oklch(97% 0.02 315)"},asana:{c:"oklch(58% 0.2 22)",bg:"oklch(97.5% 0.02 22)"}},
-      pri:{urgent:{d:"oklch(55% 0.22 25)",bg:"oklch(97.5% 0.02 25)",t:"oklch(40% 0.2 25)"},high:{d:"oklch(65% 0.2 46)",bg:"oklch(97.5% 0.03 46)",t:"oklch(50% 0.2 46)"},medium:{d:"oklch(55% 0.18 290)",bg:"oklch(97% 0.02 290)",t:"oklch(42% 0.17 290)"},low:{d:"oklch(62% 0 0)",bg:"oklch(97.5% 0 0)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(60% 0 0)",bg:"oklch(96% 0 0)",t:"oklch(36% 0 0)"}},
-      col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(97% 0.02 25)",acBd:"oklch(82% 0.1 25/0.8)"},week:{ac:"oklch(55% 0.18 290)",acBg:"oklch(97% 0.02 290)",acBd:"oklch(82% 0.08 290/0.8)"},fyi:{ac:"oklch(50% 0 0)",acBg:"oklch(96.5% 0 0)",acBd:"oklch(82% 0 0/0.8)"},blocked:{ac:"oklch(54% 0 0)",acBg:"oklch(95.5% 0 0)",acBd:"oklch(80% 0 0/0.8)"}},
-      chip:{bg:"oklch(100% 0 0 / 0.1)",star:"oklch(80% 0.2 290)",t:"oklch(100% 0 0 / 0.8)"},
-      tagBg:"oklch(100% 0 0 / 0.1)",tagText:"oklch(100% 0 0 / 0.8)",
-      actDone:{c:"oklch(75% 0.15 145)",bg:"oklch(100% 0 0 / 0.1)",hov:"oklch(100% 0 0 / 0.15)"},actMuted:{c:"oklch(100% 0 0 / 0.8)",bg:"oklch(100% 0 0 / 0.1)",hov:"oklch(100% 0 0 / 0.15)"},actDivider:"oklch(100% 0 0 / 0.15)",
-      todayPill:{bg:"oklch(97% 0.02 25)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
-      filterOn:{bg:"oklch(8% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
-      syncBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},toggleBtn:{bg:"oklch(0% 0 0 / 0.08)",t:"oklch(25% 0 0)"},
-      emptyB:"oklch(89% 0 0)",emptyT:"oklch(82% 0 0)",
-      donePill:{bg:"oklch(97% 0.04 145)",t:"oklch(42% 0.18 145)"},
-      warnBg:"oklch(97% 0.04 80)",warnBorder:"oklch(88% 0.09 80)",warnText:"oklch(45% 0.18 80)",
-      errBg:"oklch(97% 0.02 25)",errBorder:"oklch(88% 0.07 25)",errText:"oklch(42% 0.2 25)",
-      cardBlur:"blur(60px)",
-      skeletonBase:"oklch(94% 0 0)",skeletonShine:"oklch(96% 0 0)",
-      footerDot:"oklch(88% 0 0)",footerTot:"oklch(60% 0 0)",footerAi:"oklch(52% 0.16 290)",
-      tabBar:{ bg:"oklch(100% 0 0 / 0.12)", activeBg:"oklch(100% 0 0 / 0.15)", activeText:"oklch(100% 0 0)", inactiveText:"oklch(100% 0 0 / 0.5)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(55% 0.18 290)",fyi:"oklch(50% 0 0)",blocked:"oklch(54% 0 0)"})[colId] },
+      pageBg:"url(/bg.jpeg) center/cover fixed oklch(92% 0.005 265)",
+      surfaceBg:"oklch(100% 0 0 / 0.55)",surfaceHov:"oklch(100% 0 0 / 0.68)",
+      barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.45)",trayBg:"oklch(100% 0 0 / 0.045)",
+      border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
+      shadow:"0 2px 16px oklch(0% 0 0/0.07)",shadowHov:"0 6px 24px oklch(0% 0 0/0.11)",
+      textPri:"oklch(15% 0 0)",textSec:"oklch(35% 0 0)",textMut:"oklch(50% 0 0)",colLabel:"oklch(100% 0 0)",colSub:"oklch(100% 0 0 / 0.6)",
+      aiBg:"oklch(100% 0 0 / 0.35)",aiBorder:"oklch(100% 0 0 / 0.3)",aiLabel:"oklch(42% 0.22 290)",aiText:"oklch(30% 0.16 290)",aiSync:"oklch(48% 0.15 290)",
+      src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
+      pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
+      col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
+      chip:{bg:"oklch(75% 0.18 290 / 0.2)",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",stroke:"inset 0 0 0 1px oklch(45% 0.22 290 / 0.25)"},
+      tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
+      actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
+      todayPill:{bg:"oklch(100% 0 0 / 0.45)",t:"oklch(40% 0.22 25)",dot:"oklch(55% 0.22 25)"},
+      filterOn:{bg:"oklch(15% 0 0)",t:"oklch(98% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
+      syncBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},toggleBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
+      emptyB:"oklch(100% 0 0 / 0.3)",emptyT:"oklch(50% 0 0)",
+      donePill:{bg:"oklch(100% 0 0 / 0.45)",t:"oklch(35% 0.18 145)"},
+      warnBg:"oklch(100% 0 0 / 0.45)",warnBorder:"oklch(80% 0.1 80 / 0.5)",warnText:"oklch(40% 0.18 80)",
+      errBg:"oklch(100% 0 0 / 0.45)",errBorder:"oklch(80% 0.1 25 / 0.5)",errText:"oklch(40% 0.2 25)",
+      cardBlur:"blur(40px)",
+      cardBorder:"1px solid oklch(100% 0 0 / 0.15)",
+      cardShadow:"0 2px 16px oklch(0% 0 0/0.05), inset 0 1px 0 oklch(100% 0 0/0.2)",
+      colShadow:"0 4px 24px oklch(0% 0 0/0.04), inset 0 1px 0 oklch(100% 0 0/0.1), inset 0 -1px 0 oklch(0% 0 0/0.02)",
+      skeletonBase:"oklch(100% 0 0 / 0.3)",skeletonShine:"oklch(100% 0 0 / 0.5)",
+      footerDot:"oklch(0% 0 0 / 0.12)",footerTot:"oklch(40% 0 0)",footerAi:"oklch(45% 0.18 290)",
+      tabBar:{ bg:"oklch(100% 0 0 / 0.2)", activeBg:"oklch(100% 0 0 / 0.4)", activeText:"oklch(15% 0 0)", inactiveText:"oklch(0% 0 0 / 0.35)", indicatorFn:(colId)=>({today:"oklch(55% 0.22 25)",week:"oklch(50% 0.18 290)",fyi:"oklch(45% 0 0)",blocked:"oklch(45% 0 0)"})[colId] },
     };
 
 const COL_META = [
@@ -350,7 +359,7 @@ function SkeletonCard({ t }) {
   );
   return (
     <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"14px 16px 12px",boxShadow:t.shadow}}>
-      <style>{`@keyframes pulse{from{opacity:1}to{opacity:0.4}}`}</style>
+      <style>{`@keyframes pulse{from{opacity:1}to{opacity:0.4}}@keyframes aiStroke{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}`}</style>
       <div style={{display:"flex",gap:6,marginBottom:10}}>{line("60px",22)}{line("50px",22)}</div>
       {line("80%",14)}{line("60%",12)}{line("100%",11)}{line("95%",11)}
       <div style={{height:28,borderRadius:8,background:t.skeletonBase,marginTop:8,animation:"pulse 1.4s ease-in-out infinite alternate"}}/>
@@ -363,7 +372,7 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
   const d = t.actDone, m = t.actMuted;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,borderRadius:16,padding:"14px 16px 8px",transition:"all 0.18s ease"}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:"14px 16px 8px",transition:"all 0.18s ease"}}>
       <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:10,flexWrap:"wrap"}}>
         <SourceBadge source={item.source} t={t}/>
         <PriorityBadge priority={item.priority} t={t}/>
@@ -371,14 +380,14 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
       </div>
       <div style={{fontSize:isMobile?18:15,fontWeight:isMobile?350:400,color:t.textPri,lineHeight:1.215,marginTop:18,marginBottom:4,letterSpacing:"0em"}}>{item.title}</div>
       <div style={{fontSize:10.5,color:t.textMut,marginBottom:12,fontWeight:500}}>
-        <span style={{color:"oklch(100% 0 0)"}}>{item.from}</span>
+        <span style={{color:t.textPri}}>{item.from}</span>
         {item.fromRole && <span> · {item.fromRole}</span>}
       </div>
-      <div style={{fontSize:11.5,color:"oklch(100% 0 0 / 0.8)",lineHeight:1.24,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:13.5,fontWeight:350,color:t.textSec,lineHeight:1.24,marginBottom:10,display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
       {item.aiReason && (
-        <div style={{display:"flex",alignItems:"flex-start",gap:5,background:"linear-gradient(135deg, oklch(65% 0.25 290 / 0.45), oklch(65% 0.12 260 / 0.25) 50%, oklch(60% 0.15 220 / 0.3))",borderRadius:8,padding:"11px 10px",marginBottom:10}}>
-          <span style={{fontSize:13.8,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1,backgroundImage:"linear-gradient(135deg, oklch(85% 0.25 290), oklch(85% 0.12 260) 50%, oklch(80% 0.15 220))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",mixBlendMode:"lighten"}}>✦</span>
-          <span style={{fontSize:11.5,fontWeight:350,letterSpacing:"0.02em",backgroundImage:"linear-gradient(135deg, oklch(85% 0.25 290), oklch(85% 0.12 260) 50%, oklch(80% 0.15 220))",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",mixBlendMode:"lighten"}}>{item.aiReason}</span>
+        <div style={{display:"flex",alignItems:"flex-start",gap:5,background:t.chip.bg,borderRadius:8,padding:"11px 10px",marginBottom:10,boxShadow:t.chip.stroke||"none"}}>
+          <span style={{fontSize:13.8,color:t.chip.star,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",marginTop:1}}>✦</span>
+          <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.02em"}}>{item.aiReason}</span>
         </div>
       )}
       {item.tags?.length>0 && (
@@ -389,9 +398,9 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
         </div>
       )}
       <div style={{display:"flex",gap:5,paddingTop:10,margin:"0 -8px 0"}}>
-        <ActionBtn icon={BtnIcons.done("oklch(88% 0.18 145)")} label="Done" btnStyle={{background:"oklch(72% 0.22 145 / 0.3)",color:"oklch(88% 0.18 145)"}} hovStyle={{background:"oklch(72% 0.22 145 / 0.4)",color:"oklch(92% 0.18 145)"}} onClick={()=>onDone(item.id)}/>
-        <ActionBtn icon={BtnIcons.snooze()} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
-        <ActionBtn icon={BtnIcons.open()} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
+        <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)}/>
+        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)}/>
+        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")}/>
       </div>
     </div>
   );
@@ -401,21 +410,21 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
-    <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"clip",boxShadow:"inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05)"}}>
+    <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:t.cardBorder||"none",borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"clip",boxShadow:t.colShadow}}>
       {/* Liquid glass diagonal shine */}
-      <div style={{position:"absolute",inset:0,borderRadius:22,background:"linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
+      <div style={{position:"absolute",inset:0,borderRadius:22,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
       {/* Liquid glass corner highlights */}
-      <div style={{position:"absolute",inset:-2,borderRadius:22,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.15), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.08), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
+      <div style={{position:"absolute",inset:-2,borderRadius:22,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.035), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.02), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
       <div style={{marginBottom:6,padding:"6px 8px 0",display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
-          <div style={{fontSize:15,fontWeight:400,color:"oklch(100% 0 0)",letterSpacing:"0.05em"}}>{meta.label}</div>
-          <div style={{fontSize:9.5,color:"oklch(100% 0 0 / 0.5)",marginTop:1}}>{meta.sub}</div>
+          <div style={{fontSize:15,fontWeight:400,color:t.colLabel,letterSpacing:"0.05em"}}>{meta.label}</div>
+          <div style={{fontSize:9.5,color:t.colSub,marginTop:1}}>{meta.sub}</div>
         </div>
         <span style={{background:ac.ac,color:"oklch(100% 0 0)",fontSize:12,fontWeight:400,padding:"2px 9px",borderRadius:20}}>
           {loading ? "…" : colItems.length}
         </span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:6,padding:"0 6px"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:12,padding:"0 6px"}}>
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
@@ -433,36 +442,69 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
 }
 
 // ── Mobile column tabs ─────────────────────────────────────────────────────────
-function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
+function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t, swipeProgress=0 }) {
   const tb = t.tabBar;
   const activeIdx = cols.findIndex(c => c.id === activeCol);
-  const ordered = [cols[activeIdx], ...cols.filter((_, i) => i !== activeIdx)];
+  const p = Math.abs(swipeProgress); // 0–1 progress
+  const dir = swipeProgress > 0 ? 1 : swipeProgress < 0 ? -1 : 0; // +1=swiping right(next), -1=swiping left(prev)
+  const nextIdx = activeIdx + dir;
+
   return (
-    <div style={{display:"flex",alignItems:"center",background:`linear-gradient(to right, ${tb.bg} 30%, transparent 60%)`,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:24,padding:3,gap:0,overflow:"clip"}}>
-      {ordered.map(col => {
-        const count = items.filter(i=>i.column===col.id).length;
+    <div style={{display:"flex",alignItems:"center",background:`linear-gradient(to right, ${tb.bg} 30%, transparent 60%)`,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:24,padding:3,gap:4,overflow:"clip"}}>
+      {cols.map((col, i) => {
         const ac = t.col[col.id];
-        const isActive = activeCol === col.id;
+        const count = items.filter(it=>it.column===col.id).length;
+        const isActive = i === activeIdx;
+        const isNext = i === nextIdx;
+        const isBefore = i < activeIdx;
+
+        // Calculate how "active" this tab looks (0=collapsed/inactive, 1=fully active)
+        let activity = isActive ? 1 - p : isNext ? p : 0;
+
+        // Tabs before the effective active position show as pills
+        const effectiveBeforeCount = isBefore && !(isNext && p > 0.5) ? true : false;
+        const showAsPill = (isBefore && !isNext) || (isBefore && isNext && p < 0.5) || (isActive && dir === -1 && p > 0.5);
+
+        if (showAsPill) {
+          const pillScale = isNext ? 1 - p * 0.5 : 1;
+          return (
+            <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
+              display:"flex", alignItems:"center", justifyContent:"center",
+              width:24, height:24, borderRadius:"50%", border:"none",
+              background:ac.ac, cursor:"pointer", padding:0, flexShrink:0,
+              marginLeft: i === 0 ? 10 : 0,
+              transform:`scale(${pillScale})`,
+              transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
+            }}>
+              <span style={{fontSize:11,fontWeight:600,color:"oklch(100% 0 0)",lineHeight:1}}>{loading?"":count}</span>
+            </button>
+          );
+        }
+
+        // Full tab (active or after active)
+        const opacity = isActive ? 1 : isNext ? 0.5 + p * 0.5 : 0.5;
+        const bg = activity > 0.5 ? tb.activeBg : "transparent";
+
         return (
           <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
             display:"flex", alignItems:"center", justifyContent:"center", gap:10,
             padding:"8px 10px 8px 14px", borderRadius:21, border:"none",
-            background: isActive ? tb.activeBg : "transparent",
-            color: isActive ? tb.activeText : tb.inactiveText,
-            fontWeight: 400,
+            background: bg,
+            color: activity > 0.5 ? tb.activeText : tb.inactiveText,
+            fontWeight: 400, opacity,
             fontSize:13, letterSpacing:"0em", cursor:"pointer",
             whiteSpace:"nowrap",
-            transition:"all 0.2s ease",
+            transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
             zIndex: isActive ? 1 : 0,
           }}>
             {col.label}
             <span style={{
-              background: isActive ? ac.ac : "oklch(100% 0 0 / 0.08)",
-              color: isActive ? "oklch(100% 0 0)" : tb.inactiveText,
-              fontSize:13, fontWeight:400,
+              background: activity > 0.5 ? ac.ac : "oklch(100% 0 0 / 0.08)",
+              color: activity > 0.5 ? "oklch(100% 0 0)" : tb.inactiveText,
+              fontSize:11, fontWeight:600,
               padding:"3px 7px", borderRadius:20,
               textAlign:"center",
-              transition:"all 0.15s",
+              transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
             }}>
               {loading ? "…" : count}
             </span>
@@ -474,80 +516,114 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t }) {
 }
 
 // ── Mobile swipe view ────────────────────────────────────────────────────────
-function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, snooze, t }) {
-  const touchRef = useRef({ startX: 0, startY: 0, swiping: false });
-  const [phase, setPhase] = useState("idle"); // idle | exit | enter
-  const [exitDir, setExitDir] = useState(0);
-
+function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, snooze, t, onSwipeProgress }) {
   const colIds = COL_META.map(c => c.id);
   const curIdx = colIds.indexOf(activeCol);
-
-  const goTo = useCallback((dir) => {
-    const next = curIdx + dir;
-    if (next < 0 || next >= colIds.length || phase !== "idle") return;
-    setExitDir(dir);
-    setPhase("exit");
-    setTimeout(() => {
-      setActiveCol(colIds[next]);
-      setExitDir(dir);
-      setPhase("enter-start");
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setPhase("enter"));
-      });
-      setTimeout(() => setPhase("idle"), 200);
-    }, 40);
-  }, [curIdx, colIds, setActiveCol, phase]);
+  const containerRef = useRef(null);
+  const touchRef = useRef({ startX:0, startY:0, startTime:0, locked:null, lastX:0, velocity:0 });
+  const [dragX, setDragX] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
   const onTouchStart = (e) => {
+    if (animating) return;
     const touch = e.touches[0];
-    touchRef.current = { startX: touch.clientX, startY: touch.clientY, swiping: true };
+    touchRef.current = { startX:touch.clientX, startY:touch.clientY, startTime:Date.now(), locked:null, lastX:touch.clientX, velocity:0, lastTime:Date.now() };
   };
-  const onTouchEnd = (e) => {
-    if (!touchRef.current.swiping) return;
-    const dx = e.changedTouches[0].clientX - touchRef.current.startX;
-    const dy = e.changedTouches[0].clientY - touchRef.current.startY;
-    touchRef.current.swiping = false;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-      goTo(dx < 0 ? 1 : -1);
+
+  const onTouchMove = (e) => {
+    if (animating) return;
+    const t = touchRef.current;
+    const touch = e.touches[0];
+    const dx = touch.clientX - t.startX;
+    const dy = touch.clientY - t.startY;
+
+    // Determine scroll direction lock
+    if (t.locked === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+      t.locked = Math.abs(dx) > Math.abs(dy) ? "h" : "v";
     }
+    if (t.locked !== "h") return;
+    e.preventDefault();
+
+    // Track velocity
+    const now = Date.now();
+    const dt = now - t.lastTime;
+    if (dt > 0) t.velocity = (touch.clientX - t.lastX) / dt;
+    t.lastX = touch.clientX;
+    t.lastTime = now;
+
+    // Rubber band at edges
+    const atEdge = (dx > 0 && curIdx === 0) || (dx < 0 && curIdx === colIds.length - 1);
+    const actualDx = atEdge ? dx * 0.25 : dx;
+    setDragX(actualDx);
+    const w = containerRef.current?.offsetWidth || 375;
+    onSwipeProgress?.(Math.max(-1, Math.min(1, -actualDx / w)));
   };
 
-  const activeMeta = COL_META.find(c => c.id === activeCol);
-  const colItems = visible.filter(i => i.column === activeCol);
+  const onTouchEnd = () => {
+    if (animating || touchRef.current.locked !== "h") {
+      touchRef.current.locked = null;
+      return;
+    }
+    const t = touchRef.current;
+    t.locked = null;
+    const w = containerRef.current?.offsetWidth || 375;
+    const velocity = t.velocity; // px/ms
+    const threshold = w * 0.3;
 
-  const slideStyle = phase === "exit"
-    ? { transform: `translateX(${exitDir > 0 ? "-100%" : "100%"})`, transition: "transform 0.2s ease" }
-    : phase === "enter-start"
-      ? { transform: `translateX(${exitDir > 0 ? "100%" : "-100%"})`, transition: "none" }
-      : phase === "enter"
-        ? { transform: "translateX(0)", transition: "transform 0.2s ease" }
-        : { transform: "translateX(0)", transition: "none" };
+    // Commit if dragged far enough or flicked fast enough
+    const shouldCommit = Math.abs(dragX) > threshold || Math.abs(velocity) > 0.4;
+    const dir = dragX < 0 ? 1 : -1;
+    const nextIdx = curIdx + dir;
+    const canCommit = shouldCommit && nextIdx >= 0 && nextIdx < colIds.length;
+
+    setAnimating(true);
+    if (canCommit) {
+      setActiveCol(colIds[nextIdx]);
+    }
+    setDragX(0);
+    onSwipeProgress?.(0);
+    setTimeout(() => setAnimating(false), 350);
+  };
+
+  const GAP = 24;
 
   return (
     <div
+      ref={containerRef}
       onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
-      style={{ flex: 1, padding: "6px 0", minHeight: 100, overflow: "clip" }}
+      style={{ flex: 1, padding: "6px 0", minHeight: 100, overflow: "clip", touchAction: "pan-y" }}
     >
       <div
         style={{
-          display: "flex", flexDirection: "column", gap: 4,
-          ...slideStyle,
+          display: "flex", gap: GAP,
+          transform: `translateX(calc(${-curIdx * 100}% - ${curIdx * GAP}px + ${dragX}px))`,
+          transition: animating ? "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
+          willChange: "transform",
         }}
       >
-        {loading
-          ? [1, 2, 3].map(i => <SkeletonCard key={i} t={t} />)
-          : colItems.length > 0
-            ? colItems.map(item => (
-              <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t} isMobile />
-            ))
-            : (
-              <div style={{ background: t.surfaceBg, backdropFilter: "blur(30px)", WebkitBackdropFilter: "blur(30px)", borderRadius: 16, padding: "40px 20px", textAlign: "center", boxShadow: t.shadow, marginTop: 4 }}>
-                <div style={{ fontSize: 22, marginBottom: 6 }}>✓</div>
-                <div style={{ fontSize: 12, color: t.emptyT, fontWeight: 500 }}>All clear in {activeMeta?.label}</div>
-              </div>
-            )
-        }
+        {colIds.map(colId => {
+          const meta = COL_META.find(c => c.id === colId);
+          const colItems = visible.filter(i => i.column === colId);
+          return (
+            <div key={colId} style={{ minWidth: "100%", display: "flex", flexDirection: "column", gap: 4 }}>
+              {loading
+                ? [1, 2, 3].map(i => <SkeletonCard key={i} t={t} />)
+                : colItems.length > 0
+                  ? colItems.map(item => (
+                    <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t} isMobile />
+                  ))
+                  : (
+                    <div style={{ background: t.surfaceBg, backdropFilter: "blur(30px)", WebkitBackdropFilter: "blur(30px)", borderRadius: 16, padding: "40px 20px", textAlign: "center", boxShadow: t.shadow, marginTop: 4 }}>
+                      <div style={{ fontSize: 22, marginBottom: 6 }}>✓</div>
+                      <div style={{ fontSize: 12, color: t.emptyT, fontWeight: 500 }}>All clear in {meta?.label}</div>
+                    </div>
+                  )
+              }
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -566,6 +642,7 @@ export default function KanbanBoard() {
   const [doneCount, setDoneCount] = useState(0);
   const [usingDemo, setUsingDemo] = useState(false);
   const [activeCol, setActiveCol] = useState("today");
+  const [swipeProgress, setSwipeProgress] = useState(0); // -1 to 1, fractional drag between cols
   const [isMobile,  setIsMobile]  = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [aiExpanded, setAiExpanded] = useState(false);
@@ -768,6 +845,7 @@ export default function KanbanBoard() {
             setActiveCol={setActiveCol}
             loading={loading}
             t={t}
+            swipeProgress={swipeProgress}
           />
         )}
 
@@ -782,6 +860,7 @@ export default function KanbanBoard() {
             markDone={markDone}
             snooze={snooze}
             t={t}
+            onSwipeProgress={setSwipeProgress}
           />
         ) : (
           // Desktop: 4-column layout
@@ -793,7 +872,7 @@ export default function KanbanBoard() {
               ))}
             </div>
             {canScrollRight && (
-              <div style={{position:"absolute",top:0,right:0,bottom:0,width:60,pointerEvents:"none",opacity:0.5,background:`linear-gradient(to right, transparent, ${dark ? "oklch(10% 0.004 265)" : "oklch(60% 0 0)"})`,borderRadius:"0 22px 22px 0",overflow:"hidden"}}/>
+              <div style={{position:"absolute",top:0,right:0,bottom:0,width:60,pointerEvents:"none",opacity:0.5,background:`linear-gradient(to right, transparent, ${dark ? "oklch(10% 0.004 265)" : "oklch(88% 0 0 / 0.8)"})`,borderRadius:"0 22px 22px 0",overflow:"hidden"}}/>
             )}
           </div>
         )}
