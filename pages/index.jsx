@@ -599,16 +599,16 @@ export default function KanbanBoard() {
 
         {/* ── Topbar ── */}
         <div style={{background:isMobile?"oklch(0% 0 0 / 0.85)":t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"6px 6px",margin:"6px 0 6px",display:"flex",flexDirection:"column",gap:10,position:"sticky",top:6,zIndex:10,boxShadow:isMobile?"none":t.shadow,transition:"all 0.25s ease"}}>
-          <div style={{display:"flex",alignItems:"center",gap:14}}>
+          <div style={{display:"flex",alignItems:"center",gap:6}}>
             {!loading && (
-              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:20,padding:isMobile?"5px 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
+              <div style={{display:"flex",alignItems:"center",gap:6,background:t.todayPill.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 10px":"5px 14px",fontSize:isMobile?12:14.4,fontWeight:400,color:t.todayPill.t,flexShrink:0}}>
                 <span style={{width:5,height:5,borderRadius:"50%",background:t.todayPill.dot}}/>
                 {todayCount} today
               </div>
             )}
 
             {/* ── AI Summary (inline, truncated) ── */}
-            <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:20,padding:"5px 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
+            <div onClick={()=>setAiExpanded(e=>!e)} style={{flex:1,minWidth:0,display:"flex",alignItems:"center",gap:5,background:t.chip.bg,borderRadius:isMobile?10:20,height:isMobile?36:undefined,padding:isMobile?"0 12px":"5px 12px",cursor:"pointer",transition:"all 0.2s ease",overflow:"hidden"}}>
               <span style={{fontSize:11.5,color:t.chip.star,fontWeight:400,lineHeight:1,flexShrink:0,letterSpacing:"0.03em"}}>✦</span>
               <span style={{fontSize:11.5,color:t.chip.t,fontWeight:350,letterSpacing:"0.03em",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",minWidth:0}}>
                 {loading
@@ -630,12 +630,12 @@ export default function KanbanBoard() {
               </div>
             )}
 
-            <div style={{display:"flex",alignItems:"center",gap:7,flexShrink:0}}>
-              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,width:36,height:36,padding:8,borderRadius:7,border:"none",background:t.tabBar.activeBg,cursor:"pointer",opacity:syncing?0.7:1,transition:"all 0.2s ease"}}>
+            <div style={{display:"flex",alignItems:"center",gap:6,flexShrink:0}}>
+              <button onClick={()=>fetchItems(true)} disabled={syncing} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,width:36,height:36,padding:8,borderRadius:10,border:"none",background:t.tabBar.activeBg,cursor:"pointer",opacity:syncing?0.7:1,transition:"all 0.2s ease"}}>
                 {syncing ? <SpinnerIcon c={t.tabBar.activeText}/> : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.tabBar.activeText} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.19 7.5A9 9 0 1 0 21 12"/><polyline points="21 3 21 8 16 8"/></svg>}
               </button>
 
-              <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:36,height:36,padding:8,borderRadius:7,border:"none",background:t.tabBar.activeBg,cursor:"pointer",transition:"all 0.2s ease"}}>
+              <button onClick={()=>setDark(d=>!d)} title={dark?"Light mode":"Dark mode"} style={{display:"flex",alignItems:"center",justifyContent:"center",width:36,height:36,padding:8,borderRadius:10,border:"none",background:t.tabBar.activeBg,cursor:"pointer",transition:"all 0.2s ease"}}>
                 {dark?<SunIcon c={t.tabBar.activeText}/>:<MoonIcon c={t.tabBar.activeText}/>}
               </button>
             </div>
@@ -718,7 +718,7 @@ export default function KanbanBoard() {
         )}
 
         {/* ── Footer ── */}
-        <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:"8px 8px 0 0",margin:"0 -6px 0",padding:"8px 20px",display:"flex",alignItems:"center",gap:10,position:"sticky",bottom:0,transition:"all 0.25s ease"}}>
+        <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:"8px 8px 0 0",margin:"0 -6px 0",padding:"8px 20px",display:"flex",alignItems:"center",gap:10,position:isMobile?"static":"sticky",bottom:0,transition:"all 0.25s ease"}}>
           <div style={{display:"flex",gap:10,alignItems:"center"}}>
             {["gmail","slack","asana"].map(src=>{
               const st = sources[src];
