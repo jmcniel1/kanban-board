@@ -46,7 +46,7 @@ const SpinnerIcon = ({ c }) => (
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
 const makeTheme = (dark) => dark
   ? {
-      pageBg:     "url(/bg.jpeg) center/cover fixed oklch(20% 0.025 260)",
+      pageBg:     "url(/bg.svg) center/cover fixed oklch(20% 0.025 260)",
       surfaceBg:  "oklch(26% 0.02 260 / 0.45)",
       surfaceHov: "oklch(30% 0.025 260 / 0.5)",
       headerBg:   "oklch(24% 0.025 260 / 0.55)",
@@ -110,7 +110,7 @@ const makeTheme = (dark) => dark
       colShadow:"0 4px 16px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.08), inset 0 -1px 0 oklch(0% 0 0/0.1)",
     }
   : {
-      pageBg:"url(/bg.jpeg) center/cover fixed oklch(92% 0.005 265)",
+      pageBg:"url(/bg.svg) center/cover fixed oklch(92% 0.005 265)",
       surfaceBg:"oklch(100% 0 0 / 0.55)",surfaceHov:"oklch(100% 0 0 / 0.68)",
       barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.45)",trayBg:"oklch(100% 0 0 / 0.045)",
       border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
@@ -693,8 +693,8 @@ export default function KanbanBoard() {
   // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
     const themeColor = dark ? "#19191f" : "#e0e0e0";
-    const darkBg = "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)";
-    const bg = "url(/bg.jpeg) center/cover fixed";
+    const darkBg = "url(/bg.svg) center/cover fixed oklch(18% 0.004 265)";
+    const bg = "url(/bg.svg) center/cover fixed";
     document.body.style.background = bg;
     document.body.style.margin = "0";
     document.documentElement.style.background = bg;
@@ -783,7 +783,9 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+        {/* Grain overlay — behind content, over bg only */}
+        <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
         {/* ── Topbar ── */}
         <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>

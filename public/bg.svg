@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1312" height="928" viewBox="0 0 1312 928" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="megaBlur">
+      <feGaussianBlur stdDeviation="120"/>
+    </filter>
+  </defs>
+
+  <!-- Dark base -->
+  <rect width="100%" height="100%" fill="#0a0e24"/>
+
+  <!-- Colored blobs — large shapes blurred together -->
+  <g filter="url(#megaBlur)">
+    <!-- Deep blue center-left -->
+    <ellipse cx="300" cy="400" rx="500" ry="400" fill="#3355cc"/>
+    <!-- Bright indigo left -->
+    <ellipse cx="180" cy="350" rx="350" ry="300" fill="#4460dd"/>
+    <!-- Hot coral top-right -->
+    <ellipse cx="1150" cy="80" rx="400" ry="350" fill="#ff6633"/>
+    <!-- Salmon right edge -->
+    <ellipse cx="1300" cy="500" rx="300" ry="400" fill="#ee7766"/>
+    <!-- Peach bottom-right -->
+    <ellipse cx="1000" cy="850" rx="400" ry="300" fill="#dd8888"/>
+    <!-- Coral far left -->
+    <ellipse cx="0" cy="280" rx="250" ry="300" fill="#ee5533"/>
+    <!-- Lavender bottom-left -->
+    <ellipse cx="150" cy="850" rx="350" ry="250" fill="#aa77cc"/>
+    <!-- Purple bottom-center -->
+    <ellipse cx="600" cy="900" rx="300" ry="200" fill="#553388"/>
+    <!-- Cyan-white light streak -->
+    <ellipse cx="700" cy="350" rx="250" ry="80" fill="#ccddff" transform="rotate(-20 700 350)"/>
+    <!-- Warm white highlight -->
+    <ellipse cx="620" cy="320" rx="150" ry="50" fill="#ffffff" transform="rotate(-20 620 320)"/>
+    <!-- Dark void top -->
+    <ellipse cx="700" cy="0" rx="350" ry="250" fill="#020208"/>
+    <!-- Dark void bottom -->
+    <ellipse cx="750" cy="800" rx="300" ry="280" fill="#030310"/>
+    <!-- Bright blue accent -->
+    <ellipse cx="400" cy="250" rx="250" ry="200" fill="#4477ee"/>
+    <!-- Pink-coral accent center-right -->
+    <ellipse cx="900" cy="400" rx="200" ry="250" fill="#cc6688"/>
+  </g>
+
+</svg>
