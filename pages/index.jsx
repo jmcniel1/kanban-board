@@ -46,23 +46,23 @@ const SpinnerIcon = ({ c }) => (
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
 const makeTheme = (dark) => dark
   ? {
-      pageBg:     "url(/bg.jpeg) center/cover fixed oklch(18% 0.004 265)",
-      surfaceBg:  "oklch(12% 0.004 250 / 0.85)",
-      surfaceHov: "oklch(17% 0.006 250 / 0.85)",
-      headerBg:   "oklch(24% 0.008 265 / 0.65)",
-      trayBg:     "oklch(18% 0.004 265 / 0.35)",
-      barBg:      "oklch(18% 0.004 265)",
-      border:     "transparent",
-      borderHov:  "transparent",
-      shadow:     "0 2px 12px oklch(0% 0 0/0.45)",
-      shadowHov:  "0 6px 28px oklch(0% 0 0/0.65)",
+      pageBg:     "url(/bg.jpeg) center/cover fixed oklch(20% 0.025 260)",
+      surfaceBg:  "oklch(26% 0.02 260 / 0.45)",
+      surfaceHov: "oklch(30% 0.025 260 / 0.5)",
+      headerBg:   "oklch(24% 0.025 260 / 0.55)",
+      trayBg:     "oklch(22% 0.02 260 / 0.4)",
+      barBg:      "oklch(20% 0.025 260)",
+      border:     "oklch(100% 0 0 / 0.1)",
+      borderHov:  "oklch(100% 0 0 / 0.15)",
+      shadow:     "0 2px 12px oklch(0% 0 0/0.3)",
+      shadowHov:  "0 4px 20px oklch(0% 0 0/0.4)",
       textPri:    "oklch(93% 0 0)",
       textSec:    "oklch(100% 0 0 / 0.5)",
       colLabel:   "oklch(100% 0 0)", colSub:"oklch(100% 0 0 / 0.5)",
       textMut:    "oklch(43% 0 0)",
       timeMut:    "oklch(100% 0 0 / 0.7)",
-      aiBg:       "oklch(11% 0.018 280)",
-      aiBorder:   "transparent",
+      aiBg:       "oklch(22% 0.025 260 / 0.5)",
+      aiBorder:   "oklch(100% 0 0 / 0.08)",
       aiLabel:    "oklch(68% 0.18 290)",
       aiText:     "oklch(58% 0.1 290)",
       aiSync:     "oklch(56% 0.14 290)",
@@ -79,35 +79,35 @@ const makeTheme = (dark) => dark
         blocked:{ d:"oklch(43% 0 0)",      bg:"oklch(43% 0 0 / 0.2)",       t:"oklch(53% 0 0)"      },
       },
       col: {
-        today:   { ac:"oklch(66% 0.2 28)",   acBg:"oklch(19% 0.05 28)",  acBd:"transparent" },
-        week:    { ac:"oklch(60% 0.15 290)", acBg:"oklch(17% 0.04 290)", acBd:"transparent" },
-        fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(17% 0 0)",       acBd:"transparent" },
-        blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(16% 0 0)",       acBd:"transparent" },
+        today:   { ac:"oklch(66% 0.2 28)",   acBg:"oklch(28% 0.04 28 / 0.35)",  acBd:"oklch(100% 0 0 / 0.06)" },
+        week:    { ac:"oklch(60% 0.15 290)", acBg:"oklch(26% 0.03 290 / 0.3)", acBd:"oklch(100% 0 0 / 0.06)" },
+        fyi:     { ac:"oklch(42% 0 0)",      acBg:"oklch(26% 0.01 260 / 0.25)",       acBd:"oklch(100% 0 0 / 0.06)" },
+        blocked: { ac:"oklch(36% 0 0)",      acBg:"oklch(24% 0.01 260 / 0.2)",       acBd:"oklch(100% 0 0 / 0.06)" },
       },
-      chip:      { bg:"transparent", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)",
+      chip:      { bg:"transparent", star:"oklch(100% 0 0)", t:"oklch(100% 0 0)", tShadow:"0 1px 3px oklch(0% 0 0 / 0.4)",
                    border:"none",
-                   stroke:"inset 0 0 0 0.5px rgba(117,99,192,0.35)",
-                   bgGrad:"radial-gradient(ellipse 250% 100% at -3% 14%, rgba(117,99,192,0.3) 10%, rgba(152,113,182,0.25) 25%, rgba(186,127,172,0.2) 40%, rgba(255,154,152,0.12) 70%, rgba(255,205,204,0.05) 85%, transparent 100%)" },
+                   stroke:"none",
+                   bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.3) 0%, oklch(68% 0.18 25 / 0.3) 25%, oklch(62% 0.15 350 / 0.3) 50%, oklch(55% 0.2 290 / 0.3) 75%, oklch(50% 0.22 265 / 0.3) 100%)" },
       tagBg:     "oklch(0% 0 0 / 0.3)", tagText:"oklch(100% 0 0 / 0.5)",
-      actDone:   { c:"oklch(68% 0.15 145)", bg:"oklch(23% 0.05 145)", hov:"oklch(28% 0.07 145)" },
-      actMuted:  { c:"oklch(100% 0 0)",      bg:"transparent",       hov:"oklch(0% 0 0 / 0.1)", glass:"oklch(100% 0 0 / 0.06)" },
-      actDivider:"oklch(20% 0 0)",
+      actDone:   { c:"oklch(100% 0 0)", bg:"oklch(32% 0.025 260 / 0.5)", hov:"oklch(36% 0.03 260 / 0.6)" },
+      actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(32% 0.025 260 / 0.5)",       hov:"oklch(36% 0.03 260 / 0.6)", glass:"oklch(100% 0 0 / 0.05)" },
+      actDivider:"oklch(100% 0 0 / 0.06)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
-      filterOff: { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(44% 0 0)", bd:"transparent" },
-      syncBtn:   { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(52% 0 0)" },
-      toggleBtn: { bg:"oklch(0% 0 0 / 0.25)", t:"oklch(68% 0 0)" },
-      emptyB:    "oklch(20% 0 0)", emptyT:"oklch(28% 0 0)",
-      donePill:  { bg:"oklch(17% 0.05 145)", t:"oklch(70% 0.16 145)" },
-      warnBg:    "oklch(18% 0.04 45)",  warnBorder:"oklch(24% 0.08 45)",  warnText:"oklch(72% 0.16 45)",
-      errBg:     "oklch(17% 0.04 25)",  errBorder:"oklch(22% 0.08 25)",   errText:"oklch(70% 0.18 25)",
-      cardBlur:"blur(30px)",
-      skeletonBase:"oklch(23% 0 0)", skeletonShine:"oklch(28% 0 0)",
-      footerDot: "oklch(22% 0 0)", footerTot:"oklch(34% 0 0)", footerAi:"oklch(56% 0.14 290)",
-      tabBar:    { bg:"oklch(0% 0 0 / 0.85)", activeBg:"oklch(24% 0.008 265)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(38% 0 0)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
-      cardBorder:"1px solid oklch(100% 0 0 / 0.08)",
-      cardShadow:"0 2px 12px oklch(0% 0 0/0.3), inset 0 1px 0 oklch(100% 0 0/0.08)",
-      colShadow:"0 4px 20px oklch(0% 0 0/0.25), inset 0 1px 0 oklch(100% 0 0/0.06), inset 0 -1px 0 oklch(0% 0 0/0.15)",
+      filterOff: { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(55% 0 0)", bd:"oklch(100% 0 0 / 0.08)" },
+      syncBtn:   { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(60% 0 0)" },
+      toggleBtn: { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(70% 0 0)" },
+      emptyB:    "oklch(100% 0 0 / 0.08)", emptyT:"oklch(40% 0.01 260)",
+      donePill:  { bg:"oklch(26% 0.04 145 / 0.4)", t:"oklch(70% 0.16 145)" },
+      warnBg:    "oklch(26% 0.04 45 / 0.4)",  warnBorder:"oklch(100% 0 0 / 0.1)",  warnText:"oklch(72% 0.16 45)",
+      errBg:     "oklch(26% 0.04 25 / 0.4)",  errBorder:"oklch(100% 0 0 / 0.1)",   errText:"oklch(70% 0.18 25)",
+      cardBlur:"blur(40px)",
+      skeletonBase:"oklch(28% 0.02 260 / 0.4)", skeletonShine:"oklch(32% 0.02 260 / 0.5)",
+      footerDot: "oklch(100% 0 0 / 0.1)", footerTot:"oklch(45% 0.01 260)", footerAi:"oklch(56% 0.14 290)",
+      tabBar:    { bg:"oklch(20% 0.025 260 / 0.7)", activeBg:"oklch(28% 0.025 260 / 0.6)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(45% 0.01 260)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
+      cardBorder:"1px solid oklch(100% 0 0 / 0.12)",
+      cardShadow:"0 2px 8px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.1)",
+      colShadow:"0 4px 16px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.08), inset 0 -1px 0 oklch(0% 0 0/0.1)",
     }
   : {
       pageBg:"url(/bg.jpeg) center/cover fixed oklch(92% 0.005 265)",
@@ -120,7 +120,7 @@ const makeTheme = (dark) => dark
       src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
-      chip:{bg:"transparent",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",border:"none",stroke:"inset 0 0 0 0.5px oklch(45% 0.22 290 / 0.2)",bgGrad:"radial-gradient(ellipse 250% 100% at -3% 14%, rgba(117,99,192,0.2) 10%, rgba(152,113,182,0.16) 25%, rgba(186,127,172,0.13) 40%, rgba(255,154,152,0.08) 70%, rgba(255,205,204,0.04) 85%, transparent 100%)"},
+      chip:{bg:"transparent",star:"oklch(100% 0 0)",t:"oklch(100% 0 0)",tShadow:"0 1px 3px oklch(0% 0 0 / 0.2)",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.25) 0%, oklch(68% 0.18 25 / 0.25) 25%, oklch(62% 0.15 350 / 0.25) 50%, oklch(55% 0.2 290 / 0.25) 75%, oklch(50% 0.22 265 / 0.25) 100%)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
       todayPill:{bg:"oklch(65% 0.15 25 / 0.2)",t:"oklch(45% 0.2 25)",dot:"oklch(58% 0.22 25)"},
@@ -402,8 +402,8 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
       {item.aiReason && (
         <div style={{padding:10}}>
           <div style={{display:"flex",alignItems:"center",gap:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:10,padding:"12.5px 12.5px 12.5px 14.5px",boxShadow:t.chip.stroke||"none"}}>
-            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
-            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
+            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,textShadow:t.chip.tShadow||"none",...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
+            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",textShadow:t.chip.tShadow||"none",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
           </div>
         </div>
       )}
@@ -417,7 +417,7 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
       )}
       {/* Actions */}
       <div style={{display:"flex",gap:5,paddingTop:12}}>
-        <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)} isXL={isXL}/>
+        <ActionBtn icon={BtnIcons.done(m.c)} label="Done" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onDone(item.id)} glass={m.glass} isXL={isXL}/>
         <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={m.glass} gradLabel={snoozeGrad} isXL={isXL}/>
         <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={m.glass} isXL={isXL}/>
       </div>
