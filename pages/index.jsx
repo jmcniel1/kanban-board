@@ -120,7 +120,7 @@ const makeTheme = (dark) => dark
       src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
-      chip:{bg:"oklch(45% 0.18 290 / 0.3)",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",stroke:"inset 0 0 0 1px oklch(45% 0.22 290 / 0.25)"},
+      chip:{bg:"transparent",star:"oklch(45% 0.22 290)",t:"oklch(35% 0.15 290)",border:"none",stroke:"inset 0 0 0 0.5px oklch(45% 0.22 290 / 0.2)",bgGrad:"radial-gradient(ellipse 250% 100% at -3% 14%, rgba(117,99,192,0.2) 10%, rgba(152,113,182,0.16) 25%, rgba(186,127,172,0.13) 40%, rgba(255,154,152,0.08) 70%, rgba(255,205,204,0.04) 85%, transparent 100%)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
       todayPill:{bg:"oklch(65% 0.15 25 / 0.2)",t:"oklch(45% 0.2 25)",dot:"oklch(58% 0.22 25)"},
@@ -342,11 +342,11 @@ function PriorityBadge({ priority, t }) {
   );
 }
 
-function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel }) {
+function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel, isXL }) {
   const [h, setH] = useState(false);
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,position:"relative",overflow:"hidden",...(h?hovStyle:btnStyle)}}>
+      style={{flex:1,padding:isXL?"16px 10px":"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,position:"relative",overflow:"hidden",...(h?hovStyle:btnStyle)}}>
       {glass && <div style={{position:"absolute",inset:0,background:glass,mixBlendMode:"plus-lighter",pointerEvents:"none"}}/>}
       {icon}{gradLabel ? <span style={{backgroundImage:gradLabel,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{label}</span> : label}
     </button>
@@ -373,7 +373,7 @@ function SkeletonCard({ t }) {
   );
 }
 
-function Card({ item, onDone, onSnooze, t, isMobile }) {
+function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
   const [hov, setHov] = useState(false);
   const d = t.actDone, m = t.actMuted;
   const snoozeGrad = t.chip?.tGrad || null;
@@ -417,15 +417,15 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
       )}
       {/* Actions */}
       <div style={{display:"flex",gap:5,paddingTop:12}}>
-        <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)}/>
-        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={m.glass} gradLabel={snoozeGrad}/>
-        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={m.glass}/>
+        <ActionBtn icon={BtnIcons.done(d.c)} label="Done" btnStyle={{background:d.bg,color:d.c}} hovStyle={{background:d.hov,color:d.c}} onClick={()=>onDone(item.id)} isXL={isXL}/>
+        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={m.glass} gradLabel={snoozeGrad} isXL={isXL}/>
+        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={m.glass} isXL={isXL}/>
       </div>
     </div>
   );
 }
 
-function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
+function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL }) {
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
@@ -447,7 +447,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t }) {
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
-            ? colItems.map(item=><Card key={item.id} item={item} onDone={onDone} onSnooze={onSnooze} t={t}/>)
+            ? colItems.map(item=><Card key={item.id} item={item} onDone={onDone} onSnooze={onSnooze} t={t} isXL={isXL}/>)
             : (
               <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"28px 20px",textAlign:"center",boxShadow:t.shadow}}>
                 <div style={{fontSize:18,marginBottom:4}}>✓</div>
@@ -663,6 +663,7 @@ export default function KanbanBoard() {
   const [activeCol, setActiveCol] = useState("today");
   const [swipeProgress, setSwipeProgress] = useState(0); // -1 to 1, fractional drag between cols
   const [isMobile,  setIsMobile]  = useState(false);
+  const [isXL,      setIsXL]      = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [syncCooldown, setSyncCooldown] = useState(false);
   const [aiExpanded, setAiExpanded] = useState(false);
@@ -670,7 +671,7 @@ export default function KanbanBoard() {
 
   // Responsive breakpoint detection
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 680);
+    const check = () => { setIsMobile(window.innerWidth < 680); setIsXL(window.innerWidth > 1920); };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -897,7 +898,7 @@ export default function KanbanBoard() {
             <div ref={boardRef} style={{display:"flex",gap:6,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start",scrollbarWidth:"none",borderRadius:22}}>
               <style>{`.board-scroll::-webkit-scrollbar{display:none}`}</style>
               {COL_META.map(meta=>(
-                <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t}/>
+                <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t} isXL={isXL}/>
               ))}
             </div>
             {canScrollRight && (
