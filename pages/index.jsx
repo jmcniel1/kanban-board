@@ -389,7 +389,7 @@ function Card({ item, onDone, onSnooze, t, isMobile }) {
         <span style={{fontSize:12,color:t.timeMut||t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
       {/* Title + subtitle */}
-      <div style={{display:"flex",flexDirection:"column",gap:8,padding:"0 10px 10px"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:8,padding:"18px 10px 10px"}}>
         <div style={{fontSize:18,fontWeight:400,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
         <div style={{fontSize:11.5,color:t.textPri,fontWeight:500,opacity:0.6}}>
           {item.from}
