@@ -112,7 +112,7 @@ const makeTheme = (dark) => dark
   : {
       pageBg:"url(/bg.svg) center/cover fixed oklch(92% 0.005 265)",
       surfaceBg:"oklch(100% 0 0 / 0.55)",surfaceHov:"oklch(100% 0 0 / 0.68)",
-      barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.45)",trayBg:"oklch(100% 0 0 / 0.045)",
+      barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.045)",trayBg:"oklch(100% 0 0 / 0.045)",
       border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
       shadow:"0 2px 16px oklch(0% 0 0/0.07)",shadowHov:"0 6px 24px oklch(0% 0 0/0.11)",
       textPri:"oklch(15% 0 0)",textSec:"oklch(35% 0 0)",textMut:"oklch(50% 0 0)",colLabel:"oklch(100% 0 0)",colSub:"oklch(100% 0 0 / 0.6)",
@@ -120,10 +120,10 @@ const makeTheme = (dark) => dark
       src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
-      chip:{bg:"transparent",star:"oklch(100% 0 0)",t:"oklch(100% 0 0)",tShadow:"0 1px 3px oklch(0% 0 0 / 0.2)",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.25) 0%, oklch(68% 0.18 25 / 0.25) 25%, oklch(62% 0.15 350 / 0.25) 50%, oklch(55% 0.2 290 / 0.25) 75%, oklch(50% 0.22 265 / 0.25) 100%)"},
+      chip:{bg:"transparent",star:"oklch(15% 0 0)",t:"oklch(15% 0 0)",tGrad:"linear-gradient(160deg, oklch(72% 0.16 50) 0%, oklch(68% 0.18 25) 25%, oklch(62% 0.15 350) 50%, oklch(55% 0.2 290) 75%, oklch(50% 0.22 265) 100%)",tBlend:"darken",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.25) 0%, oklch(68% 0.18 25 / 0.25) 25%, oklch(62% 0.15 350 / 0.25) 50%, oklch(55% 0.2 290 / 0.25) 75%, oklch(50% 0.22 265 / 0.25) 100%)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
-      todayPill:{bg:"oklch(65% 0.15 25 / 0.2)",t:"oklch(45% 0.2 25)",dot:"oklch(58% 0.22 25)"},
+      todayPill:{bg:"oklch(55% 0.22 25)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0)"},
       filterOn:{bg:"linear-gradient(135deg, oklch(55% 0.2 290 / 0.5), oklch(60% 0.15 250 / 0.5), oklch(90% 0 0 / 0.5))",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       syncBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},toggleBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       emptyB:"oklch(100% 0 0 / 0.3)",emptyT:"oklch(50% 0 0)",
@@ -402,8 +402,8 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
       {item.aiReason && (
         <div style={{padding:10}}>
           <div style={{display:"flex",alignItems:"center",gap:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:10,padding:"12.5px 12.5px 12.5px 14.5px",boxShadow:t.chip.stroke||"none"}}>
-            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,textShadow:t.chip.tShadow||"none",...(t.chip.starGrad?{backgroundImage:t.chip.starGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦</span>
-            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",textShadow:t.chip.tShadow||"none",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}</span>
+            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.starGrad||t.chip.tGrad?{backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>✦</span>}</span>
+            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>{item.aiReason}</span>}</span>
           </div>
         </div>
       )}
@@ -443,7 +443,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL }) {
           {loading ? "…" : colItems.length}
         </span>
       </div>
-      <div style={{display:"flex",flexDirection:"column",gap:12,padding:"0 6px"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:12,padding:"0 6px 6px"}}>
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
@@ -788,7 +788,7 @@ export default function KanbanBoard() {
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
         {/* ── Topbar ── */}
-        <div style={{position:"sticky",top:6,zIndex:10,margin:"6px 0 6px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
+        <div style={{position:"sticky",top:6,zIndex:10,margin:"12px 0 12px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
         {/* Liquid glass header overlays (desktop only) */}
         {!isMobile && <>
           <div style={{position:"absolute",inset:0,borderRadius:16,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
