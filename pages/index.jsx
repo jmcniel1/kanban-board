@@ -45,11 +45,11 @@ const SpinnerIcon = ({ c }) => (
 
 // ── Background images (Unsplash direct URLs) ────────────────────────────────────
 const sunsetPhotos = [
-  "https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=1920&q=80",
-  "https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1920&q=80",
-  "https://images.unsplash.com/photo-1472120435266-95a3f747eb08?w=1920&q=80",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&q=80",
-  "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1920&q=80",
+  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80",
+  "https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=1920&q=80",
+  "https://images.unsplash.com/photo-1476842634003-7dcca8f832de?w=1920&q=80",
+  "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=1920&q=80",
+  "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=1920&q=80",
 ];
 const plantPhotos = [
   "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=1920&q=80",
@@ -108,9 +108,9 @@ const makeTheme = (dark) => dark
                    border:"none",
                    stroke:"none",
                    bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.3) 0%, oklch(68% 0.18 25 / 0.3) 25%, oklch(62% 0.15 350 / 0.3) 50%, oklch(55% 0.2 290 / 0.3) 75%, oklch(50% 0.22 265 / 0.3) 100%)" },
-      tagBg:     "oklch(0% 0 0 / 0.3)", tagText:"oklch(100% 0 0 / 0.65)", tagActiveBg:"oklch(100% 0 0 / 0.25)", tagActiveText:"oklch(100% 0 0 / 0.9)",
-      actDone:   { c:"oklch(100% 0 0)", bg:"oklch(32% 0.025 260 / 0.5)", hov:"oklch(36% 0.03 260 / 0.6)" },
-      actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(32% 0.025 260 / 0.5)",       hov:"oklch(36% 0.03 260 / 0.6)", glass:"oklch(100% 0 0 / 0.05)" },
+      tagBg:     "oklch(0% 0 0 / 0.85)", tagText:"oklch(100% 0 0 / 0.65)", tagActiveBg:"oklch(100% 0 0 / 0.25)", tagActiveText:"oklch(100% 0 0 / 0.9)",
+      actDone:   { c:"oklch(100% 0 0)", bg:"oklch(100% 0 0 / 0.15)", hov:"oklch(100% 0 0 / 0.25)" },
+      actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(100% 0 0 / 0.2)",       hov:"oklch(100% 0 0 / 0.3)", glass:"oklch(100% 0 0 / 0.05)" },
       actDivider:"oklch(100% 0 0 / 0.06)",
       todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
       filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
@@ -141,7 +141,7 @@ const makeTheme = (dark) => dark
       src:{gmail:{c:"oklch(48% 0.22 25)",bg:"oklch(100% 0 0 / 0.4)"},slack:{c:"oklch(48% 0.18 310)",bg:"oklch(100% 0 0 / 0.4)"},asana:{c:"oklch(48% 0.22 22)",bg:"oklch(100% 0 0 / 0.4)"}},
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
-      chip:{bg:"transparent",star:"oklch(100% 0 0)",t:"oklch(100% 0 0)",tBlend:"normal",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(42% 0.16 50 / 0.7) 0%, oklch(38% 0.18 25 / 0.7) 25%, oklch(32% 0.15 350 / 0.7) 50%, oklch(25% 0.2 290 / 0.7) 75%, oklch(20% 0.22 265 / 0.7) 100%)"},
+      chip:{bg:"transparent",star:"oklch(100% 0 0)",t:"oklch(100% 0 0)",tBlend:"normal",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(42% 0.16 50 / 0.5) 0%, oklch(38% 0.18 25 / 0.5) 25%, oklch(32% 0.15 350 / 0.5) 50%, oklch(25% 0.2 290 / 0.5) 75%, oklch(20% 0.22 265 / 0.5) 100%)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(20% 0 0)",tagActiveBg:"oklch(0% 0 0 / 0.15)",tagActiveText:"oklch(5% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
       todayPill:{bg:"oklch(55% 0.22 25)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0)"},
@@ -364,18 +364,18 @@ function PriorityBadge({ priority, t }) {
 }
 
 // Proportional corner radius: child radius = parent radius - parent padding
-const CARD_RADIUS = 16, CARD_PAD = 6;
-const BTN_RADIUS = CARD_RADIUS - CARD_PAD; // 10
+const CARD_RADIUS = 16, CARD_PAD = 16;
+const BTN_RADIUS = 10;
 
 function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel, isXL, isMobile, dark }) {
   const [h, setH] = useState(false);
   const mob = isMobile;
-  const insetShadow = dark
-    ? "inset 0 1px 0 oklch(100% 0 0 / 0.3), inset 0 -1px 0 oklch(100% 0 0 / 0.15), inset 1px 0 0 oklch(100% 0 0 / 0.15), inset -1px 0 0 oklch(100% 0 0 / 0.15)"
-    : "inset 0 1px 0 oklch(0% 0 0 / 0.3), inset 0 -1px 0 oklch(0% 0 0 / 0.15), inset 1px 0 0 oklch(0% 0 0 / 0.15), inset -1px 0 0 oklch(0% 0 0 / 0.15)";
+  const btnShadow = dark
+    ? "none"
+    : "0 2px 5px oklch(0% 0 0 / 0.1)";
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:mob?"14px 12px":isXL?"16px 10px":"8px 10px",borderRadius:BTN_RADIUS,border:"none",fontSize:mob?13.5:11,fontWeight:350,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:mob?7:5,position:"relative",overflow:"hidden",boxShadow:insetShadow,...(h?hovStyle:btnStyle)}}>
+      style={{flex:1,padding:mob?"14px 12px":isXL?"16px 10px":"8px 10px",borderRadius:BTN_RADIUS,border:"none",fontSize:mob?16:13,fontWeight:350,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:mob?7:5,position:"relative",overflow:"hidden",boxShadow:btnShadow,...(h?hovStyle:btnStyle)}}>
       {glass && <div style={{position:"absolute",inset:0,background:glass,mixBlendMode:"plus-lighter",pointerEvents:"none"}}/>}
       {icon}{gradLabel ? <span style={{backgroundImage:gradLabel,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{label}</span> : label}
     </button>
@@ -418,15 +418,15 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setF
         <span style={{fontSize:isMobile?14.4:12,fontWeight:350,color:t.timeMut||t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
       {/* Title + subtitle */}
-      <div style={{display:"flex",flexDirection:"column",gap:isMobile?10:8,padding:isMobile?"22px 12px 12px":"18px 10px 10px"}}>
-        <div style={{fontSize:isMobile?21.6:18,fontWeight:350,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
+      <div style={{display:"flex",flexDirection:"column",gap:isMobile?5:8,padding:isMobile?"22px 12px 12px":"18px 10px 10px"}}>
+        <div style={{fontSize:isMobile?32:18,fontWeight:350,color:t.textPri,lineHeight:isMobile?1.1:1.25,letterSpacing:isMobile?"-0.02em":undefined}}>{item.title}</div>
         <div style={{fontSize:isMobile?13.8:11.5,color:t.textPri,fontWeight:350,opacity:0.6}}>
           {item.from}
           {item.fromRole && <span> · {item.fromRole}</span>}
         </div>
       </div>
       {/* Snippet */}
-      <div style={{fontSize:isMobile?14.4:12,fontWeight:350,color:t.textSec,lineHeight:isMobile?"21.8px":"18.2px",letterSpacing:isMobile?"0.29px":"0.24px",padding:isMobile?"0 12px 12px":"0 10px 10px",display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:isMobile?18.4:16,fontWeight:350,color:t.textSec,lineHeight:isMobile?"27px":"24px",letterSpacing:isMobile?"0.29px":"0.24px",padding:isMobile?"10px 12px 22px":"10px 10px 20px",overflow:"visible"}}>{item.snippet}</div>
       {/* AI reason chip */}
       {item.aiReason && (
         <div style={{padding:10}}>
@@ -445,10 +445,10 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setF
         </div>
       )}
       {/* Actions */}
-      <div style={{display:"flex",gap:isMobile?6:5,paddingTop:isMobile?14:12}}>
-        <ActionBtn icon={BtnIcons.done(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Done" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onDone(item.id)} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
-        <ActionBtn icon={BtnIcons.snooze(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Snooze" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={isMobile?null:m.glass} gradLabel={isMobile?null:snoozeGrad} isXL={isXL} isMobile={isMobile} dark={dark}/>
-        <ActionBtn icon={BtnIcons.open(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Open" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
+      <div style={{display:"flex",gap:isMobile?6:5,paddingTop:isMobile?11:9,margin:"0 -10px -10px"}}>
+        <ActionBtn icon={BtnIcons.done(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Done" btnStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.15)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.3)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onDone(item.id)} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
+        <ActionBtn icon={BtnIcons.snooze(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Snooze" btnStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.15)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.3)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={isMobile?null:m.glass} gradLabel={isMobile?null:snoozeGrad} isXL={isXL} isMobile={isMobile} dark={dark}/>
+        <ActionBtn icon={BtnIcons.open(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Open" btnStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.15)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(100% 0 0 / 0.3)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
       </div>
     </div>
   );
@@ -720,7 +720,7 @@ export default function KanbanBoard() {
   // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
     const themeColor = dark ? "#19191f" : "#e0e0e0";
-    document.body.style.background = t.pageBg;
+    document.body.style.background = "transparent";
     document.body.style.margin = "0";
     document.body.style.overscrollBehavior = "none";
     document.documentElement.style.background = t.pageBg;
@@ -832,10 +832,10 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"transparent":t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:"transparent",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
         {/* Blurred Unsplash background image */}
         <div style={{position:"fixed",inset:"-150px",zIndex:0,backgroundImage:`url(${t.bgImage})`,backgroundSize:"cover",backgroundPosition:"center",filter:"blur(150px)",pointerEvents:"none"}}/>
-        {!dark && <div style={{position:"fixed",inset:0,zIndex:0,background:"oklch(0% 0 0 / 0.3)",pointerEvents:"none"}}/>}
+        {!dark && <div style={{position:"fixed",inset:0,zIndex:0,background:"oklch(0% 0 0 / 0.15)",pointerEvents:"none"}}/>}
         {/* Grain overlay — behind content, over bg only */}
         {!isMobile && <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>}
 
