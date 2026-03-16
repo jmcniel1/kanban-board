@@ -795,9 +795,7 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"none":t.pageBg,backgroundPosition:isMobile?"none":"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
-        {/* Fixed background layer for mobile — prevents scaling issues on scroll */}
-        {isMobile && <div style={{position:"fixed",inset:0,background:t.pageBg,backgroundPosition:dark?"85% center":"20% center",backgroundSize:"cover",zIndex:-1}}/>}
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
         {/* Grain overlay — behind content, over bg only */}
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
