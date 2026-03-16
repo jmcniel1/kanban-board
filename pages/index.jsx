@@ -817,9 +817,9 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.split(" ").pop():t.pageBg,backgroundPosition:isMobile?undefined:"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"none":t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
         {/* Fixed bg layer for mobile — iOS doesn't support background-attachment:fixed */}
-        {isMobile && <div style={{position:"fixed",inset:0,zIndex:-1,backgroundImage:`url(/bg.svg)`,backgroundColor:t.pageBg.split(" ").pop(),backgroundSize:"cover",backgroundPosition:dark?"85% center":"20% center"}}/>}
+        {isMobile && <div style={{position:"fixed",inset:0,zIndex:-1,backgroundImage:"url(/bg.svg)",backgroundColor:dark?"oklch(20% 0.025 260)":"oklch(92% 0.005 265)",backgroundSize:"cover",backgroundPosition:dark?"85% center":"20% center"}}/>}
         {/* Grain overlay — behind content, over bg only */}
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
