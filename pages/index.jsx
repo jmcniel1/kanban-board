@@ -47,8 +47,8 @@ const SpinnerIcon = ({ c }) => (
 const makeTheme = (dark) => dark
   ? {
       pageBg:     "url(/bg.svg) center/cover fixed oklch(20% 0.025 260)",
-      surfaceBg:  "oklch(26% 0.02 260 / 0.45)",
-      surfaceHov: "oklch(30% 0.025 260 / 0.5)",
+      surfaceBg:  "oklch(0% 0 0 / 0.7)",
+      surfaceHov: "oklch(0% 0 0 / 0.8)",
       headerBg:   "oklch(24% 0.025 260 / 0.55)",
       trayBg:     "oklch(22% 0.02 260 / 0.4)",
       barBg:      "oklch(20% 0.025 260)",
@@ -88,7 +88,7 @@ const makeTheme = (dark) => dark
                    border:"none",
                    stroke:"none",
                    bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.3) 0%, oklch(68% 0.18 25 / 0.3) 25%, oklch(62% 0.15 350 / 0.3) 50%, oklch(55% 0.2 290 / 0.3) 75%, oklch(50% 0.22 265 / 0.3) 100%)" },
-      tagBg:     "oklch(0% 0 0 / 0.3)", tagText:"oklch(100% 0 0 / 0.5)",
+      tagBg:     "oklch(0% 0 0 / 0.3)", tagText:"oklch(100% 0 0 / 0.65)", tagActiveBg:"oklch(100% 0 0 / 0.25)", tagActiveText:"oklch(100% 0 0 / 0.9)",
       actDone:   { c:"oklch(100% 0 0)", bg:"oklch(32% 0.025 260 / 0.5)", hov:"oklch(36% 0.03 260 / 0.6)" },
       actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(32% 0.025 260 / 0.5)",       hov:"oklch(36% 0.03 260 / 0.6)", glass:"oklch(100% 0 0 / 0.05)" },
       actDivider:"oklch(100% 0 0 / 0.06)",
@@ -111,7 +111,7 @@ const makeTheme = (dark) => dark
     }
   : {
       pageBg:"url(/bg.svg) center/cover fixed oklch(92% 0.005 265)",
-      surfaceBg:"oklch(100% 0 0 / 0.55)",surfaceHov:"oklch(100% 0 0 / 0.68)",
+      surfaceBg:"oklch(100% 0 0 / 0.7)",surfaceHov:"oklch(100% 0 0 / 0.8)",
       barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.045)",trayBg:"oklch(100% 0 0 / 0.045)",
       border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
       shadow:"0 2px 16px oklch(0% 0 0/0.07)",shadowHov:"0 6px 24px oklch(0% 0 0/0.11)",
@@ -121,7 +121,7 @@ const makeTheme = (dark) => dark
       pri:{urgent:{d:"oklch(58% 0.25 28)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.2 28)"},high:{d:"oklch(58% 0.22 50)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(38% 0.18 50)"},medium:{d:"oklch(52% 0.18 290)",bg:"oklch(100% 0 0 / 0.4)",t:"oklch(35% 0.15 290)"},low:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"},blocked:{d:"oklch(55% 0 0)",bg:"oklch(100% 0 0 / 0.3)",t:"oklch(40% 0 0)"}},
       col:{today:{ac:"oklch(55% 0.22 25)",acBg:"oklch(100% 0 0 / 0.35)",acBd:"oklch(100% 0 0 / 0.3)"},week:{ac:"oklch(50% 0.18 290)",acBg:"oklch(100% 0 0 / 0.3)",acBd:"oklch(100% 0 0 / 0.3)"},fyi:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.25)",acBd:"oklch(100% 0 0 / 0.3)"},blocked:{ac:"oklch(45% 0 0)",acBg:"oklch(100% 0 0 / 0.2)",acBd:"oklch(100% 0 0 / 0.3)"}},
       chip:{bg:"transparent",star:"oklch(15% 0 0)",t:"oklch(15% 0 0)",tGrad:"linear-gradient(160deg, oklch(72% 0.16 50) 0%, oklch(68% 0.18 25) 25%, oklch(62% 0.15 350) 50%, oklch(55% 0.2 290) 75%, oklch(50% 0.22 265) 100%)",tBlend:"darken",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(72% 0.16 50 / 0.25) 0%, oklch(68% 0.18 25 / 0.25) 25%, oklch(62% 0.15 350 / 0.25) 50%, oklch(55% 0.2 290 / 0.25) 75%, oklch(50% 0.22 265 / 0.25) 100%)"},
-      tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(30% 0 0)",
+      tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(20% 0 0)",tagActiveBg:"oklch(0% 0 0 / 0.15)",tagActiveText:"oklch(5% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
       todayPill:{bg:"oklch(55% 0.22 25)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0)"},
       filterOn:{bg:"linear-gradient(135deg, oklch(55% 0.2 290 / 0.5), oklch(60% 0.15 250 / 0.5), oklch(90% 0 0 / 0.5))",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
@@ -192,7 +192,7 @@ function PinScreen({ onVerified }) {
       position: "fixed", inset: 0, zIndex: 200,
       background: "linear-gradient(135deg, oklch(14% 0.09 285) 0%, oklch(9% 0.06 305) 50%, oklch(6% 0.03 260) 100%)",
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif",
+      fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif",
       opacity: fadeOut ? 0 : 1,
       transition: fadeOut ? "opacity 0.4s ease" : "none",
     }}>
@@ -342,20 +342,28 @@ function PriorityBadge({ priority, t }) {
   );
 }
 
-function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel, isXL }) {
+// Proportional corner radius: child radius = parent radius - parent padding
+const CARD_RADIUS = 16, CARD_PAD = 6;
+const BTN_RADIUS = CARD_RADIUS - CARD_PAD; // 10
+
+function ActionBtn({ icon, label, btnStyle, hovStyle, onClick, glass, gradLabel, isXL, isMobile, dark }) {
   const [h, setH] = useState(false);
+  const mob = isMobile;
+  const insetShadow = dark
+    ? "inset 0 1px 0 oklch(100% 0 0 / 0.3), inset 0 -1px 0 oklch(100% 0 0 / 0.15), inset 1px 0 0 oklch(100% 0 0 / 0.15), inset -1px 0 0 oklch(100% 0 0 / 0.15)"
+    : "inset 0 1px 0 oklch(0% 0 0 / 0.3), inset 0 -1px 0 oklch(0% 0 0 / 0.15), inset 1px 0 0 oklch(0% 0 0 / 0.15), inset -1px 0 0 oklch(0% 0 0 / 0.15)";
   return (
     <button onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{flex:1,padding:isXL?"16px 10px":"8px 10px",borderRadius:10,border:"none",fontSize:11,fontWeight:450,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:5,position:"relative",overflow:"hidden",...(h?hovStyle:btnStyle)}}>
+      style={{flex:1,padding:mob?"14px 12px":isXL?"16px 10px":"8px 10px",borderRadius:BTN_RADIUS,border:"none",fontSize:mob?13.5:11,fontWeight:350,cursor:"pointer",transition:"background 0.14s",display:"flex",alignItems:"center",justifyContent:"center",gap:mob?7:5,position:"relative",overflow:"hidden",boxShadow:insetShadow,...(h?hovStyle:btnStyle)}}>
       {glass && <div style={{position:"absolute",inset:0,background:glass,mixBlendMode:"plus-lighter",pointerEvents:"none"}}/>}
       {icon}{gradLabel ? <span style={{backgroundImage:gradLabel,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{label}</span> : label}
     </button>
   );
 }
 const BtnIcons = {
-  done: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
-  snooze: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-  open: (c="oklch(100% 0 0)") => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
+  done: (c="oklch(100% 0 0)", mob) => <svg width={mob?16:13} height={mob?16:13} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
+  snooze: (c="oklch(100% 0 0)", mob) => <svg width={mob?16:13} height={mob?16:13} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  open: (c="oklch(100% 0 0)", mob) => <svg width={mob?16:13} height={mob?16:13} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
 };
 
 function SkeletonCard({ t }) {
@@ -373,37 +381,37 @@ function SkeletonCard({ t }) {
   );
 }
 
-function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
+function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setFilterTag }) {
   const [hov, setHov] = useState(false);
   const d = t.actDone, m = t.actMuted;
   const snoozeGrad = t.chip?.tGrad || null;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:16,padding:6,display:"flex",flexDirection:"column",transition:"all 0.18s ease"}}>
+      style={{background:hov?t.surfaceHov:t.surfaceBg,backdropFilter:t.cardBlur,WebkitBackdropFilter:t.cardBlur,border:t.cardBorder||"none",boxShadow:t.cardShadow||"none",borderRadius:CARD_RADIUS,padding:CARD_PAD,display:"flex",flexDirection:"column",transition:"all 0.18s ease"}}>
       {/* Badges + time */}
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:10}}>
-        <div style={{display:"flex",alignItems:"center",gap:6}}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:isMobile?12:10}}>
+        <div style={{display:"flex",alignItems:"center",gap:isMobile?7:6}}>
           <SourceBadge source={item.source} t={t}/>
           <PriorityBadge priority={item.priority} t={t}/>
         </div>
-        <span style={{fontSize:12,color:t.timeMut||t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
+        <span style={{fontSize:isMobile?14.4:12,fontWeight:350,color:t.timeMut||t.textMut,whiteSpace:"nowrap"}}>{item.time}</span>
       </div>
       {/* Title + subtitle */}
-      <div style={{display:"flex",flexDirection:"column",gap:8,padding:"18px 10px 10px"}}>
-        <div style={{fontSize:18,fontWeight:400,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
-        <div style={{fontSize:11.5,color:t.textPri,fontWeight:500,opacity:0.6}}>
+      <div style={{display:"flex",flexDirection:"column",gap:isMobile?10:8,padding:isMobile?"22px 12px 12px":"18px 10px 10px"}}>
+        <div style={{fontSize:isMobile?21.6:18,fontWeight:350,color:t.textPri,lineHeight:1.25}}>{item.title}</div>
+        <div style={{fontSize:isMobile?13.8:11.5,color:t.textPri,fontWeight:350,opacity:0.6}}>
           {item.from}
           {item.fromRole && <span> · {item.fromRole}</span>}
         </div>
       </div>
       {/* Snippet */}
-      <div style={{fontSize:12,fontWeight:400,color:t.textSec,lineHeight:"18.2px",letterSpacing:"0.24px",padding:"0 10px 10px",display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
+      <div style={{fontSize:isMobile?14.4:12,fontWeight:350,color:t.textSec,lineHeight:isMobile?"21.8px":"18.2px",letterSpacing:isMobile?"0.29px":"0.24px",padding:isMobile?"0 12px 12px":"0 10px 10px",display:"-webkit-box",WebkitLineClamp:4,WebkitBoxOrient:"vertical",overflow:"hidden"}}>{item.snippet}</div>
       {/* AI reason chip */}
       {item.aiReason && (
         <div style={{padding:10}}>
-          <div style={{display:"flex",alignItems:"center",gap:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:10,padding:"12.5px 12.5px 12.5px 14.5px",boxShadow:t.chip.stroke||"none"}}>
-            <span style={{fontSize:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.starGrad||t.chip.tGrad?{backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>✦</span>}</span>
-            <span style={{fontSize:11.5,fontWeight:400,letterSpacing:"0.23px",lineHeight:"normal",position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>{item.aiReason}</span>}</span>
+          <div style={{display:"flex",alignItems:"center",gap:isMobile?13:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:BTN_RADIUS,padding:isMobile?"15px 15px 15px 17.4px":"12.5px 12.5px 12.5px 14.5px",boxShadow:t.chip.stroke||"none"}}>
+            <span style={{fontSize:isMobile?16.8:14,fontWeight:350,lineHeight:1,letterSpacing:"0.02em",flexShrink:0,position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.starGrad||t.chip.tGrad?{backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>✦</span>}</span>
+            <span style={{fontSize:isMobile?13.8:11.5,fontWeight:350,letterSpacing:isMobile?"0.28px":"0.23px",lineHeight:"normal",position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}{t.chip.tGrad && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:"multiply"}}>{item.aiReason}</span>}</span>
           </div>
         </div>
       )}
@@ -411,21 +419,21 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL }) {
       {item.tags?.length>0 && (
         <div style={{display:"flex",gap:6,flexWrap:"wrap",padding:"6px 10px"}}>
           {item.tags.map(tag=>(
-            <span key={tag} style={{background:t.tagBg,color:t.tagText,fontSize:12,fontWeight:400,padding:"2px 8px",borderRadius:6,letterSpacing:"0.24px",lineHeight:"18.2px"}}>{tag}</span>
+            <span key={tag} onClick={(e)=>{e.stopPropagation();setFilterTag?.(filterTag===tag?null:tag)}} style={{background:filterTag===tag?(t.tagActiveBg||t.tagBg):t.tagBg,color:filterTag===tag?(t.tagActiveText||t.tagText):t.tagText,fontSize:isMobile?14.4:12,fontWeight:filterTag===tag?400:350,padding:isMobile?"2.4px 9.6px":"2px 8px",borderRadius:isMobile?7:6,letterSpacing:isMobile?"0.29px":"0.24px",lineHeight:isMobile?"21.8px":"18.2px",cursor:"pointer",transition:"all 0.14s"}}>{tag}</span>
           ))}
         </div>
       )}
       {/* Actions */}
-      <div style={{display:"flex",gap:5,paddingTop:12}}>
-        <ActionBtn icon={BtnIcons.done(m.c)} label="Done" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onDone(item.id)} glass={m.glass} isXL={isXL}/>
-        <ActionBtn icon={BtnIcons.snooze(m.c)} label="Snooze" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={m.glass} gradLabel={snoozeGrad} isXL={isXL}/>
-        <ActionBtn icon={BtnIcons.open(m.c)} label="Open" btnStyle={{background:m.bg,color:m.c}} hovStyle={{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={m.glass} isXL={isXL}/>
+      <div style={{display:"flex",gap:isMobile?6:5,paddingTop:isMobile?14:12}}>
+        <ActionBtn icon={BtnIcons.done(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Done" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onDone(item.id)} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
+        <ActionBtn icon={BtnIcons.snooze(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Snooze" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>onSnooze(item.id)} glass={isMobile?null:m.glass} gradLabel={isMobile?null:snoozeGrad} isXL={isXL} isMobile={isMobile} dark={dark}/>
+        <ActionBtn icon={BtnIcons.open(isMobile?(dark?"oklch(90% 0 0)":"oklch(25% 0 0)"):m.c,isMobile)} label="Open" btnStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.8)":"oklch(100% 0 0 / 0.8)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.bg,color:m.c}} hovStyle={isMobile?{background:dark?"oklch(0% 0 0 / 0.9)":"oklch(100% 0 0 / 0.9)",color:dark?"oklch(90% 0 0)":"oklch(25% 0 0)"}:{background:m.hov,color:m.c}} onClick={()=>item.url && window.open(item.url,"_blank")} glass={isMobile?null:m.glass} isXL={isXL} isMobile={isMobile} dark={dark}/>
       </div>
     </div>
   );
 }
 
-function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL }) {
+function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL, filterTag, setFilterTag }) {
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
@@ -447,7 +455,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL }) {
         {loading
           ? [1,2].map(i=><SkeletonCard key={i} t={t}/>)
           : colItems.length>0
-            ? colItems.map(item=><Card key={item.id} item={item} onDone={onDone} onSnooze={onSnooze} t={t} isXL={isXL}/>)
+            ? colItems.map(item=><Card key={item.id} item={item} onDone={onDone} onSnooze={onSnooze} t={t} isXL={isXL} filterTag={filterTag} setFilterTag={setFilterTag}/>)
             : (
               <div style={{background:t.surfaceBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:16,padding:"28px 20px",textAlign:"center",boxShadow:t.shadow}}>
                 <div style={{fontSize:18,marginBottom:4}}>✓</div>
@@ -469,7 +477,7 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t, swipeP
   const nextIdx = activeIdx + dir;
 
   return (
-    <div style={{display:"flex",alignItems:"center",background:`linear-gradient(to right, ${tb.bg} 30%, transparent 60%)`,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:24,padding:3,gap:4,overflow:"clip"}}>
+    <div style={{display:"flex",alignItems:"center",background:`linear-gradient(to right, ${t.surfaceBg} 30%, transparent 60%)`,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",borderRadius:29,padding:4,gap:5,overflow:"clip"}}>
       {cols.map((col, i) => {
         const ac = t.col[col.id];
         const count = items.filter(it=>it.column===col.id).length;
@@ -489,40 +497,41 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t, swipeP
           return (
             <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
               display:"flex", alignItems:"center", justifyContent:"center",
-              width:24, height:24, borderRadius:"50%", border:"none",
+              width:29, height:29, borderRadius:"50%", border:"none",
               background:ac.ac, cursor:"pointer", padding:0, flexShrink:0,
-              marginLeft: i === 0 ? 10 : 0,
+              marginLeft: i === 0 ? 12 : 0,
               transform:`scale(${pillScale})`,
               transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
             }}>
-              <span style={{fontSize:11,fontWeight:600,color:"oklch(100% 0 0)",lineHeight:1}}>{loading?"":count}</span>
+              <span style={{fontSize:13,fontWeight:600,color:"oklch(100% 0 0)",lineHeight:1}}>{loading?"":count}</span>
             </button>
           );
         }
 
         // Full tab (active or after active)
-        const opacity = isActive ? 1 : isNext ? 0.5 + p * 0.5 : 0.5;
-        const bg = activity > 0.5 ? tb.activeBg : "transparent";
+        const opacity = isActive ? 1 : isNext ? 0.6 + p * 0.4 : 0.6;
+        const isAct = activity > 0.5;
+        const tabShadow = isAct ? `inset 0 0 0 1px ${ac.ac.replace(")", " / 0.3)")}` : "none";
 
         return (
           <button key={col.id} onClick={()=>setActiveCol(col.id)} style={{
-            display:"flex", alignItems:"center", justifyContent:"center", gap:10,
-            padding:"8px 10px 8px 14px", borderRadius:21, border:"none",
-            background: bg,
-            color: activity > 0.5 ? tb.activeText : tb.inactiveText,
-            fontWeight: 400, opacity,
-            fontSize:13, letterSpacing:"0em", cursor:"pointer",
+            display:"flex", alignItems:"center", justifyContent:"center", gap:12,
+            padding:"10px 12px 10px 17px", borderRadius:25, border:"none",
+            background: isAct ? ac.ac.replace(")", " / 0.4)") : "transparent", boxShadow: tabShadow,
+            color: isAct ? tb.activeText : "oklch(100% 0 0)",
+            fontWeight: 400, opacity, lineHeight:1,
+            fontSize:15.6, letterSpacing:"0em", cursor:"pointer",
             whiteSpace:"nowrap",
             transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
             zIndex: isActive ? 1 : 0,
           }}>
             {col.label}
             <span style={{
-              background: activity > 0.5 ? ac.ac : "oklch(100% 0 0 / 0.08)",
-              color: activity > 0.5 ? "oklch(100% 0 0)" : tb.inactiveText,
-              fontSize:11, fontWeight:600,
-              padding:"3px 7px", borderRadius:20,
-              textAlign:"center",
+              background: isAct ? ac.ac : "oklch(100% 0 0 / 0.08)",
+              color: "oklch(100% 0 0)",
+              fontSize:13, fontWeight:600, lineHeight:1,
+              padding:"4px 8px", borderRadius:24,
+              textAlign:"center", display:"inline-flex", alignItems:"center", justifyContent:"center",
               transition: p === 0 ? "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none",
             }}>
               {loading ? "…" : count}
@@ -535,7 +544,7 @@ function MobileTabBar({ cols, items, activeCol, setActiveCol, loading, t, swipeP
 }
 
 // ── Mobile swipe view ────────────────────────────────────────────────────────
-function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, snooze, t, onSwipeProgress }) {
+function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, snooze, t, onSwipeProgress, dark, filterTag, setFilterTag }) {
   const colIds = COL_META.map(c => c.id);
   const curIdx = colIds.indexOf(activeCol);
   const containerRef = useRef(null);
@@ -612,7 +621,7 @@ function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, 
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
-      style={{ flex: 1, padding: "6px 0", minHeight: 100, overflow: "clip", touchAction: "pan-y" }}
+      style={{ flex: 1, padding: "8px 0", minHeight: 100, overflow: "clip", touchAction: "pan-y" }}
     >
       <div
         style={{
@@ -626,12 +635,12 @@ function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, 
           const meta = COL_META.find(c => c.id === colId);
           const colItems = visible.filter(i => i.column === colId);
           return (
-            <div key={colId} style={{ minWidth: "100%", display: "flex", flexDirection: "column", gap: 4 }}>
+            <div key={colId} style={{ minWidth: "100%", display: "flex", flexDirection: "column", gap: 8 }}>
               {loading
                 ? [1, 2, 3].map(i => <SkeletonCard key={i} t={t} />)
                 : colItems.length > 0
                   ? colItems.map(item => (
-                    <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t} isMobile />
+                    <Card key={item.id} item={item} onDone={markDone} onSnooze={snooze} t={t} isMobile dark={dark} filterTag={filterTag} setFilterTag={setFilterTag} />
                   ))
                   : (
                     <div style={{ background: t.surfaceBg, backdropFilter: "blur(30px)", WebkitBackdropFilter: "blur(30px)", borderRadius: 16, padding: "40px 20px", textAlign: "center", boxShadow: t.shadow, marginTop: 4 }}>
@@ -658,6 +667,7 @@ export default function KanbanBoard() {
   const [syncedAt,  setSyncedAt]  = useState(null);
   const [sources,   setSources]   = useState({});
   const [filter,    setFilter]    = useState("all");
+  const [filterTag, setFilterTag] = useState(null);
   const [doneCount, setDoneCount] = useState(0);
   const [usingDemo, setUsingDemo] = useState(false);
   const [activeCol, setActiveCol] = useState("today");
@@ -768,7 +778,7 @@ export default function KanbanBoard() {
     setItems(prev=>prev.map(i=>i.id===id?{...i,column:"week"}:i));
   };
 
-  const visible    = filter==="all" ? items : items.filter(i=>i.source===filter);
+  const visible    = items.filter(i => (filter==="all" || i.source===filter) && (!filterTag || i.tags?.includes(filterTag)));
   const todayCount = items.filter(i=>i.column==="today").length;
   const total      = items.length;
 
@@ -788,7 +798,7 @@ export default function KanbanBoard() {
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
         {/* ── Topbar ── */}
-        <div style={{position:"sticky",top:6,zIndex:10,margin:"12px 0 12px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
+        <div style={{position:"sticky",top:6,zIndex:10,margin:isMobile?"8px 0":"12px 0 12px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
         {/* Liquid glass header overlays (desktop only) */}
         {!isMobile && <>
           <div style={{position:"absolute",inset:0,borderRadius:16,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
@@ -893,6 +903,9 @@ export default function KanbanBoard() {
             snooze={snooze}
             t={t}
             onSwipeProgress={setSwipeProgress}
+            dark={dark}
+            filterTag={filterTag}
+            setFilterTag={setFilterTag}
           />
         ) : (
           // Desktop: 4-column layout
@@ -900,7 +913,7 @@ export default function KanbanBoard() {
             <div ref={boardRef} style={{display:"flex",gap:6,padding:0,flex:1,overflowX:"auto",alignItems:"flex-start",scrollbarWidth:"none",borderRadius:22}}>
               <style>{`.board-scroll::-webkit-scrollbar{display:none}`}</style>
               {COL_META.map(meta=>(
-                <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t} isXL={isXL}/>
+                <KanbanColumn key={meta.id} meta={meta} items={visible} loading={loading} onDone={markDone} onSnooze={snooze} t={t} isXL={isXL} filterTag={filterTag} setFilterTag={setFilterTag}/>
               ))}
             </div>
             {canScrollRight && (
