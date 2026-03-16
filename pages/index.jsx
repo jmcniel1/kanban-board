@@ -426,7 +426,7 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setF
         </div>
       </div>
       {/* Snippet */}
-      <div style={{fontSize:isMobile?18.4:16,fontWeight:350,color:t.textSec,lineHeight:isMobile?"27px":"24px",letterSpacing:isMobile?"0.29px":"0.24px",padding:isMobile?"10px 12px 22px":"10px 10px 20px",overflow:"visible"}}>{item.snippet}</div>
+      <div style={{fontSize:isMobile?18.4:16,fontWeight:350,color:t.textSec,lineHeight:isMobile?"27px":"24px",letterSpacing:isMobile?"0.29px":"0.24px",padding:isMobile?"10px 12px 22px":"10px 10px 20px",overflow:"hidden",wordWrap:"break-word",overflowWrap:"break-word"}}>{item.snippet}</div>
       {/* AI reason chip */}
       {item.aiReason && (
         <div style={{padding:10}}>
