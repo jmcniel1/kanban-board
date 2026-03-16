@@ -707,8 +707,10 @@ export default function KanbanBoard() {
     const bg = "url(/bg.svg) center/cover fixed";
     document.body.style.background = bg;
     document.body.style.margin = "0";
+    document.body.style.overscrollBehavior = "none";
     document.documentElement.style.background = bg;
     document.documentElement.style.margin = "0";
+    document.documentElement.style.overscrollBehavior = "none";
     let meta = document.querySelector('meta[name="theme-color"]');
     if (!meta) { meta = document.createElement("meta"); meta.name = "theme-color"; document.head.appendChild(meta); }
     meta.content = themeColor;
@@ -793,7 +795,9 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.replace("fixed","scroll"):t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"none":t.pageBg,backgroundPosition:isMobile?"none":"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+        {/* Fixed background layer for mobile — prevents scaling issues on scroll */}
+        {isMobile && <div style={{position:"fixed",inset:0,background:t.pageBg,backgroundPosition:dark?"85% center":"20% center",backgroundSize:"cover",zIndex:-1}}/>}
         {/* Grain overlay — behind content, over bg only */}
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
