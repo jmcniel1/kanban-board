@@ -730,14 +730,35 @@ export default function KanbanBoard() {
 
   const t = makeTheme(dark);
 
-  // ── Fetch from API ──────────────────────────────────────────────────────────
+  // ── Fetch from API (cooldown persisted across refreshes) ─────────────────────
   const lastFetchRef = useRef(0);
+
+  // Restore cached data + cooldown on mount
+  useEffect(() => {
+    try {
+      const ts = parseInt(sessionStorage.getItem("kb_lastFetch") || "0", 10);
+      lastFetchRef.current = ts;
+      const cached = sessionStorage.getItem("kb_items");
+      if (cached && ts && Date.now() - ts < 5 * 60 * 1000) {
+        const data = JSON.parse(cached);
+        setItems(data.items || []);
+        setSyncedAt(data.syncedAt);
+        setSources(data.sources || {});
+        setUsingDemo(false);
+        setLoading(false);
+        setSyncCooldown(true);
+        setTimeout(() => setSyncCooldown(false), 5 * 60 * 1000 - (Date.now() - ts));
+      }
+    } catch (_) {}
+  }, []);
+
   const fetchItems = useCallback(async (isManualSync=false) => {
     const now = Date.now();
     if (lastFetchRef.current && now - lastFetchRef.current < 5 * 60 * 1000) return;
     if (isManualSync) setSyncing(true);
     else setLoading(true);
     lastFetchRef.current = now;
+    try { sessionStorage.setItem("kb_lastFetch", String(now)); } catch (_) {}
     setSyncCooldown(true);
     setTimeout(() => setSyncCooldown(false), 5 * 60 * 1000);
 
@@ -751,6 +772,7 @@ export default function KanbanBoard() {
         setSyncedAt(data.syncedAt);
         setSources(data.sources || {});
         setUsingDemo(false);
+        try { sessionStorage.setItem("kb_items", JSON.stringify(data)); } catch (_) {}
       } else {
         setUsingDemo(true);
       }
@@ -795,7 +817,9 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:t.pageBg,backgroundPosition:isMobile?(dark?"85% center":"20% center"):"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?t.pageBg.split(" ").pop():t.pageBg,backgroundPosition:isMobile?undefined:"center",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+        {/* Fixed bg layer for mobile — iOS doesn't support background-attachment:fixed */}
+        {isMobile && <div style={{position:"fixed",inset:0,zIndex:-1,backgroundImage:`url(/bg.svg)`,backgroundColor:t.pageBg.split(" ").pop(),backgroundSize:"cover",backgroundPosition:dark?"85% center":"20% center"}}/>}
         {/* Grain overlay — behind content, over bg only */}
         <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
 
