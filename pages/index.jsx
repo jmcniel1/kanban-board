@@ -703,12 +703,11 @@ export default function KanbanBoard() {
   // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
     const themeColor = dark ? "#19191f" : "#e0e0e0";
-    const darkBg = "url(/bg.svg) center/cover fixed oklch(18% 0.004 265)";
-    const bg = "url(/bg.svg) center/cover fixed";
-    document.body.style.background = bg;
+    const fallbackColor = dark ? "oklch(20% 0.025 260)" : "oklch(92% 0.005 265)";
+    document.body.style.background = fallbackColor;
     document.body.style.margin = "0";
     document.body.style.overscrollBehavior = "none";
-    document.documentElement.style.background = bg;
+    document.documentElement.style.background = fallbackColor;
     document.documentElement.style.margin = "0";
     document.documentElement.style.overscrollBehavior = "none";
     let meta = document.querySelector('meta[name="theme-color"]');
