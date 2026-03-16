@@ -419,7 +419,7 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setF
       </div>
       {/* Title + subtitle */}
       <div style={{display:"flex",flexDirection:"column",gap:isMobile?5:8,padding:isMobile?"22px 12px 12px":"18px 10px 10px"}}>
-        <div style={{fontSize:isMobile?32:18,fontWeight:350,color:t.textPri,lineHeight:isMobile?1.1:1.25,letterSpacing:isMobile?"-0.02em":undefined}}>{item.title}</div>
+        <div style={{fontSize:isMobile?32:25,fontWeight:350,color:t.textPri,lineHeight:isMobile?1.1:1.25,letterSpacing:isMobile?"-0.02em":undefined}}>{item.title}</div>
         <div style={{fontSize:isMobile?13.8:11.5,color:t.textPri,fontWeight:350,opacity:0.6}}>
           {item.from}
           {item.fromRole && <span> · {item.fromRole}</span>}
@@ -431,7 +431,7 @@ function Card({ item, onDone, onSnooze, t, isMobile, isXL, dark, filterTag, setF
       {item.aiReason && (
         <div style={{padding:10}}>
           <div style={{display:"flex",alignItems:"center",gap:isMobile?13:11,backgroundImage:t.chip.bgGrad||"none",backgroundColor:t.chip.bg,border:t.chip.border||"none",borderRadius:BTN_RADIUS,padding:isMobile?15:12.5,boxShadow:t.chip.stroke||"none"}}>
-            <span style={{fontSize:isMobile?35:29,fontWeight:350,lineHeight:0,display:"inline-block",position:"relative",top:-4,letterSpacing:"0.02em",flexShrink:0,position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.starGrad||t.chip.tGrad?{backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦{t.chip.tGrad && t.chip.tBlend!=="normal" && <span aria-hidden style={{position:"absolute",inset:0,display:"flex",alignItems:"center",backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:t.chip.tBlend||"multiply"}}>✦</span>}</span>
+            <span style={{fontSize:isMobile?35:15,fontWeight:350,lineHeight:0,display:"inline-block",position:"relative",top:isMobile?-4:0,letterSpacing:"0.02em",flexShrink:0,position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.starGrad||t.chip.tGrad?{backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.star})}}>✦{t.chip.tGrad && t.chip.tBlend!=="normal" && <span aria-hidden style={{position:"absolute",inset:0,display:"flex",alignItems:"center",backgroundImage:t.chip.starGrad||t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:t.chip.tBlend||"multiply"}}>✦</span>}</span>
             <span style={{fontSize:isMobile?13.8:11.5,fontWeight:350,letterSpacing:isMobile?"0.28px":"0.23px",lineHeight:"normal",position:"relative",textShadow:t.chip.tShadow||"none",mixBlendMode:t.chip.tBlend||"normal",...(t.chip.tGrad?{backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}:{color:t.chip.t})}}>{item.aiReason}{t.chip.tGrad && t.chip.tBlend!=="normal" && <span aria-hidden style={{position:"absolute",inset:0,backgroundImage:t.chip.tGrad,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",mixBlendMode:t.chip.tBlend||"multiply"}}>{item.aiReason}</span>}</span>
           </div>
         </div>
