@@ -43,10 +43,30 @@ const SpinnerIcon = ({ c }) => (
   </svg>
 );
 
+// ── Background images (Unsplash direct URLs) ────────────────────────────────────
+const sunsetPhotos = [
+  "https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=1920&q=80",
+  "https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1920&q=80",
+  "https://images.unsplash.com/photo-1472120435266-95a3f747eb08?w=1920&q=80",
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&q=80",
+  "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1920&q=80",
+];
+const plantPhotos = [
+  "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=1920&q=80",
+  "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=1920&q=80",
+  "https://images.unsplash.com/photo-1446071103084-c257b5f70672?w=1920&q=80",
+  "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=1920&q=80",
+  "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1920&q=80",
+];
+const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const chosenSunset = pickRandom(sunsetPhotos);
+const chosenPlants = pickRandom(plantPhotos);
+
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
 const makeTheme = (dark) => dark
   ? {
-      pageBg:     "url(/bg.svg) center/cover fixed oklch(20% 0.025 260)",
+      pageBg:     "oklch(20% 0.025 260)",
+      bgImage:    chosenSunset,
       surfaceBg:  "oklch(0% 0 0 / 0.7)",
       surfaceHov: "oklch(0% 0 0 / 0.8)",
       headerBg:   "oklch(24% 0.025 260 / 0.55)",
@@ -110,7 +130,8 @@ const makeTheme = (dark) => dark
       colShadow:"0 4px 16px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.08), inset 0 -1px 0 oklch(0% 0 0/0.1)",
     }
   : {
-      pageBg:"url(/bg.svg) center/cover fixed oklch(92% 0.005 265)",
+      pageBg:"oklch(92% 0.005 265)",
+      bgImage:chosenPlants,
       surfaceBg:"oklch(100% 0 0 / 0.7)",surfaceHov:"oklch(100% 0 0 / 0.8)",
       barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.045)",trayBg:"oklch(100% 0 0 / 0.045)",
       border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
@@ -438,10 +459,6 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL, filterT
   const ac = t.col[meta.id];
   return (
     <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:t.cardBorder||"none",borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"clip",boxShadow:t.colShadow}}>
-      {/* Liquid glass diagonal shine */}
-      <div style={{position:"absolute",inset:0,borderRadius:22,background:"linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005) 50%, rgba(255,255,255,0.015))",mixBlendMode:"overlay",pointerEvents:"none",zIndex:1}} />
-      {/* Liquid glass corner highlights */}
-      <div style={{position:"absolute",inset:-2,borderRadius:22,background:"radial-gradient(circle at 15% 15%, rgba(255,255,255,0.035), transparent 50%), radial-gradient(circle at 85% 85%, rgba(255,255,255,0.02), transparent 50%)",filter:"blur(1px)",pointerEvents:"none",zIndex:1}} />
       <div style={{marginBottom:6,padding:"6px 8px 0",display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
           <div style={{fontSize:15,fontWeight:400,color:t.colLabel,letterSpacing:"0.05em"}}>{meta.label}</div>
@@ -703,10 +720,10 @@ export default function KanbanBoard() {
   // Sync browser frame color, body bg, and color-scheme with dark/light mode
   useEffect(() => {
     const themeColor = dark ? "#19191f" : "#e0e0e0";
-    document.body.style.background = "red";
+    document.body.style.background = t.pageBg;
     document.body.style.margin = "0";
     document.body.style.overscrollBehavior = "none";
-    document.documentElement.style.background = "red";
+    document.documentElement.style.background = t.pageBg;
     document.documentElement.style.margin = "0";
     document.documentElement.style.overscrollBehavior = "none";
     let meta = document.querySelector('meta[name="theme-color"]');
@@ -815,7 +832,10 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"red":t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:isMobile?"transparent":t.pageBg,minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
+        {/* Blurred Unsplash background image */}
+        <div style={{position:"fixed",inset:"-150px",zIndex:0,backgroundImage:`url(${t.bgImage})`,backgroundSize:"cover",backgroundPosition:"center",filter:"blur(150px)",pointerEvents:"none"}}/>
+        {!dark && <div style={{position:"fixed",inset:0,zIndex:0,background:"oklch(0% 0 0 / 0.3)",pointerEvents:"none"}}/>}
         {/* Grain overlay — behind content, over bg only */}
         {!isMobile && <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>}
 
