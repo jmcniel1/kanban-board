@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1312" height="928" viewBox="0 0 1312 928" preserveAspectRatio="xMidYMid slice">
   <defs>
     <filter id="megaBlur">
-      <feGaussianBlur stdDeviation="120"/>
+      <feGaussianBlur stdDeviation="180"/>
     </filter>
   </defs>
 

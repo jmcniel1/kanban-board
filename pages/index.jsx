@@ -820,7 +820,7 @@ export default function KanbanBoard() {
         {/* Fixed bg layer for mobile — iOS doesn't support background-attachment:fixed */}
         {isMobile && <div style={{position:"fixed",inset:0,zIndex:-1,backgroundImage:"url(/bg.svg)",backgroundColor:dark?"oklch(20% 0.025 260)":"oklch(92% 0.005 265)",backgroundSize:"cover",backgroundPosition:dark?"85% center":"20% center"}}/>}
         {/* Grain overlay — behind content, over bg only */}
-        <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>
+        <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:isMobile?0.12:0.33,mixBlendMode:isMobile?"soft-light":"overlay",pointerEvents:"none",zIndex:0}}/>
 
         {/* ── Topbar ── */}
         <div style={{position:"sticky",top:6,zIndex:10,margin:isMobile?"8px 0":"12px 0 12px",background:t.headerBg,backdropFilter:"blur(30px)",WebkitBackdropFilter:"blur(30px)",border:isMobile?"none":(t.cardBorder||"none"),borderRadius:16,boxShadow:isMobile?"none":t.colShadow}}>
