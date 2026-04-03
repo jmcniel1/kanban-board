@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
 // ── Source icons ──────────────────────────────────────────────────────────────
 const SRC_ICON = {
@@ -59,16 +59,14 @@ const plantPhotos = [
   "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1920&q=80",
 ];
 const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
-const chosenSunset = pickRandom(sunsetPhotos);
-const chosenPlants = pickRandom(plantPhotos);
 
 // ── Theme (oklch throughout) ───────────────────────────────────────────────────
-const makeTheme = (dark) => dark
+const makeTheme = (dark, chosenSunset, chosenPlants) => dark
   ? {
       pageBg:     "oklch(20% 0.025 260)",
       bgImage:    chosenSunset,
-      surfaceBg:  "oklch(0% 0 0 / 0.7)",
-      surfaceHov: "oklch(0% 0 0 / 0.8)",
+      surfaceBg:  "oklch(0% 0 0 / 0.1)",
+      surfaceHov: "oklch(0% 0 0 / 0.2)",
       headerBg:   "oklch(24% 0.025 260 / 0.55)",
       trayBg:     "oklch(22% 0.02 260 / 0.4)",
       barBg:      "oklch(20% 0.025 260)",
@@ -77,7 +75,7 @@ const makeTheme = (dark) => dark
       shadow:     "0 2px 12px oklch(0% 0 0/0.3)",
       shadowHov:  "0 4px 20px oklch(0% 0 0/0.4)",
       textPri:    "oklch(93% 0 0)",
-      textSec:    "oklch(100% 0 0 / 0.5)",
+      textSec:    "oklch(100% 0 0 / 0.8)",
       colLabel:   "oklch(100% 0 0)", colSub:"oklch(100% 0 0 / 0.5)",
       textMut:    "oklch(43% 0 0)",
       timeMut:    "oklch(100% 0 0 / 0.7)",
@@ -112,8 +110,8 @@ const makeTheme = (dark) => dark
       actDone:   { c:"oklch(100% 0 0)", bg:"oklch(100% 0 0 / 0.15)", hov:"oklch(100% 0 0 / 0.25)" },
       actMuted:  { c:"oklch(100% 0 0)",      bg:"oklch(100% 0 0 / 0.2)",       hov:"oklch(100% 0 0 / 0.3)", glass:"oklch(100% 0 0 / 0.05)" },
       actDivider:"oklch(100% 0 0 / 0.06)",
-      todayPill: { bg:"oklch(23% 0.05 28)", t:"oklch(82% 0.18 28)", dot:"oklch(72% 0.22 28)" },
-      filterOn:  { bg:"oklch(88% 0 0)", t:"oklch(10% 0 0)" },
+      todayPill: { bg:"oklch(79% 0.2 28 / 0.2)", t:"oklch(82% 0.17 25)", dot:"oklch(79% 0.2 28)" },
+      filterOn:  { bg:"#794AFF", t:"oklch(100% 0 0)" },
       filterOff: { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(55% 0 0)", bd:"oklch(100% 0 0 / 0.08)" },
       syncBtn:   { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(60% 0 0)" },
       toggleBtn: { bg:"oklch(26% 0.02 260 / 0.4)", t:"oklch(70% 0 0)" },
@@ -126,13 +124,13 @@ const makeTheme = (dark) => dark
       footerDot: "oklch(100% 0 0 / 0.1)", footerTot:"oklch(45% 0.01 260)", footerAi:"oklch(56% 0.14 290)",
       tabBar:    { bg:"oklch(20% 0.025 260 / 0.7)", activeBg:"oklch(28% 0.025 260 / 0.6)", activeText:"oklch(93% 0 0)", inactiveText:"oklch(45% 0.01 260)", indicatorFn:(colId)=>({today:"oklch(66% 0.2 28)",week:"oklch(60% 0.15 290)",fyi:"oklch(42% 0 0)",blocked:"oklch(36% 0 0)"})[colId] },
       cardBorder:"1px solid oklch(100% 0 0 / 0.12)",
-      cardShadow:"0 2px 8px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.1)",
+      cardShadow:"none",
       colShadow:"0 4px 16px oklch(0% 0 0/0.2), inset 0 1px 0 oklch(100% 0 0/0.08), inset 0 -1px 0 oklch(0% 0 0/0.1)",
     }
   : {
       pageBg:"oklch(92% 0.005 265)",
       bgImage:chosenPlants,
-      surfaceBg:"oklch(100% 0 0 / 0.7)",surfaceHov:"oklch(100% 0 0 / 0.8)",
+      surfaceBg:"oklch(100% 0 0 / 0.3)",surfaceHov:"oklch(100% 0 0 / 0.4)",
       barBg:"oklch(100% 0 0 / 0.6)",headerBg:"oklch(100% 0 0 / 0.045)",trayBg:"oklch(100% 0 0 / 0.045)",
       border:"oklch(100% 0 0 / 0.4)",borderHov:"oklch(100% 0 0 / 0.55)",
       shadow:"0 2px 16px oklch(0% 0 0/0.07)",shadowHov:"0 6px 24px oklch(0% 0 0/0.11)",
@@ -144,8 +142,8 @@ const makeTheme = (dark) => dark
       chip:{bg:"transparent",star:"oklch(100% 0 0)",t:"oklch(100% 0 0)",tBlend:"normal",border:"none",stroke:"none",bgGrad:"linear-gradient(160deg, oklch(42% 0.16 50 / 0.5) 0%, oklch(38% 0.18 25 / 0.5) 25%, oklch(32% 0.15 350 / 0.5) 50%, oklch(25% 0.2 290 / 0.5) 75%, oklch(20% 0.22 265 / 0.5) 100%)"},
       tagBg:"oklch(100% 0 0 / 0.35)",tagText:"oklch(20% 0 0)",tagActiveBg:"oklch(0% 0 0 / 0.15)",tagActiveText:"oklch(5% 0 0)",
       actDone:{c:"oklch(35% 0.18 145)",bg:"oklch(100% 0 0 / 0.35)",hov:"oklch(100% 0 0 / 0.5)"},actMuted:{c:"oklch(30% 0 0)",bg:"oklch(100% 0 0 / 0.25)",hov:"oklch(100% 0 0 / 0.4)"},actDivider:"oklch(0% 0 0 / 0.06)",
-      todayPill:{bg:"oklch(55% 0.22 25)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0)"},
-      filterOn:{bg:"linear-gradient(135deg, oklch(55% 0.2 290 / 0.5), oklch(60% 0.15 250 / 0.5), oklch(90% 0 0 / 0.5))",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
+      todayPill:{bg:"oklch(55% 0.22 25 / 0.2)",t:"oklch(100% 0 0)",dot:"oklch(100% 0 0)"},
+      filterOn:{bg:"#794AFF",t:"oklch(100% 0 0)"},filterOff:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       syncBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},toggleBtn:{bg:"oklch(100% 0 0 / 0.3)",t:"oklch(35% 0 0)"},
       emptyB:"oklch(100% 0 0 / 0.3)",emptyT:"oklch(50% 0 0)",
       donePill:{bg:"oklch(100% 0 0 / 0.45)",t:"oklch(35% 0.18 145)"},
@@ -153,7 +151,7 @@ const makeTheme = (dark) => dark
       errBg:"oklch(100% 0 0 / 0.45)",errBorder:"oklch(80% 0.1 25 / 0.5)",errText:"oklch(40% 0.2 25)",
       cardBlur:"blur(40px)",
       cardBorder:"1px solid oklch(100% 0 0 / 0.15)",
-      cardShadow:"0 2px 16px oklch(0% 0 0/0.05), inset 0 1px 0 oklch(100% 0 0/0.2)",
+      cardShadow:"none",
       colShadow:"0 4px 24px oklch(0% 0 0/0.04), inset 0 1px 0 oklch(100% 0 0/0.1), inset 0 -1px 0 oklch(0% 0 0/0.02)",
       skeletonBase:"oklch(100% 0 0 / 0.3)",skeletonShine:"oklch(100% 0 0 / 0.5)",
       footerDot:"oklch(0% 0 0 / 0.12)",footerTot:"oklch(40% 0 0)",footerAi:"oklch(45% 0.18 290)",
@@ -458,7 +456,7 @@ function KanbanColumn({ meta, items, loading, onDone, onSnooze, t, isXL, filterT
   const colItems = items.filter(i=>i.column===meta.id);
   const ac = t.col[meta.id];
   return (
-    <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:t.cardBorder||"none",borderRadius:22,padding:6,display:"flex",flexDirection:"column",overflow:"clip",boxShadow:t.colShadow}}>
+    <div style={{position:"relative",flex:1,minWidth:290,background:t.trayBg,backdropFilter:"blur(60px)",WebkitBackdropFilter:"blur(60px)",border:t.cardBorder||"none",borderRadius:22,padding:6,display:"flex",flexDirection:"column",boxShadow:t.colShadow}}>
       <div style={{marginBottom:6,padding:"6px 8px 0",display:"flex",alignItems:"center",gap:8}}>
         <div style={{flex:1}}>
           <div style={{fontSize:15,fontWeight:400,color:t.colLabel,letterSpacing:"0.05em"}}>{meta.label}</div>
@@ -674,10 +672,207 @@ function MobileSwipeView({ activeCol, setActiveCol, visible, loading, markDone, 
   );
 }
 
+// ── Shader backgrounds ────────────────────────────────────────────────────────
+const VERT_SRC = `attribute vec2 position; void main() { gl_Position = vec4(position, 0.0, 1.0); }`;
+
+const VORONOI_FRAG = `
+  precision mediump float;
+  uniform vec2 iResolution;
+  uniform float iTime;
+  float size = 6.0;
+  vec2 hash2(vec2 p) {
+    p = vec2(dot(p, vec2(127.1,191.7)), dot(p, vec2(269.5,183.3)));
+    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+  }
+  vec2 voronoi(vec2 uv) {
+    float ts = iTime * 0.5;
+    uv.x += ts * 0.05;
+    float minDist = 1.0;
+    vec2 grid = floor(uv * size);
+    float grid2 = 0.0;
+    for (int x = -1; x <= 1; x++)
+    for (int y = -1; y <= 1; y++) {
+      vec2 cell = grid + vec2(float(x), float(y));
+      vec2 cellPos = hash2(cell);
+      cellPos = .5 + .5 * sin(0.3 * ts + 10.213 * cellPos);
+      vec2 pos = cell / size + cellPos / size;
+      float dt = length(uv - pos) - 0.1;
+      minDist = min(minDist, dt);
+      vec2 o = abs(cellPos) - 0.046;
+      grid2 = min(o.x, o.y);
+    }
+    return vec2(minDist, grid2);
+  }
+  float bumpFunc(vec2 p) { return length(voronoi(p)) * 1.7071; }
+  void main() {
+    float t = iTime * 0.5;
+    vec2 uv = gl_FragCoord.xy / iResolution.y;
+    // Nudge brand: midnight #010139, teal #00B8AA, purple #794AFF, red #F04438
+    vec2 d1 = voronoi(uv);
+    vec3 midnight = vec3(0.004, 0.004, 0.224);
+    vec3 colorA = vec3(1); vec3 colorB = midnight;
+    float d2 = smoothstep(-0.2, 0.11, d1.x);
+    vec3 sp = vec3(uv, 0);
+    vec3 rd = normalize(vec3(uv, 1));
+    vec3 lp = vec3(cos(t)*2.5+2.5, sin(t)*1.5+1.0, -3.0);
+    vec3 sn = vec3(0, 0, 0.05);
+    vec2 eps = vec2(4.0/iResolution.y, 0);
+    float f  = bumpFunc(sp.xy);
+    float fx = bumpFunc(sp.xy - eps.xy);
+    float fy = bumpFunc(sp.xy - eps.yx);
+    const float bumpFactor = .105;
+    fx = (fx - f)/eps.x;
+    fy = (fy - f)/eps.x;
+    sn = normalize(sn + vec3(fx, fy, 0)*bumpFactor);
+    vec3 ld = lp - sp;
+    float lDist = max(length(ld), .0001);
+    ld /= lDist;
+    float atten = 1.0/(1.0 + lDist*lDist*.15);
+    atten *= f*.9 + .1;
+    float diff = max(dot(sn, ld), 0.0);
+    diff = pow(diff, 4.)*.66 + pow(diff, 8.)*.34;
+    float spec = pow(max(dot(reflect(-ld, sn), -rd), 0.0), 12.0);
+    // teal diffuse, purple specular, red reflection
+    vec3 col = midnight + ((diff*vec3(0.5,0.9,0.85)*2.+.3) + vec3(0.6,0.4,1.0)*spec*4.)*atten;
+    float ref = max(dot(reflect(rd, sn), vec3(1)), 0.0);
+    col += col*pow(ref, 1.)*vec3(1.0,0.35,0.3)*3.;
+    col -= mix(colorA, colorB, d2)*0.5;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+const SILK_FRAG = `
+  precision highp float;
+  uniform vec2 iResolution;
+  uniform float iTime;
+  #define PI 3.14159265359
+  float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*0.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
+  float vnoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);float a=hash12(i);float b=hash12(i+vec2(1,0));float c=hash12(i+vec2(0,1));float d=hash12(i+vec2(1,1));return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}
+  float fbm3(vec2 p){float v=0.0,a=0.5;mat2 rot=mat2(0.8,-0.6,0.6,0.8);for(int i=0;i<3;i++){v+=a*vnoise(p);p=rot*p*2.0;a*=0.5;}return v;}
+  float fbm2(vec2 p){float v=0.5*vnoise(p);p=mat2(0.8,-0.6,0.6,0.8)*p*2.0;v+=0.25*vnoise(p);return v;}
+  vec2 domainWarp(vec2 p,float t,float scale,float seed){return vec2(fbm3(p*scale+vec2(1.7+seed,9.2)+t*0.15),fbm3(p*scale+vec2(8.3,2.8+seed)-t*0.12));}
+  vec2 domainWarpLite(vec2 p,float t,float scale,float seed){return vec2(fbm2(p*scale+vec2(1.7+seed,9.2)+t*0.15),fbm2(p*scale+vec2(8.3,2.8+seed)-t*0.12));}
+  vec3 fabricFold(vec2 p,float t,float seed,float freq,float flow){
+    float ts=t*flow;vec2 warp=domainWarp(p+seed*3.7,ts,1.2,seed);vec2 wp=p+warp*0.55;float h=0.0;vec2 g=vec2(0.0);
+    float f1x=freq*0.7,f1y=freq*0.4,ph1=wp.x*f1x+wp.y*f1y+ts*0.3+seed*2.1;h+=sin(ph1)*0.35;g+=cos(ph1)*0.35*vec2(f1x,f1y);
+    float f2x=-freq*0.3,f2y=freq*0.9,ph2=wp.x*f2x+wp.y*f2y+ts*0.25+seed*1.3;h+=sin(ph2)*0.25;g+=cos(ph2)*0.25*vec2(f2x,f2y);
+    float f3=freq*0.6,ph3=(wp.x+wp.y)*f3+ts*0.2+seed*4.5;h+=sin(ph3)*0.18;g+=cos(ph3)*0.18*vec2(f3,f3);
+    float f4x=freq*1.8,f4y=freq*1.2,ph4=wp.x*f4x+wp.y*f4y-ts*0.35+seed*0.7;h+=sin(ph4)*0.08;g+=cos(ph4)*0.08*vec2(f4x,f4y);
+    h+=vnoise(wp*freq*0.9+seed*10.0+ts*0.04)*0.12-0.06;
+    return vec3(h,g);
+  }
+  vec3 fabricFoldLite(vec2 p,float t,float seed,float freq,float flow){
+    float ts=t*flow;vec2 warp=domainWarpLite(p+seed*3.7,ts,1.2,seed);vec2 wp=p+warp*0.55;float h=0.0;vec2 g=vec2(0.0);
+    float f1x=freq*0.7,f1y=freq*0.4,ph1=wp.x*f1x+wp.y*f1y+ts*0.3+seed*2.1;h+=sin(ph1)*0.35;g+=cos(ph1)*0.35*vec2(f1x,f1y);
+    float f2x=-freq*0.3,f2y=freq*0.9,ph2=wp.x*f2x+wp.y*f2y+ts*0.25+seed*1.3;h+=sin(ph2)*0.25;g+=cos(ph2)*0.25*vec2(f2x,f2y);
+    float f3=freq*0.6,ph3=(wp.x+wp.y)*f3+ts*0.2+seed*4.5;h+=sin(ph3)*0.18;g+=cos(ph3)*0.18*vec2(f3,f3);
+    float f4x=freq*1.8,f4y=freq*1.2,ph4=wp.x*f4x+wp.y*f4y-ts*0.35+seed*0.7;h+=sin(ph4)*0.08;g+=cos(ph4)*0.08*vec2(f4x,f4y);
+    return vec3(h,g);
+  }
+  float kajiyaSpec(vec2 grad,vec3 L,vec3 V,float shine){float gl2=dot(grad,grad);if(gl2<0.0001)return 0.0;vec2 tg=vec2(-grad.y,grad.x)/sqrt(gl2);vec3 T=normalize(vec3(tg,0.0));vec3 H=normalize(L+V);float TdH=dot(T,H);return pow(sqrt(max(1.0-TdH*TdH,0.0)),shine);}
+  vec4 shadeLayer(vec2 p,float t,float seed,float freq,float flow,vec3 darkCol,vec3 midCol,vec3 brightCol,vec3 specCol,float opacity,float shine,vec3 L1,vec3 L2,vec3 V){
+    vec3 fold=opacity<0.35?fabricFoldLite(p,t,seed,freq,flow):fabricFold(p,t,seed,freq,flow);
+    float h=fold.x;vec2 grad=fold.yz;vec3 N=normalize(vec3(-grad*1.8,1.0));
+    float NdL1=max(dot(N,L1),0.0),NdL2=max(dot(N,L2),0.0),lit=NdL1*0.75+NdL2*0.12;
+    float depth=smoothstep(-0.8,0.4,h),shade=lit*depth;
+    float midBlend=smoothstep(0.0,0.35,shade),brightBlend=smoothstep(0.25,0.7,shade);
+    vec3 fabric=mix(darkCol,midCol,midBlend);fabric=mix(fabric,brightCol,brightBlend*0.5);
+    float sp=kajiyaSpec(grad,L1,V,shine)*0.9+kajiyaSpec(grad,L2,V,shine*0.6)*0.15;
+    float specPow=sp*sp*sp;fabric+=specCol*specPow*0.9;
+    float trans=smoothstep(0.3,0.9,depth)*lit*0.08;fabric+=vec3(0.45,0.28,0.15)*trans;
+    float sparkle=hash12(floor(p*500.0+t*0.7));sparkle=step(0.9992,sparkle)*specPow*20.0;fabric+=specCol*min(sparkle,2.0);
+    float alpha=opacity*(0.65+depth*0.35);
+    return vec4(fabric,alpha);
+  }
+  void main(){
+    vec2 uv=gl_FragCoord.xy/iResolution.xy;
+    float aspect=iResolution.x/iResolution.y;
+    vec2 p=(uv-0.5)*vec2(aspect,1.0);
+    float t=iTime*0.4;
+    vec3 L1=normalize(vec3(0.4+sin(t*0.07)*0.3, 0.9+cos(t*0.09)*0.15, 0.8));
+    vec3 L2=normalize(vec3(-0.7+cos(t*0.06)*0.2, -0.3+sin(t*0.08)*0.15, 0.6));
+    vec3 V=vec3(0.0,0.0,1.0);
+    // Nudge brand: teal #00B8AA, purple #794AFF, red #F04438, dark #010139
+    float bgD=length(p);
+    vec3 bg=mix(vec3(0.02,0.01,0.12),vec3(0.004,0.004,0.05),smoothstep(0.0,1.0,bgD));
+    bg+=vec3(0.01,0.005,0.08)*exp(-bgD*bgD*2.0);
+    // Layer 1 — Teal (back, slow)
+    vec4 ly1=shadeLayer(p*0.8+vec2(0.15,t*0.015),t,0.0,2.0,0.5,vec3(0.0,0.04,0.04),vec3(0.0,0.35,0.32),vec3(0.0,0.72,0.67),vec3(0.7,1.0,0.95),0.30,26.0,L1,L2,V);
+    // Layer 2 — Purple (mid)
+    vec4 ly2=shadeLayer(p*1.0+vec2(t*0.012,-0.1),t,1.0,3.2,0.75,vec3(0.04,0.02,0.10),vec3(0.28,0.18,0.65),vec3(0.475,0.29,1.0),vec3(0.85,0.75,1.0),0.38,40.0,L1,L2,V);
+    // Layer 3 — Red (front, fast)
+    vec4 ly3=shadeLayer(p*1.2+vec2(-t*0.008,t*0.02),t,2.0,4.5,1.0,vec3(0.10,0.02,0.02),vec3(0.55,0.14,0.12),vec3(0.94,0.27,0.22),vec3(1.0,0.82,0.80),0.50,55.0,L1,L2,V);
+    vec3 col=bg;
+    col=mix(col,ly1.rgb,ly1.a);col+=vec3(0.0,0.20,0.30)*ly1.a*ly2.a*0.08;
+    col=mix(col,ly2.rgb,ly2.a);col+=vec3(0.30,0.10,0.20)*ly2.a*ly3.a*0.06;
+    col+=vec3(0.15,0.15,0.25)*ly1.a*ly2.a*ly3.a*0.04;
+    col=mix(col,ly3.rgb,ly3.a);
+    float cov=(ly1.a+ly2.a+ly3.a)*0.333;col+=vec3(0.0,0.25,0.30)*cov*0.04;
+    float vig=1.0-smoothstep(0.25,1.15,length(p*vec2(0.85,1.0)));col*=0.6+0.4*vig;
+    float lum=dot(col,vec3(0.299,0.587,0.114));col=mix(vec3(lum),col,1.35);
+    col=col*(2.51*col+0.03)/(col*(2.43*col+0.59)+0.14);
+    col=pow(max(col,0.0),vec3(0.4545));
+    float grain=hash12(gl_FragCoord.xy+fract(iTime*7.13)*100.0);col+=(grain-0.5)*0.015;
+    gl_FragColor=vec4(clamp(col,0.0,1.0),1.0);
+  }
+`;
+
+const SHADER_LIST = [VORONOI_FRAG, SILK_FRAG];
+
+function ShaderBackground({ fragSrc }) {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    if (!gl) return;
+    const compile = (type, src) => {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      return s;
+    };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT_SRC));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fragSrc));
+    gl.linkProgram(prog); gl.useProgram(prog);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(prog, "position");
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    const uRes  = gl.getUniformLocation(prog, "iResolution");
+    const uTime = gl.getUniformLocation(prog, "iTime");
+    let raf, running = true, start = performance.now();
+    const resize = () => {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+    const loop = () => {
+      if (!running) return;
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uTime, (performance.now() - start) / 1000);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      raf = requestAnimationFrame(loop);
+    };
+    loop();
+    const onVis = () => { if (document.hidden) { running = false; } else { running = true; loop(); } };
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }, [fragSrc]);
+  return <canvas ref={canvasRef} style={{position:"fixed",inset:0,zIndex:0,width:"100%",height:"100%",pointerEvents:"none"}}/>;
+}
+
 // ── Main page ──────────────────────────────────────────────────────────────────
 export default function KanbanBoard() {
   const [pinVerified, setPinVerified] = useState(false);
-  const [dark,      setDark]      = useState(true);   // default dark
+  const [dark,      setDark]      = useState(true);   // updated on mount to match OS
   const [items,     setItems]     = useState([]);
   const [loading,   setLoading]   = useState(true);
   const [syncing,   setSyncing]   = useState(false);
@@ -690,6 +885,22 @@ export default function KanbanBoard() {
   const [activeCol, setActiveCol] = useState("today");
   const [swipeProgress, setSwipeProgress] = useState(0); // -1 to 1, fractional drag between cols
   const [isMobile,  setIsMobile]  = useState(false);
+  const chosenSunset = useMemo(() => pickRandom(sunsetPhotos), []);
+  const chosenPlants = useMemo(() => pickRandom(plantPhotos), []);
+
+  // Sync dark mode to OS preference on mount + listen for changes
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const sync = () => setDark(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    window.addEventListener("focus", sync); // Arc/Chrome may only update on window focus
+    return () => {
+      mq.removeEventListener("change", sync);
+      window.removeEventListener("focus", sync);
+    };
+  }, []);
+  const chosenShader = dark ? VORONOI_FRAG : SILK_FRAG;
   const [isXL,      setIsXL]      = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [syncCooldown, setSyncCooldown] = useState(false);
@@ -743,7 +954,7 @@ export default function KanbanBoard() {
     } catch (_) {}
   }, []);
 
-  const t = makeTheme(dark);
+  const t = makeTheme(dark, chosenSunset, chosenPlants);
 
   // ── Fetch from API (cooldown persisted across refreshes) ─────────────────────
   const lastFetchRef = useRef(0);
@@ -832,10 +1043,9 @@ export default function KanbanBoard() {
       {/* PIN screen overlays everything until verified */}
       {!pinVerified && <PinScreen onVerified={() => setPinVerified(true)} />}
 
-      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:"transparent",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative"}}>
-        {/* Blurred Unsplash background image */}
-        <div style={{position:"fixed",inset:"-150px",zIndex:0,backgroundImage:`url(${t.bgImage})`,backgroundSize:"cover",backgroundPosition:"center",filter:"blur(150px)",pointerEvents:"none"}}/>
-        {!dark && <div style={{position:"fixed",inset:0,zIndex:0,background:"oklch(0% 0 0 / 0.15)",pointerEvents:"none"}}/>}
+      <div style={{fontFamily:"'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif",background:"transparent",minHeight:"100vh",padding:isMobile?"0 8px":"0 12px",display:"flex",flexDirection:"column",transition:"background 0.25s ease",overscrollBehavior:"none",position:"relative",WebkitFontSmoothing:"antialiased",MozOsxFontSmoothing:"grayscale"}}>
+        {/* Shader background — randomly chosen per load */}
+        <ShaderBackground fragSrc={chosenShader} />
         {/* Grain overlay — behind content, over bg only */}
         {!isMobile && <div style={{position:"fixed",inset:0,backgroundImage:"url(/noise.png)",backgroundRepeat:"repeat",backgroundSize:"200px 200px",opacity:0.33,mixBlendMode:"overlay",pointerEvents:"none",zIndex:0}}/>}
 
@@ -873,7 +1083,7 @@ export default function KanbanBoard() {
               <div style={{display:"flex",gap:4,flexShrink:0}}>
                 {FILTERS.map(f=>{
                   const on=filter===f.key, s=on?t.filterOn:t.filterOff;
-                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{height:36,padding:"0 13px",borderRadius:10,border:"none",background:s.bg,color:s.t,fontSize:12,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
+                  return <button key={f.key} onClick={()=>setFilter(f.key)} style={{height:36,padding:"0 13px",borderRadius:10,border:"none",background:s.bg,color:s.t,fontSize:13.5,fontWeight:on?400:300,cursor:"pointer",transition:"all 0.14s"}}>{f.label}</button>;
                 })}
               </div>
             )}
