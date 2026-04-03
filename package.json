@@ -9,12 +9,12 @@
     "get-gmail-token": "node scripts/get-gmail-token.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@slack/web-api": "^7.3.0",
+    "dotenv": "^16.4.0",
+    "googleapis": "^140.0.0",
     "next": "^14.2.0",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0",
-    "googleapis": "^140.0.0",
-    "@slack/web-api": "^7.3.0",
-    "@anthropic-ai/sdk": "^0.27.0",
-    "dotenv": "^16.4.0"
+    "react-dom": "^18.3.0"
   }
 }
